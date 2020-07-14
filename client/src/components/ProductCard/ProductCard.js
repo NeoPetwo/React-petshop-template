@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 
 export default class ProductCard extends React.Component {
+  // constructor() {
+  //   super();
+  // }
+
   render() {
     return (
       <div class="product-card">

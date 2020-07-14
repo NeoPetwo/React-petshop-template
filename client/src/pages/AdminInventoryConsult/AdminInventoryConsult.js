@@ -1,7 +1,30 @@
 import React from 'react';
+import axios from 'axios';
 import '../AdminRegisterAdmin/AdminRegisterAdmin.scss';
 
+import ProductCard from '../../components/ProductCard/ProductCard';
+import { SERVER_URL } from '../../variables';
+
 export default class AdminRegisterServices extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+        allproducts: []
+    };
+    this.fetchProducts();
+  }
+
+  fetchProducts = async () => {
+    let res = await axios({
+        method: 'GET',
+        url: `${SERVER_URL}/products`
+    });
+
+    this.setState({
+        allproducts: res.data
+    });
+  }
+
   render() {
   return (
     <div class="admin-register-services">

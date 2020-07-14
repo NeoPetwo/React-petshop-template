@@ -28,6 +28,7 @@ export default class Catalog extends React.Component {
         method: 'GET',
         url: `${SERVER_URL}/products`
     });
+
     this.setState({
         products2show: res.data,
         allproducts: res.data
