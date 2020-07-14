@@ -11,7 +11,12 @@ export default class Product extends React.Component {
         this.state = {
             title: "",
             price: "",
-            description: ""
+            description: "",
+            maxQuantity: "",
+            img: "",
+            slug: "",
+            tags: "",
+            qttSelected: 1,
         };
         this.fetchInfo();
     }
@@ -25,16 +30,37 @@ export default class Product extends React.Component {
         this.setState({
             title: res.data[0].title,
             price: res.data[0].price,
-            description: res.data[0].description
-        })
-        console.log('axios', this.state);
+            description: res.data[0].description,
+            maxQuantity: res.data[0].quantity,
+            img: res.data[0].img,
+            slug: res.data[0].slug,
+            tags: res.data[0].tags
+        });
+    }
+
+    addItem = () => {
+        console.log('max', this.state.maxQuantity);
+        if (this.state.qttSelected === this.state.maxQuantity) return;
+
+        this.setState({
+            qttSelected: this.state.qttSelected += 1
+        });
+    }
+
+    removeItem = () => {
+        //Prevent negative numbers
+        if (this.state.qttSelected === 1) return; 
+
+        this.setState({
+            qttSelected: this.state.qttSelected -= 1
+        });
     }
 
     render() {
         return (
             <div class="product">
                 <div class="photoArea">
-                    <img src={dogHouse}/>
+                    <img src={`${this.state.img}`} />
                 </div>
                 <div class="paymentArea">
                     <h1>{this.state.title}</h1>
@@ -44,15 +70,15 @@ export default class Product extends React.Component {
                             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
                         </div>
                         <div class="price">
-                            <p id="price">R$ {this.state.price}</p>
+                            <p id="price">R$ {parseFloat(this.state.price).toFixed(2)}</p>
                         </div>
                     </section>
                     <section>
                         <p id="qtt">QUANTITY</p>
                         <div class="qttBox">
-                            <button class="qttBtn fas fa-minus"></button>
-                            <p>2</p>
-                            <button class="qttBtn fas fa-plus"></button>
+                            <button onClick={this.removeItem} class="qttBtn fas fa-minus"></button>
+                                <p>{this.state.qttSelected}</p>
+                            <button onClick={this.addItem} class="qttBtn fas fa-plus"></button>
                         </div>
                     </section>
                     <section>
