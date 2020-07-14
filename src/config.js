@@ -2,7 +2,8 @@
 // Gabriel Santos Nicolau 10684600
 // Kaio Tadeu Rodrigues 7561083
 
-
+//Para simplificações na correção as senhas ficarão salvas aqui
+//Após a correção este user será apagado
 let user = "neopetwoadmin";
 let pwd = "LmSEPZFB9ReL6uaj";
 

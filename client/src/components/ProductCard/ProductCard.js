@@ -5,19 +5,19 @@ import './ProductCard.scss';
 import petToy from '../../images/petToy.png'
 
 export default class ProductCard extends React.Component {
-
   render() {
     return (
       <div class="product-card">
-        <Link to='/catalog/product' class="product">
+        <Link to={`/catalog/product/${this.props.product.slug}`} class="product">
             <img src={petToy} />
             <div class="info">
-                <p class="description">Bola de brinquedo</p>
+                <p class="description">{this.props.product.title}</p>
                 <p class="discount">
                     <span class="box bg-green">25% OFF </span>
-                    <span class="price">R$ 19,99</span>
+                    {/* Blackfriday strategy */}
+                    <span class="price">R$ {(1.25*this.props.product.price).toFixed(2)}</span>
                 </p>
-                <p class="price">R$ 14,99</p>
+                <p class="price">R$ {(this.props.product.price).toFixed(2)}</p>
             </div>
         </Link>
       </div>

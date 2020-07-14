@@ -1,23 +1,50 @@
 import React from 'react';
+import axios from 'axios';
 import dogHouse from '../../images/dogHouse.png';
 import './Product.scss';
 
+import { SERVER_URL } from '../../variables';
+
 export default class Product extends React.Component {
-  render() {
-    return (
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            price: "",
+            description: ""
+        };
+        this.fetchInfo();
+    }
+
+    fetchInfo = async () => {
+        const { productslug } = this.props.match.params;
+        let res = await axios({
+            method: 'GET',
+            url: `${SERVER_URL}/products/${productslug}`
+        });
+        this.setState({
+            title: res.data[0].title,
+            price: res.data[0].price,
+            description: res.data[0].description
+        })
+        console.log('axios', this.state);
+    }
+
+    render() {
+        return (
             <div class="product">
                 <div class="photoArea">
                     <img src={dogHouse}/>
                 </div>
                 <div class="paymentArea">
-                    <h1>Doghouse model 2000</h1>
+                    <h1>{this.state.title}</h1>
                     <section>
 
                         <div class="rating">
                             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
                         </div>
                         <div class="price">
-                            <p id="price">$1348.00</p>
+                            <p id="price">R$ {this.state.price}</p>
                         </div>
                     </section>
                     <section>
@@ -35,6 +62,6 @@ export default class Product extends React.Component {
                     <button class="btn">Add to cart</button>
                 </div>
             </div>
-    );
-  }
+        );
+    }
 }

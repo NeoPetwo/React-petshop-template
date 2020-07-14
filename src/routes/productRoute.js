@@ -8,6 +8,8 @@ const controller = require('../controllers/productController');
 // Arquivo de organização de rotas para /products
 // As funções que lidam com a requisição estão em controller
 
+// NÃO MUDE ESSA ORDEM!!
+router.get('/alltags', controller.getTags);
 router.get('/', controller.get);
 router.get('/:slug', controller.getBySlug);
 router.get('/admin/:id', controller.getById);

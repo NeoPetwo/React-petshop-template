@@ -24,8 +24,8 @@ exports.getBySlug = async (slug) => {
   return res;
 }
 
-exports.getBySlug = async (id) => {
-  const res = await Product.findById(id);
+exports.getBySlug = async (slug) => {
+  const res = await Product.find({slug: slug});
   return res;
 }
 
@@ -34,6 +34,11 @@ exports.getByTag = async (tag) => {
     active: true,
     tags: tag
   }, 'title description price slug tags');
+  return res;
+}
+
+exports.getTags = async () => {
+  const res = await Product.collection.distinct("tags");
   return res;
 }
 

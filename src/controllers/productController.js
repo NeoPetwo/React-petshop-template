@@ -61,6 +61,18 @@ exports.getByTag = async (req, res, next) => {
   }
 }
 
+exports.getTags = async (req, res, next) => {
+  try {
+    const data = await repository.getTags();
+    res.status(200).send(data);
+  } catch(err) {
+    res.status(500).send({
+      message: 'Falha ao processar sua requisição.',
+      data: err
+    });
+  }
+}
+
 // Cria produtos
 exports.post = async (req, res, next) => {
   try {
