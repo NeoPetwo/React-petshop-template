@@ -1,0 +1,50 @@
+/*Petshopt Mockup - First delivery*/
+/*    Daniel da Rocha Fróes 10255956*/
+/*    Gabriel Santos Nicolau 10684600*/
+/*    Kaio Tadeu Rodrigues 7561083*/
+.catalog {
+	#catalog{
+		padding-left: 6%;
+		padding-right: 6%;
+	}
+	#catalog li{
+		list-style-type: none;
+	}
+
+	#sidebar{
+		width: 20%;
+		/* border: 2px solid black; */
+	}
+
+	#sidebar .title{
+		border-top: 2px solid rgb(182, 182, 182);
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		padding-left: 0.2em;
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	#sidebar .category{
+		padding-left: 1.2em;
+	}
+
+	#product-grid{
+		width: 85%;
+		/* border: 2px solid black; */
+		padding: 2em;
+	}
+	#product-grid h2
+	{
+		font-size: 40px;
+		color:rgb(100, 100, 100);;
+		padding-left: 0.5em;
+		padding-bottom: 1em;
+	}
+
+	.product-row.row{
+		/* border: 2px solid blue; */
+		justify-content: space-evenly;
+	}
+}
+

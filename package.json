@@ -1,17 +1,22 @@
 {
-  "name": "T7",
+  "name": "neopetwo",
   "version": "1.0.0",
   "description": "",
   "main": "./bin/server.js",
   "scripts": {
+    "install-all": "npm i & npm run client-install",
     "start": "node ./bin/server.js",
-    "test": "nodemon ./bin/server.js"
+    "test-node": "nodemon ./bin/server.js",
+    "client-install": "cd client && npm install",
+    "client": "npm start --prefix client",
+    "dev": "npm run test-node & npm run client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "guid": "^0.0.12",

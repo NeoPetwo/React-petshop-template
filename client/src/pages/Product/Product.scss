@@ -1,0 +1,145 @@
+/*Petshopt Mockup - First delivery*/
+/*    Daniel da Rocha Fróes 10255956*/
+/*    Gabriel Santos Nicolau 10684600*/
+/*    Kaio Tadeu Rodrigues 7561083*/
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+
+.product {
+    display: flex;
+    flex-direction: row;
+    margin-top: 70px;
+    margin-bottom: 70px;
+
+    body {
+        margin: 0px;
+        /* font-family: "Source Sans Pro", Helvetica, sans-serif; */
+        font-family: 'Merriweather', serif;
+    }
+
+    a {
+        text-decoration: none;	
+    }
+
+    .photoArea {
+        width: 75%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .photoArea img {
+        width: 550px;
+        height: auto;
+    }
+
+    .paymentArea {
+        width: 25%;
+        margin-right: 5%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 25px;
+        padding-right: 25px;
+        border-radius: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        -webkit-box-shadow: 3px 9px 21px -9px rgba(0,0,0,0.75);
+        -moz-box-shadow: 3px 9px 21px -9px rgba(0,0,0,0.75);
+        box-shadow: 3px 9px 21px -9px rgba(0,0,0,0.75);
+    }
+
+    .paymentArea h1 {
+        font-size: 30px;
+        font-weight: bold;
+        max-width: 85%;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .paymentArea p#qtt {
+        color: rgb(107, 107, 107);
+        font-size: 15px;
+        margin-bottom: 4px;
+    }	
+
+
+    .rating {
+    unicode-bidi: bidi-override;
+        direction: rtl;
+        font-size: 23px;
+    }
+    .rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    }
+    .rating > span:hover:before,
+    .rating > span:hover ~ span:before {
+    content: "\2605";
+        position: absolute;
+        color: yellow;
+        }
+
+    .price {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: center;
+        font-size: 22px;
+    }
+
+    #price {
+        font-size: 30px;
+
+    }
+
+    .qttBox {
+        display: flex;
+        flex-direction: row;
+        background-color: #FFFFFF;
+    }
+
+    .qttBox p {
+        font-size: 18px;
+        /* margin-right: 5%; */
+    }
+
+    .paymentArea .btn {
+        border: none;
+        font-weight: bold;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 2px;
+        /* background-color: #004445; */
+        background-color: #004445;
+        color: #FFF;
+        width: 100%;
+        align-self: center;
+        margin-bottom: 30px;
+    }
+
+    .paymentArea .btn:hover {
+        background-color: #6FB98F;
+        color: #000;
+        transition: background-color 200ms ease;
+    }
+
+    .fa-minus {
+        color: #7d7d7d;
+        font-size: 15px;
+        margin-right: 8px;
+    }
+
+    .fa-plus {
+        color: #7d7d7d;
+        font-size: 15px;
+        margin-left: 8px;
+    }
+}

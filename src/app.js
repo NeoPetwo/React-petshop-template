@@ -5,14 +5,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const config = require('./config');
 
 // Framework express
 const app = express();
  
-// Colocando os middlewares para configurar o body parser para leitura de JSON
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 //Conectando com o server do Mongo
 mongoose.connect(config.connectionString, {useNewUrlParser: true, useUnifiedTopology: true});

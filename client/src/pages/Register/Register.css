@@ -1,0 +1,125 @@
+/*Petshopt Mockup - First delivery*/
+/*    Daniel da Rocha Fróes 10255956*/
+/*    Gabriel Santos Nicolau 10684600*/
+/*    Kaio Tadeu Rodrigues 7561083*/
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+
+body {
+	margin: 0px;
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+a {
+	text-decoration: none;	
+}
+
+.registerArea {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.registerArea form {
+	margin-top: 7%;
+	margin-bottom: 7%;
+	background-color: #004445;
+	width: 65%;
+	border-radius: 30px;
+	color: #FFF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 20px;
+	-webkit-box-shadow: 6px 6px 21px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 21px -4px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 21px -4px rgba(0,0,0,0.75);
+}
+
+.registerArea section {
+	width: 65%;
+}
+
+.registerArea input {
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 8px;
+	border-radius: 9px;
+	font-size: 15px;
+}
+
+.registerArea h3 {
+	align-self: flex-start;
+	font-size: 20px;
+}
+
+.registerArea p {
+	font-size: 18px;
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+.registerArea a {
+	text-decoration: none;
+	color: #EBB32B;
+}
+
+.registerArea a:hover {
+	color: #000;
+}
+
+.btn {
+	margin-top: 25px;
+  	border: none;
+  	font-weight: bold;
+ 	padding: 10px 25px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+  	border-radius: 10px;
+  	background-color: #FFFFFF;
+	color: #000;
+	width: 100%;
+}
+
+.btn:hover {
+	background-color: #6FB98F;
+  	color: #FFF;
+  	transition: background-color 200ms ease;
+}
+
+.inputfile {
+
+
+}
+
+.inputfile input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+
+
+.btn#file-btn{
+	margin-top: 2px;
+	padding: 8px;
+	width: 40%;
+	margin-bottom: 20px;
+}
+
+.inputfile img{
+	width: 100px;
+	height: 100px;
+	margin-left: 40%;
+	border-radius: 50%;
+}
+
+
+/*Navbar*/
+/*Another file*/
+
+/*Fotter*/
+/*Another file*/

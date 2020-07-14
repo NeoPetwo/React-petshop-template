@@ -1,0 +1,129 @@
+/*Petshopt Mockup - First delivery*/
+/*    Daniel da Rocha Fróes 10255956*/
+/*    Gabriel Santos Nicolau 10684600*/
+/*    Kaio Tadeu Rodrigues 7561083*/
+/* @import url(fontawesome-all.min.css); */
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+
+.home {
+	/* ################################################################################################################ */
+	.popular-list{
+		background-color: white;
+	}
+
+	.popular-list div{
+		justify-content: space-evenly;
+		align-items:  center;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+
+	.popular-list h2 {
+		text-align: center;
+		padding-bottom: 1em;
+	}
+
+	.popular-list a{
+		align-items: center;
+		width: 200px;
+		height: auto;
+	}
+
+	.popular-list a:hover {
+		background-color: rgba(255, 228, 64, 0.7);
+
+		transition: background-color 500ms ease;
+		border-radius: 15px;
+	}
+
+	.popular-list img {
+		display: block;
+		margin: 0 auto;
+		padding-bottom: 20px;
+		width: auto;
+		height: 200px;
+	}
+
+	.popular-list p{
+		text-align: center;
+		font-size: 25px;
+		font-weight: bold;
+		color: #7d7d7d;
+		margin-top: -8px;
+	}
+	/* ################################################################################################################## */
+
+	.info-description {
+		margin-left: 3%;
+		margin-right: 3%;
+		color: #FFFFFF;
+		align-self: center;
+	}
+
+	.info-description h2{
+		font-weight: bold;
+		font-size: 50px;
+	}
+
+	.info-description p{
+		font-size: 22px;
+		font-weight: 500;
+		margin-bottom: 40px;
+	}
+
+	.info-description .button {
+			border: none;
+			font-weight: bold;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 16px;
+		border-radius: 20px;
+		background-color: #FFFFFF;
+		color: #000;
+	}
+
+	.info-description button:focus{
+		outline: 0;
+	}
+
+	.info-img{
+		align-self: center;
+		height: 340px;
+		width: auto;
+		margin-left: 4%;
+		margin-right: 4%;
+		margin-top: 1%;
+		margin-bottom: 1%;	
+	}
+	/* ###################################################################################################################  */
+
+	#shop-info {
+		background-color: #EBB32B;
+		display: flex;
+		flex-direction: row;
+	}
+
+
+	#shop-info .button:hover {
+		background-color: #6FB98F;
+		color: #FFF;
+		transition: background-color 200ms ease;
+	}
+	/* ###################################################################################################################  */
+
+	#bird-info {
+		/*background-color: #EBB32B;*/
+		background-color: #2c7873;
+		display: flex;
+		flex-direction: row;
+	}
+
+	#bird-info .button:hover {
+			background-color: #EBB32B;
+			color: #000;
+			transition: background-color 200ms ease;
+	}
+}

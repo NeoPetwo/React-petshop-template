@@ -1,0 +1,341 @@
+    /*Petshopt Mockup - First delivery*/
+    /*                  Daniel da Rocha Fróes 10255956*/
+    /*Gabriel Santos Nicolau 10684600*/
+    /*Kaio Tadeu Rodrigues 7561083*/
+    /*Navbar*/
+    /* @import url(fontawesome-all.min.css); */
+    @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+    /* font-family: 'Montserrat', sans-serif; */
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+.navbar {
+    *{
+        padding : 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body {
+        margin: 0px;
+        /* font-family: "Source Sans Pro", Helvetica, sans-serif; */
+        font-family: 'Merriweather', serif;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    *{
+    	padding: 0;
+    	margin: 0;
+
+    	box-sizing: border-box;
+    }
+
+    /* General */
+    body {
+    	margin: 0px;
+    	font-family: "Source Sans Pro", Helvetica, sans-serif;
+    }
+
+    a {
+    	text-decoration: none;	
+    }
+
+    button:focus{
+        outline: 0;
+    }
+
+    select:focus{
+        outline: 0;
+    }
+
+    .column{
+    	display: flex;
+        flex-direction: column;
+    }
+
+
+    .row{
+    	display: flex;
+        flex-direction: row;
+        /* align-items: baseline; */
+    }
+    /* ######################################################################################### */
+
+    .banner {
+    	padding-top: 1em;
+    	padding-bottom: 1em;
+    }
+    .bg-green{
+    	background-color: #2c7873;
+    }
+
+    .bg-yellow{
+    	background-color: #EBB32B;
+    }
+
+    .bg-white{
+    	background-color: white;
+    }
+
+    .bg-grey{
+    	background-color: #eee;
+    }
+
+    /* ############################################################################################################################3 */
+    /* #EEBF47 */
+    #home-bar{
+        background-color: #004445;
+        /* background-color: rgb(58, 104, 255); Azul do submarino  */
+        color: #FFF;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #home-bar img {
+        height: 80px;
+        width: auto;
+        margin-left: 6%;
+    }
+
+    /* #home-bar a {
+        font-size: 17px;
+        color: #FFF;
+        padding: 6px 12px;
+    } */
+
+    #home-bar a#logo {
+        padding: 0px 20px;
+    }
+
+    #home-bar ul{
+        margin-left: 70px;
+        margin-top: 17px;
+        margin-bottom: 17px;
+        width: 85%;
+    }
+
+    #home-bar ul .active a {
+        /* background-color: #6FB98F; */
+        color: #EEBF47;
+        border-radius: 10px;
+    }
+
+    #home-bar .active {
+        color: #EEBF47;
+        border-radius: 10px;
+    }
+
+    #home-bar li {
+        display: inline;
+    }
+
+    #home-bar li a:hover {
+        /* background-color: #6FB98F; */
+        color: #EEBF47;
+        border-radius: 10px;
+    }
+
+    #home-bar ul #cart {
+        float: right;
+    }
+
+    #home-bar ul .fa-shopping-cart {
+        margin-right: 10px;
+    }
+
+    #login-area{
+        font-size: 8px;
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .verticalLine {
+        border-left: 1px solid #999999;
+        height: 80%;
+    }
+
+    /* ####################################################################################################### */
+    /* Footer */
+    footer {
+        background-color: #EAEAEA;
+        color: #999999;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px 10px 10px 20px;
+    }
+
+    footer #presentation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    footer section {
+        /* width: 45%; */
+    }
+
+    footer h1#title {
+        font-family: 'Pacifico', cursive;
+        font-weight: 100;
+        font-size: 22px;
+        color: #000;
+    }
+
+    footer #slogan {
+        margin-left: 15px;
+        font-size: 12px;
+        font-family: 'Pacifico', cursive;
+        color: #000;
+    }
+
+    footer #presentation #left {
+        width: 30%;
+    }
+
+    footer #presentation section#center {
+        margin-left: 10%;
+        width: 45%;
+    }
+
+    footer #presentation #iconsSection {
+        width: 12%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    footer #info p {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    footer p{
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-size: 13px;
+    }
+
+    footer .line h3 {
+        display: inline;
+    }
+
+    footer .icons {
+        margin-top: 0px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    footer .icons li {
+        display: inline;
+        border-style: none;
+    }
+
+    footer .icons li a {
+        text-decoration: none;
+    }
+    footer .btn {
+        background-color: #6FB98F;
+        color: #FFF;
+        border: none;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 17px;
+        font-weight: bold;
+        border-radius: 20px;
+    }
+
+    footer .btn:hover {
+        background-color: #EBB32B;
+        color: #000;
+        transition: background-color 200ms ease;
+    }
+
+    .icons{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .icon.brands {
+        font-family: 'Font Awesome 5 Brands';
+        color: #999999;
+        font-size: 25px;
+        margin: 0px 8px;
+        padding: 0px;
+    }
+
+    /*Admin nav-bar style */
+    .adm_nav{
+        background-color: #004445;
+        padding: 1px;
+        text-align: center;
+        list-style-type: none;
+
+
+
+    }
+    .adm_nav h1{
+        color: white;
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        width: 100%;
+        font-size: 15px;
+        margin-left: 10px;
+
+    }
+
+    .adm_nav a {
+        text-decoration: none;
+    }
+
+    .adm_nav a {
+        font-size: 30px;
+        font-weight: bold;
+        color: #FFF;
+        padding: 0.3em;
+        margin: 0.5em 1em 0.5em 1em;
+
+    }
+
+    .adm_nav ul .active a {
+        background-color: #6FB98F;
+        border-radius: 10px;
+    }
+    .adm_nav a:hover {
+        background-color: #6FB98F;
+        border-radius: 10px;
+    }
+
+    .adm_nav  li{
+        display: inline-flex;
+    }
+    .adm_registration h1{
+        text-align: center;
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+    }
+    /* Linha horizontal amarela */
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 0em 0;
+        padding: 0;
+        border-color: #ffd800;
+    }
+
+
+    @media only screen and (max-width: 500px){
+        #home-bar li{
+            display: block;
+        }
+    }
+}

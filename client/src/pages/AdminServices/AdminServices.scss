@@ -1,0 +1,370 @@
+/*Petshopt Mockup - First delivery*/
+/*    Daniel da Rocha Fróes 10255956*/
+/*    Gabriel Santos Nicolau 10684600*/
+/*    Kaio Tadeu Rodrigues 7561083*/
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+.admin-services {
+
+    *
+    {
+        outline: none;
+        box-sizing: border-box;
+    }
+    .content-wrapper {
+        height: 100%;
+    }
+
+    .content-wrapper select{
+        font-family: 'Merriweather', serif;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 8px;
+        border-radius: 9px;
+        font-size: 15px;
+    }
+    @media screen and (min-width: 55em) {
+        body {
+            height: 100vh;
+            margin: 0;
+        }
+    }
+
+    .content-wrapper a{
+        color: inherit;
+    }
+
+    .content-wrapper h1{
+        -webkit-font-smoothing: antialiased;
+        font-family: Montserrat, serif;
+    }
+    h2,
+    h3,
+    p,
+    span,
+    ul,
+    li {
+        font-weight: lighter;
+        -webkit-font-smoothing: subpixel-antialiased;
+        font-size: 1rem;
+
+    }
+
+    .content-wrapper li:hover{
+        background-color: #DFF2FD;
+    }
+    .sidebar__nav li{
+        padding: 1em;
+        border-radius: 10px;
+    }
+
+
+    .calendar-contain {
+        position: relative;
+        left: 0;
+        right: 0;
+        border-radius: 5;
+        width: 100%;
+        overflow: hidden;
+        min-width: 450px;
+        margin: 1rem auto;
+        background-color: #f5f7f6;
+        box-shadow: 5px 5px 72px rgba(30, 46, 50, 0.5);
+        color: #040605;
+    }
+    @media screen and (min-width: 55em) {
+        .calendar-contain {
+            width: 95%;
+        }
+        .content-wrapper{
+            height: 800px;
+        }
+    }
+
+    .title-bar {
+        position: relative;
+        width: 100%;
+        display: flex;
+        text-align: right;
+        background: #f5f7f6;
+        padding: 0.5rem;
+        margin-bottom: 0;
+        justify-content: space-between;
+    }
+    .title-bar:after {
+        display: table;
+        clear: both;
+    }
+
+    .title-bar__year {
+        display: block;
+        position: relative;
+        float: left;
+        font-size: 1rem;
+        line-height: 30px;
+        width: 43%;
+        padding: 0 0.5rem;
+        text-align: left;
+    }
+    @media screen and (min-width: 55em) {
+        .title-bar__year {
+            width: 27%;
+        }
+    }
+
+    .title-bar__select {
+        position: relative;
+        float: left;
+        font-size: 1rem;
+        line-height: 30px;
+        width: 40%;
+        padding: 0 0.5rem;
+        text-align: left;
+        display: inline-flex;
+        justify-content: space-between;
+        margin-left: 10%;
+
+    }
+    .title-bar__year {
+        position: relative;
+        float: left;
+        font-size: 1rem;
+        line-height: 30px;
+        width: 22%;
+        padding: 0 0.5rem;
+        text-align: left;
+
+    }
+
+
+
+    .title-bar .title-bar__controls {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        float: right;
+        width: auto;
+    }
+    .title-bar .title-bar__controls:before, .title-bar .title-bar__controls:after {
+        content: none;
+    }
+
+    .title-bar .title-bar__minimize:before {
+        border-bottom-width: 2px;
+    }
+
+    .title-bar .title-bar__maximize:before {
+        border-width: 1px 1px 2px 1px;
+    }
+
+    .title-bar .title-bar__close:before,
+    .title-bar .title-bar__close:after {
+        bottom: 50%;
+        top: 49.9%;
+    }
+
+    .title-bar .title-bar__close:before {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .title-bar .title-bar__close:after {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .calendar__sidebar {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        text-align: center;
+        background: #DFF2FD;
+        padding-bottom: 5em;
+
+    }
+
+    @media screen and (min-width: 55em) {
+        .calendar__sidebar {
+            height: 100%;
+            width: 40%;
+            float: right;
+            margin-bottom: 0;
+        }
+    }
+
+    .calendar__sidebar .content {
+        padding: 2rem 1.5rem 2rem 4rem;
+        color: #040605;
+    }
+
+    .sidebar__nav {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        margin-bottom: 0.9rem;
+        padding: 0.7rem 1rem;
+        background-color: #f5f7f6;
+    }
+
+    .sidebar__nav ul {
+        list-style-type: none;
+        display: inline-flex;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-right: 23px;
+        padding: 0;
+        opacity: 0.8;
+        text-decoration: none;
+    }
+
+    .sidebar__list {
+        list-style: none;
+        margin: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .sidebar__list-item {
+        margin: 1.2rem 0;
+        color: #2d4338;
+        font-weight: 100;
+        font-size: 1rem;
+    }
+
+    .list-item__time {
+        display: inline-block;
+        width: 60px;
+    }
+    @media screen and (min-width: 55em) {
+        .list-item__time {
+            margin-right: 2rem;
+        }
+    }
+
+    .sidebar__list-item--complete {
+        color: rgba(4, 6, 5, 0.3);
+    }
+    .sidebar__list-item--complete .list-item__time {
+        color: rgba(4, 6, 5, 0.3);
+    }
+
+    .sidebar__heading {
+        font-size: 2.2rem;
+        font-weight: bold;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-bottom: 3rem;
+        margin-top: 1rem;
+    }
+    h2.sidebar__heading{
+        font-size: 30px;
+    }
+    .sidebar__heading span {
+        float: right;
+        font-weight: 300;
+    }
+
+    .calendar__heading-highlight {
+        color: #2d444a;
+        font-weight: 900;
+    }
+
+    .calendar__days {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-flow: column wrap;
+        -webkit-box-align: stretch;
+        align-items: stretch;
+        width: 100%;
+        float: none;
+        min-height: 580px;
+        height: 100%;
+        font-size: 12px;
+        padding: 0.8rem 0 1rem 1rem;
+        background: #f5f7f6;
+    }
+    @media screen and (min-width: 55em) {
+        .calendar__days {
+            width: 60%;
+            float: right;
+        }
+    }
+
+    .calendar__top-bar {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-flex: 32px;
+        flex: 32px 0 0;
+    }
+
+    .top-bar__days {
+        width: 100%;
+        padding: 0 5px;
+        color: #2d4338;
+        font-weight: 100;
+        -webkit-font-smoothing: subpixel-antialiased;
+        font-size: 1rem;
+    }
+
+    .calendar__week {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-flex: 1;
+        flex: 1 1 0;
+    }
+
+    .calendar__day {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-flow: column wrap;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1.9rem 0.2rem 0.2rem;
+    }
+
+    .calendar__date {
+        color: #040605;
+        font-size: 1.7rem;
+        font-weight: 600;
+        line-height: 0.7;
+    }
+    @media screen and (min-width: 55em) {
+        .calendar__date {
+            font-size: 2.3rem;
+        }
+    }
+
+    .calendar__week .inactive .calendar__date,
+    .calendar__week .inactive .task-count {
+        color: #c6c6c6;
+    }
+    .calendar__week .today .calendar__date {
+        color: #1abc9c;
+    }
+
+    .calendar__task {
+        color: #040605;
+        display: -webkit-box;
+        display: flex;
+        font-size: 0.8rem;
+    }
+    @media screen and (min-width: 55em) {
+        .calendar__task {
+            font-size: 1rem;
+        }
+    }
+    .calendar__task.calendar__task--today {
+        color: #1abc9c;
+    }
+
+}
