@@ -41,7 +41,6 @@ export default class App extends React.Component {
         <Route path='/changeaccountinfo' component={ChangeAccountInfo} /> 
         <Route path='/admin' component={AdminActions} /> 
         <Route exact path='/catalog' component={Catalog} /> 
-        {/* <Route exact path='/catalog/product' component={Product} />  */}
         <Route path='/catalog/product/:productslug' component={Product} /> 
       </Switch>
       <Footer />

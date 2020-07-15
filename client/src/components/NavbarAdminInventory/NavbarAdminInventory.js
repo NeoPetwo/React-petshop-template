@@ -16,15 +16,16 @@ export default class NavbarAdminRegister extends React.Component {
           <h1>Inventory</h1>
           <ul>
               <li><NavLink to="/admin/inventory/add"><i class="fas fa-user-cog"></i> Add</NavLink></li>
-              <li><NavLink to="/admin/inventory/update"><i class="fas fa-user-tag"></i> Update</NavLink></li>
-              <li><NavLink to="/admin/inventory/delete"><i class="fas fa-tag"></i> Delete</NavLink></li>
-              <li><NavLink to="/admin/inventory/consult"><i class="fas fa-concierge-bell"></i> Consult</NavLink></li>
+              {/* <li><NavLink to="/admin/inventory/update"><i class="fas fa-user-tag"></i> Update</NavLink></li> */}
+              {/* <li><NavLink to="/admin/inventory/delete"><i class="fas fa-tag"></i> Delete</NavLink></li> */}
+              <li><NavLink to="/admin/inventory/consult"><i class="fas fa-concierge-bell"></i> Item list</NavLink></li>
               <hr/>
           </ul>
       </div>
 
       <Route path="/admin/inventory/add" component={AdminInventoryAdd} />
-      <Route path="/admin/inventory/update" component={AdminInventoryUpdate} />
+      <Route exact path="/admin/inventory/update" component={AdminInventoryUpdate} />
+      <Route path="/admin/inventory/update/:productslug" component={AdminInventoryUpdate} />
       <Route path="/admin/inventory/delete" component={AdminInventoryDelete} />
       <Route path="/admin/inventory/consult" component={AdminInventoryConsult} />
     </div>

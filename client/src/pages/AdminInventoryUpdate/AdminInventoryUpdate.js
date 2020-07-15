@@ -1,6 +1,88 @@
 import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import { SERVER_URL } from '../../variables';
 
 export default class AdminInventoryUpdate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        id: "",
+        title: "",
+        price: "",
+        description: "",
+        quantity: "",
+        img: "",
+        slug: "",
+        tags: "",
+        qttSelected: 1,
+    };
+    this.fetchInfo();
+  }
+
+  fetchInfo = async () => {
+      const { productslug } = this.props.match.params;
+      let res = await axios({
+          method: 'GET',
+          url: `${SERVER_URL}/products/${productslug}`
+      });
+      this.setState({
+          id: res.data[0]._id,
+          title: res.data[0].title,
+          price: res.data[0].price,
+          description: res.data[0].description,
+          quantity: res.data[0].quantity,
+          img: res.data[0].img,
+          slug: res.data[0].slug,
+          tags: res.data[0].tags
+      });
+  }
+
+  handleChangeTitle = (event) => {
+    this.setState({title: event.target.value});
+  }
+
+  handleChangeDescription = (event) => {
+    this.setState({description: event.target.value});
+  }
+
+  handleChangeSlug = (event) => {
+    this.setState({slug: event.target.value});
+  }
+
+  handleChangePrice = (event) => {
+    this.setState({price: event.target.value});
+  }
+
+  handleChangeQuantity = (event) => {
+    if (event.target.value <= 0) return;
+    this.setState({quantity: event.target.value});
+  }
+
+  handleSubmit = async () => {
+    console.log('oxe');
+    let res = await axios({
+      method: 'PUT',
+      url: `${SERVER_URL}/products/${this.state.id}`,
+      data: {
+        title: this.state.title,
+        description: this.state.description,
+        slug: this.state.slug,
+        price: this.state.price,
+        tags: this.state.tags,
+        img: this.state.img,
+        quantity: this.state.quantity
+      }
+    });
+
+    if (res.status != 200) {
+      alert('Problem when submitting');  
+    } else  {
+      alert('Submited');
+    }
+  }
+
   render() {
   return (
     <div class="admin-inventory-update">
@@ -9,30 +91,31 @@ export default class AdminInventoryUpdate extends React.Component {
         {/* <!-- Update product form --> */}
         <div class="adm_registration">
             <div class="form-popup" id="update_product">
-                <form action="#" class="form-container">
+                {/* <form class="form-container" onSubmit={this.handleSubmit}> */}
+                <form class="form-container">
                     <h1>Update an existing product</h1>
-                    <select name="product_listing">
-                        <option value="">- Select a product -</option>
-                    </select>
-                    <label for="name">Name</label>
-                    <input type="text" placeholder="Enter name" name="name" required/>
-
-                    <label for="id">Id</label>
-                    <input type="text" placeholder="" name="id"/>
-
                     <label for="picture">Picture:</label>
                     <input type="file" id="picture" name="picture"/>
 
+                    <label for="name">Name</label>
+                    <input type="text" value={this.state.title} onChange={this.handleChangeTitle} />
+
                     <label for="description">Description</label>
-                    <input type="text" placeholder="" name="description" required/>
+                    <input type="text" value={this.state.description} onChange={this.handleChangeDescription} />
+
+                    <label for="slug">Slug</label>
+                    <input type="text" value={this.state.slug} onChange={this.handleChangeSlug} />
 
                     <label for="price">Price</label>
-                    <input type="number" placeholder="$" name="price" required/>
+                    <input type="number" value={this.state.price} onChange={this.handleChangePrice} />
 
                     <label for="qnt">Quantity in stock</label>
-                    <input type="number" placeholder="" name="qnt" required/>
+                    <input type="number" value={this.state.quantity} onChange={this.handleChangeQuantity} />
 
-                    <button type="submit" class="btn">Create</button>
+                    <label for="tags">Tags</label>
+                    <input type="text" placeholder="" name="tags" />
+
+                    <button type="button" onClick={this.handleSubmit} class="btn">Submit</button>
                     <button type="button" class="btn cancel" onclick="closeForm(2)">Cancel</button>
                 </form>
             </div>
