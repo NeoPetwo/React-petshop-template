@@ -4,7 +4,7 @@ import axios from 'axios';
 import './AdminInventoryConsult.scss';
 import './bulma-modified.scss';
 
-import ProductCard from '../../components/ProductCard/ProductCard';
+import ProductCardInventory from '../../components/ProductCardInventory/ProductCardInventory';
 import { SERVER_URL } from '../../variables';
 
 export default class AdminRegisterServices extends React.Component {
@@ -37,7 +37,7 @@ export default class AdminRegisterServices extends React.Component {
                 {this.state.allproducts.map((product, index) => {
                     return (
                         <div class="column is-one-third">
-                            <ProductCard product={product} key={index} />
+                            <ProductCardInventory product={product} key={index} />
                         </div>
                     );
                 })}

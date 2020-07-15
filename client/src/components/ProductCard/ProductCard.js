@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 
 export default class ProductCard extends React.Component {
-  // constructor() {
-  //   super();
-  // }
-
   render() {
     return (
       <div class="product-card">
@@ -15,7 +11,7 @@ export default class ProductCard extends React.Component {
             <div class="info">
                 <p class="description">{this.props.product.title}</p>
                 <p class="discount">
-                    <span class="box bg-green">25% OFF </span>
+                    <span id="box" class="box bg-green">25% OFF </span>
                     {/* Blackfriday strategy */}
                     <span class="price">R$ {(1.25*this.props.product.price).toFixed(2)}</span>
                 </p>
