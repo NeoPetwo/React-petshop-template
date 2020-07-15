@@ -5,6 +5,31 @@
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
+.admin-inventory-consult {
+	h2 {
+		font-size: 40px;
+	}
+
+	#catalog{
+		padding-left: 6%;
+		padding-right: 6%;
+	}
+	#catalog li{
+		list-style-type: none;
+	}
+
+	#product-grid{
+		width: 85%;
+		/* border: 2px solid black; */
+		padding: 2em;
+	}
+	#product-grid h2
+	{
+		font-size: 40px;
+		color:rgb(100, 100, 100);;
+		padding-left: 0.5em;
+		padding-bottom: 1em;
+	}
 
 	.adm_registration {
 			text-align: center;
@@ -101,3 +126,4 @@
 			font-family: "Source Sans Pro", Helvetica, sans-serif;
 			margin-top: 20px;
 	}
+}

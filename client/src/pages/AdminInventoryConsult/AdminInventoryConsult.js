@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import '../AdminRegisterAdmin/AdminRegisterAdmin.scss';
+
+import './AdminInventoryConsult.scss';
+import './bulma-modified.scss';
 
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { SERVER_URL } from '../../variables';
@@ -27,21 +29,19 @@ export default class AdminRegisterServices extends React.Component {
 
   render() {
   return (
-    <div class="admin-register-services">
-      <div class="adm_registration">
-        {/* <!-- Consult product form --> */}
-        <div class="form-popup" id="consult_product">
-            <form action="#" class="form-container">
-                <h1>Consult</h1>
-
-                <form id="product_listing">
-                    <select name="product_listing">
-                        <option value="">- Select a product -</option>
-                    </select>
-                </form>
-
-                <button type="button" class="btn cancel" onclick="closeForm(4)">Cancel</button>
-            </form>
+    <div class="admin-inventory-consult">
+      <div class="banner " id="catalog">
+        <div id="product-grid" class="column">
+            <h2>Products Catalog</h2>
+            <div class="columns is-multiline">
+                {this.state.allproducts.map((product, index) => {
+                    return (
+                        <div class="column is-one-third">
+                            <ProductCard product={product} key={index} />
+                        </div>
+                    );
+                })}
+            </div>
         </div>
       </div>
     </div>
