@@ -1,15 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-// import { WithContext as ReactTags } from 'react-tag-input';
+import { TagInput } from 'reactjs-tag-input'
 
 import { SERVER_URL } from '../../variables';
 import '../AdminInventoryAdd/AdminInventoryAdd.scss';
-
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-};
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 export default class AdminInventoryAdd extends React.Component {
   state = {
@@ -20,10 +14,8 @@ export default class AdminInventoryAdd extends React.Component {
     img: "",
     slug: "",
     qttSelected: 1,
-    tags: [
-      { id: "Thailand", text: "Thailand" },
-      { id: "India", text: "India" }
-   ],
+    tags: [],
+    selectedImg: null
   };
 
   handleChangeTitle = (event) => {
@@ -43,53 +35,49 @@ export default class AdminInventoryAdd extends React.Component {
     this.setState({quantity: event.target.value});
   }
 
-  handleSubmit = async () => {
-    let res = await axios({
-      method: 'POST',
-      url: `${SERVER_URL}/products`,
-      data: {
-        title: this.state.title,
-        description: this.state.description,
-        slug: this.state.slug,
-        price: this.state.price,
-        tags: ['tag1', 'tag2'],
-        img: '/img/birdHouse.png',
-        quantity: this.state.quantity
-      }
-    });
-
-    if (res.status !== 201) {
-      alert('Problem when submitting');  
-    } else  {
-      alert('Product added!');
-      this.props.history.push('/admin/inventory/consult');
-    }
-  }
-
   cancelSubmission = () => {
     this.props.history.push('/admin/inventory/consult');
   }
 
-  handleDelete = (i) => {
-    const { tags } = this.state;
+  onTagsChanged = (tags) => {
+    this.setState({tags});
+  }
+
+  onChangeImg= (event) =>{
+    console.log(event.target.files[0]);
     this.setState({
-      tags: tags.filter((tag, index) => index !== i),
+      selectedImg: event.target.files[0]
     });
   }
 
-  handleAddition = (tag) => {
-    this.setState(state => ({ tags: [...state.tags, tag] }));
-  }
+  handleSubmit = async () => {
+    //Images upload
+    let data = new FormData(); 
+    data.append('file', this.state.selectedImg);
+    let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
+    console.log(res1.statusText);
 
-  handleDrag = (tag, currPos, newPos) => {
-    const tags = [...this.state.tags];
-    const newTags = tags.slice();
 
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
+    // let res = await axios({
+    //   method: 'POST',
+    //   url: `${SERVER_URL}/products`,
+    //   data: {
+    //     title: this.state.title,
+    //     description: this.state.description,
+    //     slug: this.state.slug,
+    //     price: this.state.price,
+    //     tags: ['tag1', 'tag2'],
+    //     img: '/img/birdHouse.png',
+    //     quantity: this.state.quantity
+    //   }
+    // });
 
-    // re-render
-    this.setState({ tags: newTags });
+    // if (res.status !== 201) {
+    //   alert('Problem when submitting');  
+    // } else  {
+    //   alert('Product added!');
+    //   this.props.history.push('/admin/inventory/consult');
+    // }
   }
 
   render() {
@@ -103,7 +91,7 @@ export default class AdminInventoryAdd extends React.Component {
                     <h1>Add product</h1>
 
                     <label for="picture">Picture:</label>
-                    <input type="file" id="picture" name="picture"/>
+                    <input type="file" id="picture" name="file" onChange={this.onChangeImg}/>
 
                     <label for="name">Name</label>
                     <input type="text" value={this.state.title} onChange={this.handleChangeTitle} />
@@ -122,6 +110,8 @@ export default class AdminInventoryAdd extends React.Component {
 
                     <label for="tags">Tags</label>
                     <input type="text" placeholder="" name="tags" />
+
+                    {/* <TagInput tags={this.state.tags} onTagsChanged={this.onTagsChanged} /> */}
 
                     <button type="button" onClick={this.handleSubmit} class="btn">Submit</button>
                     <button type="button" onClick={this.cancelSubmission} class="btn cancel">Cancel</button>
