@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import { SERVER_URL } from '../../variables';
 
@@ -61,7 +60,6 @@ export default class AdminInventoryUpdate extends React.Component {
   }
 
   handleSubmit = async () => {
-    console.log('oxe');
     let res = await axios({
       method: 'PUT',
       url: `${SERVER_URL}/products/${this.state.id}`,
@@ -76,11 +74,17 @@ export default class AdminInventoryUpdate extends React.Component {
       }
     });
 
-    if (res.status != 200) {
-      alert('Problem when submitting');  
+    if (res.status !== 200) {
+      alert('Problem when submitting');
+      console.log(res);  
     } else  {
-      alert('Submited');
+      alert('Product updated!');
+      this.props.history.push('/admin/inventory/consult');
     }
+  }
+
+  cancelUpdate = () => {
+    this.props.history.push('/admin/inventory/consult');
   }
 
   render() {
@@ -115,8 +119,8 @@ export default class AdminInventoryUpdate extends React.Component {
                     <label for="tags">Tags</label>
                     <input type="text" placeholder="" name="tags" />
 
-                    <button type="button" onClick={this.handleSubmit} class="btn">Submit</button>
-                    <button type="button" class="btn cancel" onclick="closeForm(2)">Cancel</button>
+                    <button type="button" onClick={this.handleSubmit} class="btn">Update product</button>
+                    <button type="button" class="btn cancel" onClick={this.cancelUpdate} >Cancel</button>
                 </form>
             </div>
             </div>
