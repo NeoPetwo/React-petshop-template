@@ -19,11 +19,24 @@ exports.get = async (req, res, next) => {
       data: err
     });
   }
-} 
+}
+
+exports.getTypes = async (req, res, next) => {
+  try{
+    const data = await repository.getTypes();
+    res.status(200).send(data);
+  } catch(err) {
+    res.status(500).send({
+      message: 'Falha ao processar sua requisição.',
+      data: err
+    });
+  }
+}
 
 exports.getBySlug = async (req, res, next) => {
   try {
     const data = await repository.getBySlug(req.params.slug);
+    
     res.status(200).send(data);
   } catch(err) {
     res.status(500).send({
@@ -45,17 +58,6 @@ exports.getById = async (req, res, next) => {
   }
 }
 
-exports.getPartnerHours = async (req, res, next) => {
-  try {
-    const data = await repository.getPartnerHours(req.body);
-    res.status(200).send(data);
-  } catch(err) {
-    res.status(500).send({
-      message: 'Falha ao processar sua requisição.',
-      data: err
-    });
-  }
-}
 
 exports.post = async (req, res, next) => {
   try {
@@ -87,11 +89,12 @@ exports.put = async (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
   try {
-    await repository.delete(req.body.id);
+    await repository.delete(req.body._id);
+
     res.status(200).send({
         message: 'Serviço removido com sucesso!!'
       });
-    } catch(err) {
+      } catch(err) {
       res.status(500).send({
         message: 'Falha ao processar sua requisição.',
         data: err

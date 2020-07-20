@@ -7,8 +7,9 @@ const controller = require('../controllers/serviceController');
 // Arquivo de organização de rotas para /services
 // As funções que lidam com a requisição estão em controller
 
-router.get('/partnerhours', controller.getPartnerHours);
+
 router.get('/', controller.get);
+router.get('/alltypes', controller.getTypes);
 router.get('/:slug', controller.getBySlug);
 router.get('/admin/:id', controller.getById);
 router.post('/', controller.post);

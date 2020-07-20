@@ -25,6 +25,12 @@ exports.getById = async (id) => {
   return res;
 }
 
+exports.getTypes = async () => {
+  console.log("teste");
+  const res = await Service.collection.distinct("type");
+
+  return res;
+}
 // Nessa função utilizamos o regex
 exports.getPartnerHours = async (data) => {
   const res = await Service.find({
@@ -37,6 +43,7 @@ exports.getPartnerHours = async (data) => {
 }
 
 exports.create = async (data) => {
+
   var service = new Service(data);
   const res = await service.save();
   return res;

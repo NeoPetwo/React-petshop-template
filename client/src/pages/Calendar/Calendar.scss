@@ -44,10 +44,11 @@
   .bg-darker{
     
     background-color:  #ddd;
+    border-top: 2px solid #919191;
     
   }
   .bg-lighter{
-    background-color: #eee;
+    background-color: #fff;
   }
 
   #activities-list{
@@ -60,146 +61,68 @@
 
   }
 
-  .activity-card
-  {
-    color: #777;
-    width: 100%;
-      box-shadow:2px 2px 5px  #919191;
-  }
 
-  .activity-card.bg-darker{
-    border-top: 2px solid #919191;
-  }
 
-  .hour-section{
+  // @media only screen and (max-width: 850px){
     
-    padding-left: 1em;
-    padding-right: 1em;
-    width:max-content;
-    padding: 1em;
-    box-shadow:2px 0 5px  #919191;
-  }
+  //   #input-bar .box{
+  //   /* margin-right: 1em; */
+  //   width:65%;
+  //   text-align-last: center;
+  //   font-size: 18px;
+  //   color: #777;
+  //   /* font-weight: bold; */
+  //   padding-top:0.5em;
+  //   padding-bottom: 0.5em;
+  //   background-color:#eee;
+  //   border:none;  
+  //   /* border-radius: 0.8em; */
+  // }
+  //   .activity-card
+  //   {
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
 
-
-  .hour-text{
-    font-size: 23px;
-    color: rgb(95, 95, 95);
-    
-  }
-
-  .info{ 
-    width: 85%;
-    text-align: start;
-    justify-content: space-between;
-    padding:1em;
-    flex-wrap: wrap;
-  }
-
-
-  .info .column{
-    width: 30%;
-    
-  }
-
-  .info .select-pet{
-    margin-top: 2em;
-    background-color: #6FB98F;
-    color: #FFF;
-    text-align-last: center;
-    height: 2em;
-    font-weight: bold;
-    font-size: 15px;
-  }
-
-
-  .info .description{
-    width: 50%
-
-  }
-
-  .info .schedule-button{
-    width: 100px;
-    height: 40px;
-    margin-top:1.5em;
-    background-color: #6FB98F;
-    color: #FFF;
-    border: none;
-    font-size: 17px;
-    font-weight: bold;
-    border-radius: 20px;
-  }
-
-  .info .schedule-button:hover {
-    background-color: #EBB32B;
-    color: #000;
-    transition: background-color 200ms ease;
-  }
-
-  .info .schedule-button:focus{
-    outline: 0;
-  }
-
-
-  @media only screen and (max-width: 850px){
-    
-    #input-bar .box{
-    /* margin-right: 1em; */
-    width:65%;
-    text-align-last: center;
-    font-size: 18px;
-    color: #777;
-    /* font-weight: bold; */
-    padding-top:0.5em;
-    padding-bottom: 0.5em;
-    background-color:#eee;
-    border:none;  
-    /* border-radius: 0.8em; */
-  }
-    .activity-card
-    {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hour-section{
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 1px 2px  #919191;
-      padding-bottom: 0;
-      padding-top: 0;
-    }
-    .info{
+  //   .hour-section{
+  //     width: 100%;
+  //     text-align: center;
+  //     box-shadow: 0 1px 2px  #919191;
+  //     padding-bottom: 0;
+  //     padding-top: 0;
+  //   }
+  //   .info{
         
-        display: flex;
-        flex-direction: column;
-        /* justify-content: space-between; */
-        width: 100%;
+  //       display: flex;
+  //       flex-direction: column;
+  //       /* justify-content: space-between; */
+  //       width: 100%;
         
-    }
-    .info .column{
-      width: 100%;
-      text-align: center;
-    }
+  //   }
+  //   .info .column{
+  //     width: 100%;
+  //     text-align: center;
+  //   }
     
-    .info .select-pet{
-      margin-top: 1em;
+  //   .info .select-pet{
+  //     margin-top: 1em;
       
-      text-align-last: center;
-      height: 3em;
-    } 
+  //     text-align-last: center;
+  //     height: 3em;
+  //   } 
 
-    .info .description{
-      width: 100%;
-      text-align: left;
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
+  //   .info .description{
+  //     width: 100%;
+  //     text-align: left;
+  //     margin-top: 1em;
+  //     margin-bottom: 1em;
+  //   }
 
-    .info .schedule-button{
-      width: 80%;
-      margin-left: 10%;
+  //   .info .schedule-button{
+  //     width: 80%;
+  //     margin-left: 10%;
 
-      height: 2em;
-    }
-  }
+  //     height: 2em;
+  //   }
+  // }
 }

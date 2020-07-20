@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    title: {
+    type: {
         type: String,
         required: [true, 'O título é obrigatório'],
         trim: true
@@ -25,18 +25,18 @@ const schema = new Schema({
         type: String,
         required: [true, 'A descrição é obrigatória']
     },
-    partner: {
-        type:String,
-        Required: [true, 'O nome do profissional que presta o serviço é obrigatório']
-    },
-    price: {
+    duration: {
         type: Number,
-        required: [true, 'O preço é obrigatório']
-    },
-    hours: [{
-        type: String,
         required: true
-    }]
+    },
+
+    dateHour: {
+        type: Date,
+        required: true
+    }
+
+    
+    
 });
 
 

@@ -9,7 +9,7 @@
     "test": "nodemon ./bin/server.js",
     "client-install": "cd client && npm install",
     "client": "npm start --prefix client",
-    "dev": "npm run test-node & npm run client"
+    "dev": "npm run test & npm run client"
   },
   "keywords": [],
   "author": "",
