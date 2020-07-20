@@ -5,6 +5,11 @@
 const mongoose = require('mongoose');
 const Customer = mongoose.model('Customer');
 
+exports.getAll = async () => {
+  const res = await Customer.find({});
+  return res;
+}
+
 //Apenas cria um novo customer e salva
 exports.create = async (data) => {
   const customer = new Customer(data);

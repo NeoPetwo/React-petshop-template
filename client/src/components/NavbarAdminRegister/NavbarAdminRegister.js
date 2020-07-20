@@ -17,7 +17,7 @@ export default class NavbarAdminRegister extends React.Component {
           <ul>
               <li><NavLink to="/admin/register/admin"><i class="fas fa-user-cog" /> Administrator</NavLink></li>
               <li><NavLink to="/admin/register/customer"><i class="fas fa-user-tag" /> Customer</NavLink></li>
-              <li><NavLink to="/admin/register/products"><i class="fas fa-tag"></i> Products</NavLink></li>
+              {/* <li><NavLink to="/admin/register/products"><i class="fas fa-tag"></i> Products</NavLink></li> */}
               <li><NavLink to="/admin/register/services"><i class="fas fa-concierge-bell"></i> Services</NavLink></li>
               <hr/>
           </ul>
@@ -25,7 +25,7 @@ export default class NavbarAdminRegister extends React.Component {
 
       <Route path="/admin/register/admin" component={AdminRegisterAdmin} />
       <Route path="/admin/register/customer" component={AdminRegisterCustomer} />
-      <Route path="/admin/register/products" component={AdminRegisterProducts} />
+      {/* <Route path="/admin/register/products" component={AdminRegisterProducts} /> */}
       <Route path="/admin/register/services" component={AdminRegisterServices} />
     </div>
     );

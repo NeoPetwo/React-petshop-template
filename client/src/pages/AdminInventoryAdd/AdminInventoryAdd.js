@@ -11,11 +11,11 @@ export default class AdminInventoryAdd extends React.Component {
     price: "",
     description: "",
     quantity: "",
-    img: "",
+    img: "", //Image path
     slug: "",
     qttSelected: 1,
     tags: [],
-    selectedImg: null
+    selectedImg: null //Image file
   };
 
   handleChangeTitle = (event) => {
@@ -98,7 +98,7 @@ export default class AdminInventoryAdd extends React.Component {
         {/* <!-- New admin form --> */}
         <div class="adm_registration">
             <div class="form-popup" id="add_product">
-                <form onSubmit={this.handleSubmit} class="form-container">
+                <form class="form-container">
                     <h1>Add product</h1>
 
                     <label for="picture">Picture:</label>
@@ -124,7 +124,7 @@ export default class AdminInventoryAdd extends React.Component {
 
                     {/* <TagInput tags={this.state.tags} onTagsChanged={this.onTagsChanged} /> */}
 
-                    <button type="submit" onClick={this.handleSubmit} class="btn">Submit</button>
+                    <button type="button" onClick={this.handleSubmit} class="btn">Submit</button>
                     <button type="button" onClick={this.cancelSubmission} class="btn cancel">Cancel</button>
                 </form>
             </div>
