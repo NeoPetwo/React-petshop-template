@@ -92,8 +92,6 @@ exports.post = async (req, res, next) => {
 
 //Upload de imagens
 exports.uploadImg = async (req, res, next) => {
-  console.log('aqui chegou');
-
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
         console.log(err);
@@ -102,8 +100,7 @@ exports.uploadImg = async (req, res, next) => {
         console.log(err);
         return res.status(500).json(err)
     }
-
-    return res.status(200).send(req.file);
+    return res.status(201).send(req.file);
   });
 }
 
@@ -140,10 +137,10 @@ exports.delete = async (req, res, next) => {
 // Multer functions to store images
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public')
+    cb(null, 'client/public/img')
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' +file.originalname )
+    cb(null, file.originalname )
   }
 });
 

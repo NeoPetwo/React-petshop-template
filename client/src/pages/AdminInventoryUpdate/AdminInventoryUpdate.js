@@ -16,6 +16,7 @@ export default class AdminInventoryUpdate extends React.Component {
         slug: "",
         tags: "",
         qttSelected: 1,
+        selectedImg: null
     };
     this.fetchInfo();
   }
@@ -59,7 +60,30 @@ export default class AdminInventoryUpdate extends React.Component {
     this.setState({quantity: event.target.value});
   }
 
-  handleSubmit = async () => {
+  onChangeImg = (event) =>{
+    console.log(event.target.files[0]);
+    this.setState({
+      selectedImg: event.target.files[0]
+    });
+  }
+
+  handleSubmit = async (e) => {
+    if (this.state.selectedImg === null) {
+      alert('Select an image');
+      e.persist(); // e.preventDefault();
+      return false;
+    }
+
+    //Image upload
+    let data = new FormData(); 
+    data.append('file', this.state.selectedImg);
+    let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
+    if (res1.status !== 201) {
+      alert('Error uploading the image');
+      e.persist(); // e.preventDefault();
+      return false;
+    }
+
     let res = await axios({
       method: 'PUT',
       url: `${SERVER_URL}/products/${this.state.id}`,
@@ -69,10 +93,11 @@ export default class AdminInventoryUpdate extends React.Component {
         slug: this.state.slug,
         price: this.state.price,
         tags: this.state.tags,
-        img: this.state.img,
+        img:  `/img/${this.state.selectedImg.name}`,
         quantity: this.state.quantity
       }
     });
+    e.persist(); // e.preventDefault();
 
     if (res.status !== 200) {
       alert('Problem when submitting');
@@ -98,8 +123,9 @@ export default class AdminInventoryUpdate extends React.Component {
                 {/* <form class="form-container" onSubmit={this.handleSubmit}> */}
                 <form class="form-container">
                     <h1>Update an existing product</h1>
+
                     <label for="picture">Picture:</label>
-                    <input type="file" id="picture" name="picture"/>
+                    <input type="file" id="picture" name="file" onChange={this.onChangeImg}/>
 
                     <label for="name">Name</label>
                     <input type="text" value={this.state.title} onChange={this.handleChangeTitle} />

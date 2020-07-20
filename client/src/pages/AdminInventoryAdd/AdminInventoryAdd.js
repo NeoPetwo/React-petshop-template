@@ -43,41 +43,52 @@ export default class AdminInventoryAdd extends React.Component {
     this.setState({tags});
   }
 
-  onChangeImg= (event) =>{
+  onChangeImg = (event) =>{
     console.log(event.target.files[0]);
     this.setState({
       selectedImg: event.target.files[0]
     });
   }
 
-  handleSubmit = async () => {
+  handleSubmit = async (e) => {
+    if (this.state.selectedImg === null) {
+      alert('Select an image');
+      e.persist();
+      // e.preventDefault();
+      return false;
+    }
+
     //Images upload
     let data = new FormData(); 
     data.append('file', this.state.selectedImg);
     let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
-    console.log(res1.statusText);
+    if (res1.status !== 201) {
+      alert('Error uploading the image');
+      e.persist();
+      // e.preventDefault();
+      return false;
+    }
 
+    let res = await axios({
+      method: 'POST',
+      url: `${SERVER_URL}/products`,
+      data: {
+        title: this.state.title,
+        description: this.state.description,
+        slug: this.state.slug,
+        price: this.state.price,
+        tags: ['tag1', 'tag2'],
+        img: `/img/${this.state.selectedImg.name}`,
+        quantity: this.state.quantity
+      }
+    });
 
-    // let res = await axios({
-    //   method: 'POST',
-    //   url: `${SERVER_URL}/products`,
-    //   data: {
-    //     title: this.state.title,
-    //     description: this.state.description,
-    //     slug: this.state.slug,
-    //     price: this.state.price,
-    //     tags: ['tag1', 'tag2'],
-    //     img: '/img/birdHouse.png',
-    //     quantity: this.state.quantity
-    //   }
-    // });
-
-    // if (res.status !== 201) {
-    //   alert('Problem when submitting');  
-    // } else  {
-    //   alert('Product added!');
-    //   this.props.history.push('/admin/inventory/consult');
-    // }
+    if (res.status !== 201) {
+      alert('Problem when submitting');  
+    } else  {
+      alert('Product added!');
+      this.props.history.push('/admin/inventory/consult');
+    }
   }
 
   render() {
@@ -87,7 +98,7 @@ export default class AdminInventoryAdd extends React.Component {
         {/* <!-- New admin form --> */}
         <div class="adm_registration">
             <div class="form-popup" id="add_product">
-                <form class="form-container">
+                <form onSubmit={this.handleSubmit} class="form-container">
                     <h1>Add product</h1>
 
                     <label for="picture">Picture:</label>
@@ -113,7 +124,7 @@ export default class AdminInventoryAdd extends React.Component {
 
                     {/* <TagInput tags={this.state.tags} onTagsChanged={this.onTagsChanged} /> */}
 
-                    <button type="button" onClick={this.handleSubmit} class="btn">Submit</button>
+                    <button type="submit" onClick={this.handleSubmit} class="btn">Submit</button>
                     <button type="button" onClick={this.cancelSubmission} class="btn cancel">Cancel</button>
                 </form>
             </div>
