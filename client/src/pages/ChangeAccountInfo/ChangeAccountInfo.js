@@ -83,7 +83,7 @@ export default class ChangeAccountInfo extends React.Component {
 
         //Define img path
         let img = null;
-        if (this.state.selectedImg === null) {
+        if (this.state.selectedImg === null || this.state.selectedImg === undefined) {
             img = this.state.img;
         } else {
             img = `/img/${this.state.selectedImg.name}`;
