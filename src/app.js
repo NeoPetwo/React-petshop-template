@@ -6,6 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+//MongoDB config
 const config = require('./config');
 
 // Framework express

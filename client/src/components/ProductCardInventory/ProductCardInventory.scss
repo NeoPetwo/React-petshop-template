@@ -9,7 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
 
-.product-card {
+.product-card-inventory {
     .product{
         width: 90%;
         border-radius: 3px;
@@ -66,5 +66,40 @@
         text-decoration: line-through;
         font-size: 15px;
         color: #aaaaaa;
+    }
+
+    .btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+
+        $border-radius: 10px;
+        $margin-horizontal: 7px;
+        $font-size: 17px;
+
+        #edit-btn {
+            background-color: #6FB98F;
+            padding: 7px;
+            color: white;
+            font-size: $font-size;
+            margin-right: $margin-horizontal;
+            border-radius: $border-radius;
+        }
+
+        #delete-btn {
+            background-color: rgb(231, 84, 70);
+            padding: 7px;
+            color: white;
+            font-size: $font-size;
+            margin-left: $margin-horizontal;
+            border-radius: $border-radius;
+        }
+
+        .fa-pencil {
+            color: white;
+            margin-right: 3px;
+        }
     }
 }

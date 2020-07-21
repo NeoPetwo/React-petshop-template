@@ -41,7 +41,6 @@ export default class App extends React.Component {
         <Route path='/changeaccountinfo' component={ChangeAccountInfo} /> 
         <Route path='/admin' component={AdminActions} /> 
         <Route exact path='/catalog' component={Catalog} /> 
-        {/* <Route exact path='/catalog/product' component={Product} />  */}
         <Route path='/catalog/product/:productslug' component={Product} /> 
       </Switch>
       <Footer />
@@ -51,3 +50,6 @@ export default class App extends React.Component {
 }
 
 //Nested routes --> https://ui.dev/react-router-v4-nested-routes/
+
+// Login sessions --> https://stackoverflow.com/questions/49819183/react-what-is-the-best-way-to-handle-login-and-authentication
+// https://www.youtube.com/watch?v=EbUNgXQIqrk

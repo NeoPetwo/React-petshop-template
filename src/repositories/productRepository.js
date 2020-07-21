@@ -12,7 +12,7 @@ const Product = mongoose.model('Product');
 exports.get = async () => {
   const res = await Product.find({
     active: true
-  }, 'title price slug');
+  }, 'title description price slug tags img quantity');
   return res;
 }
 
@@ -20,7 +20,7 @@ exports.getBySlug = async (slug) => {
   const res = await Product.findOne({ 
     active: true,
     slug: slug
-  }, 'title description price slug tags');
+  }, 'title description price slug tags img quantity');
   return res;
 }
 
@@ -33,7 +33,7 @@ exports.getByTag = async (tag) => {
   const res = await Product.find({
     active: true,
     tags: tag
-  }, 'title description price slug tags');
+  }, 'title description price slug tags img quantity');
   return res;
 }
 
@@ -56,6 +56,9 @@ exports.update = async (id, data) => {
         description: data.description,
         price: data.price,
         slug: data.slug,
+        quantity: data.quantity,
+        img: data.img,
+        tags: data.tags
       }
     });
 }

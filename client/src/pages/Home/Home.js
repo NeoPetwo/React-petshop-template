@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import './Home.scss';
 
@@ -15,6 +16,11 @@ import travellerCapri from '../../images/travellerCapri.png';
 import birdHouse from '../../images/birdHouse.png';
 
 export default class Home extends React.Component {
+    componentDidMount() {
+        const cookies = new Cookies();
+        console.log('Na home ', cookies.get('loggedUser'));
+    }
+
     render() {
   return (
   <div class="home">
