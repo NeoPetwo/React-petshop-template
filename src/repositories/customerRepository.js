@@ -10,6 +10,11 @@ exports.getAll = async () => {
   return res;
 }
 
+exports.getById = async (id) => {
+  const res = await Customer.findById(id, 'name username email phone img admin');
+  return res;
+}
+
 //Apenas cria um novo customer e salva
 exports.create = async (data) => {
   const customer = new Customer(data);
@@ -25,6 +30,19 @@ exports.login = async (data) => {
   } else {
     return null;
   }
+}
+
+exports.update = async (id, data) => {
+  await Customer.findByIdAndUpdate(id, {
+    $set: {
+      name: data.name,
+      username: data.username,
+      email: data.email,
+      phone: data.phone,
+      img: data.img,
+      admin: data.admin,
+    },
+  });
 }
 
 exports.delete = async (id) => {

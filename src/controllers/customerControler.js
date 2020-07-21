@@ -11,12 +11,24 @@ const repository = require('../repositories/customerRepository');
 
 exports.getAll = async (req, res, next) => {
   try {
-    let res1 = await repository.getAll();
-    console.log(res1);
-    res.status(200).send(res1);
+    let users = await repository.getAll();
+    res.status(200).send(users);
   } catch (err) {
     res.status(500).send({
-      message: "Failed to return customers"
+      message: "Failed to return customers",
+      error: err
+    });
+  }
+}
+
+exports.getById = async (req, res, next) => {
+  try {
+    let user = await repository.getById(req.params.id);
+    res.status(200).send(user);
+  } catch (err) {
+    res.status(500).send({
+      message: "Failed to return customer",
+      error: err
     });
   }
 }
@@ -60,11 +72,25 @@ exports.login = async (req, res, next) => {
   }
 }
 
+exports.put = async (req, res, next) => {
+  try {
+    await repository.update(req.params.id, req.body);
+    res.status(200).send({
+        message: 'Usuário atualizado com louvor!!'
+      });
+    } catch(err) {
+      res.status(500).send({
+        message: 'Falha ao processar sua requisição.',
+        data: err
+      });
+    }
+}
+
 exports.delete = async (req, res, next) => {
   try {
     await repository.delete(req.body.id);
     res.status(200).send({
-        message: 'Produto removido com louvor!!'
+        message: 'Usuário removido com louvor!!'
       });
     } catch(err) {
       res.status(500).send({
