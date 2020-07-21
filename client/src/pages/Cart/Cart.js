@@ -1,10 +1,41 @@
 import React from 'react';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+import { SERVER_URL } from '../../variables';
+
 import bird1 from '../../images/bird1.png';
 import dog3 from '../../images/dog3.png';
 import lizard1 from '../../images/lizard1.png';
 import './Cart.scss';
 
 export default class Cart extends React.Component {
+	constructor() {
+    super();
+    const cookies = new Cookies();
+    let user = cookies.get('loggedUser');
+    this.state = {
+      user: user,
+      cart: null 
+    }
+		this.fetchCart();
+  }
+
+  fetchCart = async () => {
+    try {
+      const res = await axios({
+        method: "GET",
+        url: `${SERVER_URL}/cart/${this.state.user.id}`
+      });
+      this.setState({
+        cart: res.data
+			});
+			console.log(this.state.cart);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
   return (
 	<div class="cart">
