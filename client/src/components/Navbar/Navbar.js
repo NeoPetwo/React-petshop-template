@@ -26,7 +26,7 @@ export default class Navbar extends React.Component {
         <ul>
             <li><NavLink exact to='/'>Home</NavLink></li>
             <li><NavLink to='/myaccount'>My Account</NavLink></li>
-            {this.state.user.admin === true &&
+            {this.state.user !== undefined && this.state.user.admin === true &&
               <li><NavLink to='/admin'><i class="fas fa-hammer"></i> Admin pages</NavLink></li>
             }
             <li><NavLink to='/login'><i class="fas fa-lock"></i> Login</NavLink></li>
