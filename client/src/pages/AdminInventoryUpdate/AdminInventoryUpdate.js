@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import { SERVER_URL } from '../../variables';
 
@@ -17,6 +16,7 @@ export default class AdminInventoryUpdate extends React.Component {
         slug: "",
         tags: "",
         qttSelected: 1,
+        selectedImg: null
     };
     this.fetchInfo();
   }
@@ -60,8 +60,30 @@ export default class AdminInventoryUpdate extends React.Component {
     this.setState({quantity: event.target.value});
   }
 
-  handleSubmit = async () => {
-    console.log('oxe');
+  onChangeImg = (event) =>{
+    console.log(event.target.files[0]);
+    this.setState({
+      selectedImg: event.target.files[0]
+    });
+  }
+
+  handleSubmit = async (e) => {
+    if (this.state.selectedImg === null) {
+      alert('Select an image');
+      e.persist(); // e.preventDefault();
+      return false;
+    }
+
+    //Image upload
+    let data = new FormData(); 
+    data.append('file', this.state.selectedImg);
+    let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
+    if (res1.status !== 201) {
+      alert('Error uploading the image');
+      e.persist(); // e.preventDefault();
+      return false;
+    }
+
     let res = await axios({
       method: 'PUT',
       url: `${SERVER_URL}/products/${this.state.id}`,
@@ -71,16 +93,23 @@ export default class AdminInventoryUpdate extends React.Component {
         slug: this.state.slug,
         price: this.state.price,
         tags: this.state.tags,
-        img: this.state.img,
+        img:  `/img/${this.state.selectedImg.name}`,
         quantity: this.state.quantity
       }
     });
+    e.persist(); // e.preventDefault();
 
-    if (res.status != 200) {
-      alert('Problem when submitting');  
+    if (res.status !== 200) {
+      alert('Problem when submitting');
+      console.log(res);  
     } else  {
-      alert('Submited');
+      alert('Product updated!');
+      this.props.history.push('/admin/inventory/consult');
     }
+  }
+
+  cancelUpdate = () => {
+    this.props.history.push('/admin/inventory/consult');
   }
 
   render() {
@@ -94,8 +123,9 @@ export default class AdminInventoryUpdate extends React.Component {
                 {/* <form class="form-container" onSubmit={this.handleSubmit}> */}
                 <form class="form-container">
                     <h1>Update an existing product</h1>
+
                     <label for="picture">Picture:</label>
-                    <input type="file" id="picture" name="picture"/>
+                    <input type="file" id="picture" name="file" onChange={this.onChangeImg}/>
 
                     <label for="name">Name</label>
                     <input type="text" value={this.state.title} onChange={this.handleChangeTitle} />
@@ -115,8 +145,8 @@ export default class AdminInventoryUpdate extends React.Component {
                     <label for="tags">Tags</label>
                     <input type="text" placeholder="" name="tags" />
 
-                    <button type="button" onClick={this.handleSubmit} class="btn">Submit</button>
-                    <button type="button" class="btn cancel" onclick="closeForm(2)">Cancel</button>
+                    <button type="button" onClick={this.handleSubmit} class="btn">Update product</button>
+                    <button type="button" class="btn cancel" onClick={this.cancelUpdate} >Cancel</button>
                 </form>
             </div>
             </div>

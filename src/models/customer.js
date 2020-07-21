@@ -11,15 +11,33 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   name: {
     type: String,
-    required: true
+    required: [true, 'O nome é obrigatório'],
+  },
+  username: {
+    type: String,
+    required: [true, "O username é obrigatório"]
   },
   email: {
     type: String,
-    required: true
+    required: [true, "O email é obrigatório"]
   },
   password: {
     type: String,
-    required: true
+    required: [true, "A senha é obrigatória"],
+    unique: true
+  },
+  phone: {
+    type: String,
+    required: [true, "O telefone é obrigatório"]
+  },
+  img: {
+    type: String,
+    required: [true, "A foto também é obrigatória"],
+    trim: true
+  },
+  admin: {
+    type: Boolean,
+    required: [true, 'O tipo de usuário é obrigatório. Admin true ou false']
   }
 });
 

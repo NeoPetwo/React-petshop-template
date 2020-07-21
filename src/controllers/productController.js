@@ -2,6 +2,8 @@
 // Gabriel Santos Nicolau 10684600
 // Kaio Tadeu Rodrigues 7561083
 'use strict'
+const multer = require('multer');
+
 const repository = require('../repositories/productRepository');
 
 // Arquivo que lida com a requisiçao
@@ -88,6 +90,20 @@ exports.post = async (req, res, next) => {
     }
 }
 
+//Upload de imagens
+exports.uploadImg = async (req, res, next) => {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+        console.log(err);
+        return res.status(500).json(err)
+    } else if (err) {
+        console.log(err);
+        return res.status(500).json(err)
+    }
+    return res.status(201).send(req.file);
+  });
+}
+
 //Edita produtos
 exports.put = async (req, res, next) => {
   try {
@@ -103,7 +119,7 @@ exports.put = async (req, res, next) => {
   }
 }
 
-// Apag produtos
+// Apaga produtos
 exports.delete = async (req, res, next) => {
   try {
     await repository.delete(req.body.id);
@@ -117,3 +133,15 @@ exports.delete = async (req, res, next) => {
       });
     }
 }
+
+// Multer functions to store images
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'client/public/img')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname )
+  }
+});
+
+var upload = multer({ storage: storage }).single('file');
