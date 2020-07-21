@@ -26,6 +26,7 @@ const Customer = require('./models/customer');
 const Order = require('./models/order');
 const Service = require('./models/service');
 const Pet = require('./models/pet');
+const Cart = require('./models/cart');
 
 //Importando os arquivos que lidam com as rotas
 const indexRoute = require('./routes/indexRoute');
@@ -34,6 +35,7 @@ const customerRoute = require('./routes/customerRoute');
 const orderRoute = require('./routes/orderRoute');
 const serviceRoute = require('./routes/serviceRoute');
 const petRoute = require('./routes/petRoute');
+const cartRoute = require('./routes/cartRoute');
 
 app.use('/', indexRoute);
 app.use('/products', productRoute);
@@ -41,5 +43,6 @@ app.use('/customers', customerRoute);
 app.use('/orders', orderRoute);
 app.use('/services', serviceRoute);
 app.use('/pets', petRoute);
+app.use('/cart', cartRoute);
 
 module.exports = app;
