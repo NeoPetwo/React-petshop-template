@@ -20,6 +20,7 @@ exports.getById = async (id) => {
 }
 
 exports.create = async (data) => {
+  console.log('repo pet - criando');
   var pet = new Pet(data);
   const res = await pet.save();
   return res;

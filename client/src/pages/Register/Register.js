@@ -50,7 +50,7 @@ export default class Register extends React.Component {
       return false;
     }
 
-    //Images upload
+    //Image upload
     let data = new FormData(); 
     data.append('file', this.state.selectedImg);
     let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);

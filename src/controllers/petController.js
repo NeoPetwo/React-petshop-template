@@ -39,6 +39,7 @@ exports.getById = async (req, res, next) => {
 
 // Cria produtos
 exports.post = async (req, res, next) => {
+  console.log('Controller pet - POST');
   try {
    const data = await repository.create(req.body);
     res.status(201).send({
