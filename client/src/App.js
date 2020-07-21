@@ -24,10 +24,6 @@ import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 
 export default class App extends React.Component {
-  componentDidMount() {
-    console.log('component mounted');
-  }
-
   render() {
   return (
     <div>

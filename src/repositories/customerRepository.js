@@ -15,3 +15,18 @@ exports.create = async (data) => {
   const customer = new Customer(data);
   await customer.save();
 }
+
+exports.login = async (data) => {
+  const res = await Customer.find({
+    email: data.email
+  });
+  if (res[0].password === data.password) {
+    return res[0];
+  } else {
+    return null;
+  }
+}
+
+exports.delete = async (id) => {
+  await Customer.findByIdAndRemove(id);
+}

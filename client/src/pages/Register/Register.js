@@ -74,13 +74,6 @@ export default class Register extends React.Component {
       }
 		});
 		
-		// "name": "Joao",
-		// "username": "john",
-		// "email": "teste2@teste.com",
-		// "password": "123",
-		// "phone": "21987654321",
-		// "img": "/img/birdHouse.png"
-
     if (res.status !== 201) {
       alert('Problem when submitting');  
     } else  {

@@ -34,3 +34,35 @@ exports.post = async (req, res, next) => {
   }
 }
 
+exports.login = async (req, res, next) => {
+  try {
+    let user = await repository.login(req.body);
+    if (user !== null) {
+      res.status(200).send({
+        message: "Logged in"
+      })
+    } else  {
+      res.status(500).send({
+        message: "Failed to login"
+      });
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: "Failed to create user"
+    });
+  }
+}
+
+exports.delete = async (req, res, next) => {
+  try {
+    await repository.delete(req.body.id);
+    res.status(200).send({
+        message: 'Produto removido com louvor!!'
+      });
+    } catch(err) {
+      res.status(500).send({
+        message: 'Falha ao processar sua requisição.',
+        data: err
+      });
+    }
+}

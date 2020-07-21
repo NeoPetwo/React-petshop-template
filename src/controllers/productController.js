@@ -119,7 +119,7 @@ exports.put = async (req, res, next) => {
   }
 }
 
-// Apag produtos
+// Apaga produtos
 exports.delete = async (req, res, next) => {
   try {
     await repository.delete(req.body.id);

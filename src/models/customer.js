@@ -15,7 +15,7 @@ const schema = new Schema({
   },
   username: {
     type: String,
-    required: [true, "O username é obbrigatório"]
+    required: [true, "O username é obrigatório"]
   },
   email: {
     type: String,
@@ -23,7 +23,8 @@ const schema = new Schema({
   },
   password: {
     type: String,
-    required: [true, "A senha é obrigatória"]
+    required: [true, "A senha é obrigatória"],
+    unique: true
   },
   phone: {
     type: String,

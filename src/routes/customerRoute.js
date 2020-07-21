@@ -10,5 +10,7 @@ const controller = require('../controllers/customerControler');
 
 router.get('/', controller.getAll);
 router.post('/', controller.post);
+router.post('/login', controller.login);
+router.delete('/', controller.delete);
 
 module.exports = router;
