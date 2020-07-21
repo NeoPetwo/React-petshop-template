@@ -37,9 +37,20 @@ exports.getById = async (req, res, next) => {
   }
 }
 
+exports.getUserPets = async (req, res, next) => {
+  try {
+    const data = await repository.getPetsByUserId(req.params.userid);
+    res.status(200).send(data);
+  } catch(err) {
+    res.status(500).send({
+      message: 'Falha ao processar sua requisição.',
+      data: err
+    });
+  }
+}
+
 // Cria produtos
 exports.post = async (req, res, next) => {
-  console.log('Controller pet - POST');
   try {
    const data = await repository.create(req.body);
     res.status(201).send({

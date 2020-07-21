@@ -15,12 +15,16 @@ exports.get = async () => {
 }
 
 exports.getById = async (id) => {
-  const res = await Pet.findById(id, 'title description price slug tags img quantity');
+  const res = await Pet.findById(id);
+  return res;
+}
+
+exports.getPetsByUserId = async (userid) => {
+  const res = await Pet.find({owner: userid});
   return res;
 }
 
 exports.create = async (data) => {
-  console.log('repo pet - criando');
   var pet = new Pet(data);
   const res = await pet.save();
   return res;

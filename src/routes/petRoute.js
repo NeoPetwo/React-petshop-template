@@ -11,6 +11,7 @@ const controller = require('../controllers/petController');
 // NÃO MUDE ESSA ORDEM!!
 router.get('/', controller.get);
 router.get('/:id', controller.getById);
+router.get('/userpets/:userid', controller.getUserPets);
 router.post('/', controller.post);
 router.post('/uploadimg', controller.uploadImg);
 router.put('/:id', controller.put);
