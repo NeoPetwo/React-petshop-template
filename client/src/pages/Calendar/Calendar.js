@@ -48,7 +48,6 @@ export default class Calendar extends React.Component {
 
 	filterByType= (type) => {
 		//Reseta Filtro
-		
 		let filteredList = this.state.allServices.filter((service) => {
 			if (service.type === type) return service;
 		});
@@ -75,41 +74,41 @@ export default class Calendar extends React.Component {
 
 	render() {
 
-    return (		
-		<div class="calendar" >
-			<div class="column">
-				<div class="banner bg-green row" id="input-bar">
-					<select class="box" onChange={this.changeTypeEvent}>
-						<option>Todos Serviços</option>
-						{this.state.typesOfServices.map((type, index)=>{
-							return(
-								<option>{type}</option>
-							);
-						})}
-							
-							{/* <option>Haircut</option>
-							<option>Bathing</option>
-							<option>Veterinary appointment</option> */}
-					</select>
-					<h2 >Schedule Service</h2>
-					<input type="date" class = "box"/>
-				</div>
+		return (		
+			<div class="calendar" >
+				<div class="column">
+					<div class="banner bg-green row" id="input-bar">
+						<select class="box" onChange={this.changeTypeEvent}>
+							<option>Todos Serviços</option>
+							{this.state.typesOfServices.map((type, index)=>{
+								return(
+									<option>{type}</option>
+								);
+							})}
+								
+								{/* <option>Haircut</option>
+								<option>Bathing</option>
+								<option>Veterinary appointment</option> */}
+						</select>
+						<h2 >Schedule Service</h2>
+						<input type="date" class = "box"/>
+					</div>
 
 
-				
-				<div  class="banner bg-white" id="activities-list">
-						<h2>Available times</h2>
-						<br/> 
-						{this.state.services2show.map((service, index) => {
-							return (
-								<div className={index.valueOf()%2 == 0? "bg-darker": "bg-lighter"}>
-									<ServiceCard service={service} key={index} />
-								</div>
-							);	
-						})}
+					
+					<div  class="banner bg-white" id="activities-list">
+							<h2>Available times</h2>
+							<br/> 
+							{this.state.services2show.map((service, index) => {
+								return (
+									<div className={index.valueOf()%2 == 0? "bg-darker": "bg-lighter"}>
+										<ServiceCard service={service} key={index} />
+									</div>
+								);	
+							})}
+					</div>
 				</div>
 			</div>
-		</div>
-    );
-  }
+		);
+  	}
 }
