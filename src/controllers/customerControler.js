@@ -39,7 +39,12 @@ exports.login = async (req, res, next) => {
     let user = await repository.login(req.body);
     if (user !== null) {
       res.status(200).send({
-        message: "Logged in"
+        user: {
+          id: user._id,
+          username: user.username,
+          name: user.name,
+          email: user.email
+        }
       })
     } else  {
       res.status(500).send({

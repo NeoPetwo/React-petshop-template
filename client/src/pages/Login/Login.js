@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 import { NavLink } from 'react-router-dom';
 
 import { SERVER_URL } from '../../variables';
@@ -19,7 +20,6 @@ export default class Login extends React.Component {
     this.setState({password: event.target.value});
   }
   handleSubmit = async () => {
-    console.log('submitando');
     try {
       const res = await axios({
         method: 'POST',
@@ -32,6 +32,9 @@ export default class Login extends React.Component {
       
       if (res.status === 200) {
         alert('You are logged in');  
+        const cookies = new Cookies();
+        cookies.set('loggedUser', res.data.user, { path: '/' }); // path: '/' makes de cookie available in all pages
+        console.log(cookies.get('loggedUser'));
         this.props.history.push('/');
       }  
     } catch (err) {
