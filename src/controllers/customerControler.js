@@ -29,7 +29,8 @@ exports.post = async (req, res, next) => {
     })
   } catch (err) {
     res.status(500).send({
-      message: "Failed to create user"
+      message: "Failed to create user",
+      error: err
     });
   }
 }
@@ -43,7 +44,8 @@ exports.login = async (req, res, next) => {
           id: user._id,
           username: user.username,
           name: user.name,
-          email: user.email
+          email: user.email,
+          admin: user.admin
         }
       })
     } else  {

@@ -35,6 +35,10 @@ const schema = new Schema({
     required: [true, "A foto também é obrigatória"],
     trim: true
   },
+  admin: {
+    type: Boolean,
+    required: [true, 'O tipo de usuário é obrigatório. Admin true ou false']
+  }
 });
 
 module.exports = mongoose.model('Customer', schema);

@@ -70,7 +70,8 @@ export default class Register extends React.Component {
         email: this.state.email,
         password: this.state.password, //Not worrying about security
         img: `/img/${this.state.selectedImg.name}`,
-        phone: this.state.phone
+				phone: this.state.phone,
+				admin: false //This registration are not for admins
       }
 		});
 		
