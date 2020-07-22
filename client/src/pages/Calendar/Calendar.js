@@ -1,127 +1,132 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
-import './Calendar.scss';
-import ServiceCard from '../../components/ServiceCard/ServiceCard';
+import "./Calendar.scss";
+import ServiceCard from "../../components/ServiceCard/ServiceCard";
 
-import { SERVER_URL } from '../../variables';
-import serviceCard from '../../components/ServiceCard/ServiceCard';
-
-
+import { SERVER_URL } from "../../variables";
+import serviceCard from "../../components/ServiceCard/ServiceCard";
 
 export default class Calendar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      allServices: [],
+      services2show: [],
+      typesOfServices: [],
+    };
+
+    this.fetchServices();
+    this.fecthTypes();
+  }
+
+
+  getTodayDate = () => {
+    var curr = new Date();
+    var date = curr.toISOString().substr(0, 10);
+    return date;
+  };
+
+  fetchServices = async () => {
+    let res = await axios({
+      method: "GET",
+      url: `${SERVER_URL}/services`,
+    });
+
+    this.setState({
+      allServices: res.data,
+      services2show: res.data,
+	});
 	
-	constructor() {
-		super();
-		this.state = {
-			allServices: [],
-			services2show: [],
-			typesOfServices: [],
-			filteredDate: ''
-		};
-		this.fetchServices();
-		this.fecthTypes();
-	}
+	this.filterByDate(this.getTodayDate());
+  };
 
+  fecthTypes = async () => {
+    let res = await axios({
+      method: "GET",
+      url: `${SERVER_URL}/services/alltypes`,
+    });
+    this.setState({
+      typesOfServices: res.data,
+    });
+  };
 
-	fetchServices = async () => {
-		let res = await axios({
-			method: 'GET',
-			url: `${SERVER_URL}/services`
-		});
-	
-		this.setState({
-			allServices: res.data,
-			services2show: res.data			
-		});
-	}
+  filterByType = (type) => {
+    //Reseta Filtro
+    let filteredList = this.state.allServices.filter((service) => {
+      if (service.type === type) return service;
+    });
+    this.setState({
+      services2show: filteredList,
+	});
+  };
 
-	fecthTypes = async () => {
-		let res = await axios({
-			method: 'GET',
-			url: `${SERVER_URL}/services/alltypes`
-		});
-		this.setState({
-			typesOfServices: res.data
-		});
-	}
-	
-
-	filterByType= (type) => {
-		//Reseta Filtro
-		let filteredList = this.state.allServices.filter((service) => {
-			if (service.type === type) return service;
-		});
-		this.setState({
-			services2show: filteredList
-		});
-	}
-
-	filterByDate= (date) => {
-		//Reseta Filtro
-		let filteredList = this.state.allServices.filter((service) => {
-			if (service.date === date) return service;
-		});
-
-		this.setState({
-			services2show: filteredList
-		});
-	}
-
-
-	resetTypeFilter = () =>
-	{
-		this.setState({
-			services2show: this.state.allServices
-		});
-	}
-	changeTypeEvent= (event) =>{
+  filterByDate = (date) => {
+	//Reseta Filtro
+	console.log(this.state.allServices)
+    let filteredList = this.state.allServices.filter((service) => {
 		
-		if(event.target.value === "Todos Serviços")
-			this.resetTypeFilter();
-		else
-			this.filterByType(event.target.value);
-			
-	}	
+		if (service.date === date)
+	  		return service;
+    });
 
-	HandleChangeDate = (event) =>{
-		this.filterByDate(event.target.value)
-	}
-	
+    this.setState({
+      services2show: filteredList,
+    });
+  };
 
-	render() {
+  resetTypeFilter = () => {
+    this.setState({
+      services2show: this.state.allServices,
+    });
+  };
+  handleChangeSelect = (event) => {
+    if (event.target.value === "Todos Serviços") this.resetTypeFilter();
+    else this.filterByType(event.target.value);
+  };
 
-		return (		
-			<div class="calendar" >
-				<div class="column">
-					<div class="banner bg-green row" id="input-bar">
-						<select class="box" onChange={this.changeTypeEvent}>
-							<option>Todos Serviços</option>
-							{this.state.typesOfServices.map((type, index)=>{
-								return(
-									<option>{type}</option>
-								);
-							})}
-						</select>
-						<h2 >Schedule Service</h2>
-						<input type="date" class = "box" onChange = {this.HandleChangeDate}/>
-					</div>
+  handleChangeDate = (event) => {
+    this.filterByDate(event.target.value);
+  };
 
+  render() {
+    return (
+      <div class="calendar">
+        <div class="column">
+          <div class="banner bg-green row" id="input-bar">
+            <select class="box" onChange={this.handleChangeSelect}>
+              <option>Todos Serviços</option>
+              {this.state.typesOfServices.map((type, index) => {
+                return <option>{type}</option>;
+              })}
+            </select>
+            <h2>Schedule Service</h2>
 
-					
-					<div  class="banner bg-white" id="activities-list">
-							<h2>Available times</h2>
-							<br/> 
-							{this.state.services2show.map((service, index) => {
-								return (
-									<div className={index.valueOf()%2 == 0? "bg-darker": "bg-lighter"}>
-										<ServiceCard service={service} key={index} />
-									</div>
-								);	
-							})}
-					</div>
-				</div>
-			</div>
-		);
-  	}
+            <input
+              type="date"
+              class="box"
+              onChange={this.handleChangeDate}
+              defaultValue={this.getTodayDate()}
+            />
+          </div>
+
+          <div class="banner bg-white" id="activities-list">
+            <h2>Available times</h2>
+            <br />
+            {this.state.services2show.map((service, index) => {
+              return (
+                <div
+                  className={
+                    index.valueOf() % 2 == 0 ? "bg-darker" : "bg-lighter"
+                  }
+                >
+                  <ServiceCard service={service} key={index} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }

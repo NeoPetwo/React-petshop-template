@@ -22,6 +22,8 @@ export default class serviceCard extends React.Component {
             <p class="description">
                     <b>Description:</b><br/>
                     {this.props.service.description}
+                    <br/>
+                    {this.props.service.date}
             </p>
             <input class="schedule-button" type="submit" value="Schedule"/>
           </form>
