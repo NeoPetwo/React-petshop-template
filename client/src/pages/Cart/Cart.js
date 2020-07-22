@@ -96,6 +96,9 @@ export default class Cart extends React.Component {
 		this.setState({
 			cart: newCart
 		});
+
+		//Reload page to update cart number of navbar
+		window.location.reload(false);
 	}
 
   render() {
