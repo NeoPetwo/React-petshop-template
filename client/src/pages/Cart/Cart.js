@@ -16,10 +16,37 @@ export default class Cart extends React.Component {
     let user = cookies.get('loggedUser');
     this.state = {
       user: user,
-      cart: null 
+      cart: null
     }
 		this.fetchCart();
-  }
+	}
+	
+	componentDidUpdate() {
+		//A cada alteração na quantidade de produtos, o carrinho é atualizado no BD, para caso o usuário feche a janela, as alterações tenham sido salvas
+		if (this.state.cart !== null) this.updateCart();
+	}
+
+	updateCart = async () => {
+		console.log(this.state.cart);
+		let items = [];
+
+		for (let i=0; i<this.state.cart.items.length; i++) {
+			items.push({
+				quantity: this.state.cart.items[i].quantity,
+				product: this.state.cart.items[i].product._id
+			});
+		}
+
+		await axios({
+			method: 'PUT',
+			url: `${SERVER_URL}/cart/${this.state.cart._id}`,
+			data: {
+				customer: this.state.user.id,
+				status: this.state.cart.status,
+				items: items
+			}
+		});
+	}
 
   fetchCart = async () => {
     try {
@@ -30,11 +57,46 @@ export default class Cart extends React.Component {
       this.setState({
         cart: res.data
 			});
-			console.log(this.state.cart);
     } catch (err) {
       console.log(err);
     }
-  }
+	}
+	
+	cartTotal = () => {
+		if (this.state.cart === null) return 0;
+
+		let sum = 0;
+		let items = this.state.cart.items;
+		for (let i=0; i<items.length; i++) {
+			sum += items[i].quantity*items[i].product.price;
+		}
+		return sum.toFixed(2);
+	}
+
+	onChangeQttMinus = (index) => {
+		let newCart = this.state.cart;
+		if (newCart.items[index].quantity === 0) return;
+		newCart.items[index].quantity -= 1;
+		this.setState({
+			cart: newCart
+		});
+	}
+
+	onChangeQttPlus = (index) => {
+		let newCart = this.state.cart;
+		newCart.items[index].quantity += 1;
+		this.setState({
+			cart: newCart
+		});
+	}
+
+	removeItem = (index) => {
+		let newCart = this.state.cart;
+		newCart.items.splice(index, 1);
+		this.setState({
+			cart: newCart
+		});
+	}
 
   render() {
   return (
@@ -49,68 +111,34 @@ export default class Cart extends React.Component {
 				<p>Price</p>
 			</div>
 
-			<div class="product">
-				<div>
-					<img src={bird1} />
-					<p class="productTitle">Nice bird</p>
-				</div>
-				<div class="productQuantity">
-					<div class="qttBox">
-						<button class="qttBtn fas fa-minus"></button>
-						<p>2</p>
-						<button class="qttBtn fas fa-plus"></button>
+			{this.state.cart !== null && this.state.cart.items.map((item, index) => {
+				return (
+					<div class="product">
+						<div>
+							<img src={`${item.product.img}`} />
+							<p class="productTitle">{item.product.title}</p>
+						</div>
+						<div class="productQuantity">
+							<div class="qttBox">
+								<button onClick={() => this.onChangeQttMinus(index)} class="qttBtn fas fa-minus"></button>
+								<p>{item.quantity}</p>
+								<button onClick={() => this.onChangeQttPlus(index)} class="qttBtn fas fa-plus"></button>
+								<button onClick={() => this.removeItem(index)} class="qttBtn fas fa-trash"></button>
+							</div>
+						</div>
+						<div class="productPrice">R$ {(item.product.price * item.quantity).toFixed(2)}</div>
 					</div>
-				</div>
-				<div class="productPrice">$250.00</div>
-			</div>
-
-			<div class="product">
-				<div>
-					<img src={dog3} />
-					<p class="productTitle">Weird dog</p>
-				</div>
-				<div class="productQuantity">
-					<div class="qttBox">
-						<button class="qttBtn fas fa-minus"></button>
-						<p>1</p>
-						<button class="qttBtn fas fa-plus"></button>
-					</div>
-				</div>
-				<p class="productPrice">$99.00</p>
-			</div>
-
-			<div class="product">
-				<div>
-					<img src={lizard1} />
-					<p class="productTitle">Rare lizard</p>
-				</div>
-				<div class="productQuantity">
-					<div class="qttBox">
-						<button class="qttBtn fas fa-minus"></button>
-						<p>3</p>
-						<button class="qttBtn fas fa-plus"></button>
-					</div>
-				</div>
-				<p class="productPrice">$999.00</p>
-			</div>
-
+				);
+			})}
 		</div>
 		<div class="paymentArea">
 			<h1>Order summary</h1>
 			<hr class="divider2" />
 			<div class="summary">
-				<div class="items">
-					<p>Items:</p>
-					<p id="cartTotal">$1300.00</p>
-				</div>
-				<div class="shipping">
-					<p>Shipping:</p>
-					<p id="cartTotal">$48.00</p>
-				</div>
-				<hr class="divider3" />
+				
 				<div class="cartTotal">
 					<p>Cart Total:</p>
-					<p id="cartTotal">$1348.00</p>
+					<p id="cartTotal">R$ {this.cartTotal()}</p>
 				</div>
 				<button class="btn" onclick="window.location.href = 'payment_page.html';" >Checkout</button>
 			</div>
@@ -120,3 +148,5 @@ export default class Cart extends React.Component {
 	);
 	}
 }
+
+// cada mexida no qtt de um item é um put, ou coloque no componentDidUpdate pra a cada mudança mudar no BD também
