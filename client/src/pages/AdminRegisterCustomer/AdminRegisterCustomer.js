@@ -51,6 +51,11 @@ export default class AdminRegisterCustomer extends React.Component {
       return false;
     }
 
+    if (this.state.confPassword !== this.state.password) {
+      alert('Passwords typed are different');
+      return;
+    }
+
     //Image upload
     let data = new FormData(); 
     data.append('file', this.state.selectedImg);
