@@ -14,7 +14,7 @@ export default class AdminInventoryAdd extends React.Component {
     img: "", //Image path
     slug: "",
     qttSelected: 1,
-    tags: [],
+    tags: "",
     selectedImg: null //Image file
   };
 
@@ -34,13 +34,12 @@ export default class AdminInventoryAdd extends React.Component {
     if (event.target.value <= 0) return;
     this.setState({quantity: event.target.value});
   }
+  onTagsChanged = (event) => {
+    this.setState({tags: event.target.value});
+  }
 
   cancelSubmission = () => {
     this.props.history.push('/admin/inventory/consult');
-  }
-
-  onTagsChanged = (tags) => {
-    this.setState({tags});
   }
 
   onChangeImg = (event) =>{
@@ -48,6 +47,10 @@ export default class AdminInventoryAdd extends React.Component {
     this.setState({
       selectedImg: event.target.files[0]
     });
+  }
+
+  parseTags = () => {
+    return this.state.tags.split(" ");
   }
 
   handleSubmit = async (e) => {
@@ -58,7 +61,7 @@ export default class AdminInventoryAdd extends React.Component {
       return false;
     }
 
-    //Images upload
+    // Images upload
     let data = new FormData(); 
     data.append('file', this.state.selectedImg);
     let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
@@ -69,6 +72,8 @@ export default class AdminInventoryAdd extends React.Component {
       return false;
     }
 
+    let tags = await this.parseTags();
+
     let res = await axios({
       method: 'POST',
       url: `${SERVER_URL}/products`,
@@ -77,7 +82,7 @@ export default class AdminInventoryAdd extends React.Component {
         description: this.state.description,
         slug: this.state.slug,
         price: this.state.price,
-        tags: ['tag1', 'tag2'],
+        tags: tags,
         img: `/img/${this.state.selectedImg.name}`,
         quantity: this.state.quantity
       }
@@ -120,7 +125,7 @@ export default class AdminInventoryAdd extends React.Component {
                     <input type="number" value={this.state.quantity} onChange={this.handleChangeQuantity} />
 
                     <label for="tags">Tags</label>
-                    <input type="text" placeholder="" name="tags" />
+                    <input type="text" placeholder="" name="tags" onChange={this.onTagsChanged} />
 
                     {/* <TagInput tags={this.state.tags} onTagsChanged={this.onTagsChanged} /> */}
 

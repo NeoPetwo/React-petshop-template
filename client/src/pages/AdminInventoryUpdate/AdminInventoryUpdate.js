@@ -27,6 +27,15 @@ export default class AdminInventoryUpdate extends React.Component {
           method: 'GET',
           url: `${SERVER_URL}/products/${productslug}`
       });
+
+      let tags = res.data[0].tags;
+      let tagsStr = "";
+      for (let i=0; i<tags.length; i++) {
+        tagsStr += (" " + tags[i]);
+      }
+      console.log(tags);
+      console.log(tagsStr);
+
       this.setState({
           id: res.data[0]._id,
           title: res.data[0].title,
@@ -35,7 +44,7 @@ export default class AdminInventoryUpdate extends React.Component {
           quantity: res.data[0].quantity,
           img: res.data[0].img,
           slug: res.data[0].slug,
-          tags: res.data[0].tags
+          tags: tagsStr
       });
   }
 
@@ -60,6 +69,10 @@ export default class AdminInventoryUpdate extends React.Component {
     this.setState({quantity: event.target.value});
   }
 
+  onTagsChanged = (event) => {
+    this.setState({tags: event.target.value});
+  }
+
   onChangeImg = (event) =>{
     console.log(event.target.files[0]);
     this.setState({
@@ -67,8 +80,13 @@ export default class AdminInventoryUpdate extends React.Component {
     });
   }
 
+  parseTags = () => {
+    return this.state.tags.split(" ");
+  }
+
   handleSubmit = async (e) => {
     if (this.state.selectedImg === null) {
+      
       alert('Select an image');
       e.persist(); // e.preventDefault();
       return false;
@@ -84,6 +102,8 @@ export default class AdminInventoryUpdate extends React.Component {
       return false;
     }
 
+    let tags = await this.parseTags();
+
     let res = await axios({
       method: 'PUT',
       url: `${SERVER_URL}/products/${this.state.id}`,
@@ -92,7 +112,7 @@ export default class AdminInventoryUpdate extends React.Component {
         description: this.state.description,
         slug: this.state.slug,
         price: this.state.price,
-        tags: this.state.tags,
+        tags: tags,
         img:  `/img/${this.state.selectedImg.name}`,
         quantity: this.state.quantity
       }
@@ -143,7 +163,7 @@ export default class AdminInventoryUpdate extends React.Component {
                     <input type="number" value={this.state.quantity} onChange={this.handleChangeQuantity} />
 
                     <label for="tags">Tags</label>
-                    <input type="text" placeholder="" name="tags" />
+                    <input type="text" value={this.state.tags} name="tags" onChange={this.onTagsChanged} />
 
                     <button type="button" onClick={this.handleSubmit} class="btn">Update product</button>
                     <button type="button" class="btn cancel" onClick={this.cancelUpdate} >Cancel</button>
