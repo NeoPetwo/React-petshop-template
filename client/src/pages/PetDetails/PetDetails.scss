@@ -1,0 +1,154 @@
+/*Petshopt Mockup - First delivery*/
+/*    Daniel da Rocha Fróes 10255956*/
+/*    Gabriel Santos Nicolau 10684600*/
+/*    Kaio Tadeu Rodrigues 7561083*/
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.pet-details {
+
+    #main {
+
+        background-color: #DFF2FD;
+        color: black;
+        border-radius: 0.65em;
+        font-family: 'Merriweather', serif;
+
+    }
+    select{
+        font-family: 'Merriweather', serif;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 8px;
+        border-radius: 9px;
+        font-size: 15px;
+    }
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+        border-color: #ffd800;
+    }
+    .button_payment{
+        margin-top: 40px;
+        margin-left: 40px;
+        border: none;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        background-color: #6FB98F;
+        color: #FFF;
+        width: 200px;
+        height: 200px;
+        line-height: 1.33;
+        border-radius: 50%;
+    }
+    .button_payment:hover {
+        background-color: #004445;
+        color: #FFF;
+        transition: background-color 200ms ease;
+    }
+
+    /* Wrapper do conteúdo entre nav e header*/
+    #wrapper {
+        max-width: calc(100% - 4em);
+        margin: 0 auto;
+        border-style: none;
+        margin: 1em 1em 1em 2em;
+        -webkit-box-shadow: 6px 6px 21px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: 6px 6px 21px -4px rgba(0,0,0,0.75);
+        box-shadow: 6px 6px 21px -4px rgba(0,0,0,0.75);
+    }
+    header{
+        font-family: 'Montserrat', sans-serif;
+    }
+    /*Tabela*/
+    table {
+        margin: 0 1em 1em 0;
+        width: 60%;}
+
+    table tbody tr {
+        border: solid 1px;
+        border-left: 0;
+        border-right: 0;
+    }
+
+    table td {
+        padding: 0.75em 0.75em;
+    }
+
+    table th {
+        font-size: 0.9em;
+        font-weight: 400;
+        padding: 0 0.75em 0.75em 0.75em;
+        text-align: left;
+    }
+
+    table thead {
+        border-bottom: solid 2px;
+    }
+
+    table tfoot {
+        border-top: solid 2px;
+    }
+    table tbody tr {
+        border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    table tbody tr:nth-child(2n + 1) {
+        background-color: rgba(255, 255, 255, 0.075);
+    }
+
+    table th {
+        color: #ffffff;
+        background-color: #004445;
+    }
+
+    table thead {
+        border-bottom-color: rgba(255, 255, 255, 0.35);
+    }
+
+    table tfoot {
+        border-top-color: rgba(255, 255, 255, 0.35);
+    }
+
+
+    /* Spotlight  = containers de conteúdo */
+    .spotlight {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0em 12em 2em 12em;
+    }
+    .spotlight .content header.major {
+        color: #004445;
+        margin: 0 0 2em 0;
+    }
+
+    .spotlight .image {
+        display: inline-block;
+        margin-left: em;
+        padding: 0.5em;
+        border-radius: 100%;
+    }
+
+    .spotlight .image img {
+        height: 300px;
+        width: auto;
+    }
+
+    .spotlight .content {
+        font-family: Merriweather, serif;
+
+    }
+    .content-bottom{
+        display: flex;
+    }
+    header{
+        color: #004445;
+    }
+}

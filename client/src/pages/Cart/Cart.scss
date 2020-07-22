@@ -117,7 +117,7 @@
 		text-align: center;
 		height: 100%;
 		/* margin-left: 20px; */
-		margin-right: 70000px;
+		// margin-right: 70000px;
 	}
 	.qttBtn:active {
 		color:#000;
@@ -136,6 +136,12 @@
 
 	.fa-plus {
 		color: #7d7d7d;
+		font-size: 15px;
+		margin-left: 8px;
+	}
+
+	.fa-trash {
+		color: red;
 		font-size: 15px;
 		margin-left: 8px;
 	}
