@@ -78,7 +78,7 @@ export default class AdminRegisterAdmin extends React.Component {
     if (res.status !== 201) {
       alert('Problem when submitting');  
     } else  {
-      alert('Customer registered!');
+      alert('Admin registered!');
       this.props.history.push('/');
     }
 	}
