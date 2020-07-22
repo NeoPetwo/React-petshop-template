@@ -1,62 +1,62 @@
 import React from 'react';
+import axios from 'axios';
+
+import { SERVER_URL } from '../../variables';
+
 import './AdminRegisterAdmin.scss';
-import axios from "axios";
-import { SERVER_URL } from "../../variables";
 
 
 export default class AdminRegisterAdmin extends React.Component {
-    state = {
-    name: "",
-    username: "",
-    email: "",
-    password: "",
-    confPassword: "",
-    phone: "",
-    img: "", //Image path
-    selectedImg: null, // Image file
-  };
+  state = {
+		name: "",
+		username: "",
+		email: "",
+		password: "",
+		confPassword: "",
+		phone: "",
+		img: "", //Image path
+		selectedImg: null // Image file
+	}
 
-  handleChangeName = (event) => {
-    this.setState({ name: event.target.value });
-  };
+	handleChangeName = (event) => {
+    this.setState({name: event.target.value});
+  }
   handleChangeusername = (event) => {
-    this.setState({ username: event.target.value });
-  };
+    this.setState({username: event.target.value});
+  }
   handleChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
-  };
+    this.setState({email: event.target.value});
+  }
   handleChangePassword = (event) => {
-    this.setState({ password: event.target.value });
-  };
-  handleChangeConfPassword = (event) => {
-    this.setState({ confPassword: event.target.value });
-  };
-
+    this.setState({password: event.target.value});
+	}
+	handleChangeConfPassword = (event) => {
+    this.setState({confPassword: event.target.value});
+  }
   handleChangePhone = (event) => {
-    this.setState({ phone: event.target.value });
-  };
-
-  onChangeImg = (event) => {
+    this.setState({phone: event.target.value});
+	}
+	onChangeImg = (event) =>{
     console.log(event.target.files[0]);
     this.setState({
-      selectedImg: event.target.files[0],
+      selectedImg: event.target.files[0]
     });
-  };
-
-  handleSubmit = async (e) => {
+	}
+	
+	handleSubmit = async (e) => {
     if (this.state.selectedImg === null) {
-      alert("Select an image");
+      alert('Select an image');
       e.persist();
       // e.preventDefault();
       return false;
     }
 
-    //Images upload
-    let data = new FormData();
-    data.append("file", this.state.selectedImg);
+    //Image upload
+    let data = new FormData(); 
+    data.append('file', this.state.selectedImg);
     let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
     if (res1.status !== 201) {
-      alert("Error uploading the image");
+      alert('Error uploading the image');
       e.persist();
       // e.preventDefault();
       return false;
@@ -71,25 +71,23 @@ export default class AdminRegisterAdmin extends React.Component {
         email: this.state.email,
         password: this.state.password, //Not worrying about security
         img: `/img/${this.state.selectedImg.name}`,
-        phone: this.state.phone,
-        admin: true, //This registration are not for admins
-      },
-    });
-
+				phone: this.state.phone,
+				admin: true //This registration is for new admins
+      }
+		});
+		
     if (res.status !== 201) {
-      alert("Problem when submitting");
-    } else {
-      alert("Administrator registered!");
+      alert('Problem when submitting');  
+    } else  {
+      alert('Admin registered!');
+      this.props.history.push('/');
     }
-  };
+	}
+	
+	cancelSubmission = () => {
+    this.props.history.push('/');
+  }
 
-  cancelSubmission = () => {
-    this.props.history.push("/");
-  };
-
-  
-  
-  
   render() {
   return (
     <div class="admin-register-admin">
@@ -102,29 +100,30 @@ export default class AdminRegisterAdmin extends React.Component {
               <form action="#" class="form-container">
                   <h1>New administrator</h1>
 
-                  <label for="name">Name</label>
-                  <input type="text" placeholder="Enter Name" name="name" onChange = {this.handleChangeName} required/>
+                  <label>Name</label>
+                  <input type="text" placeholder="Type here your name" name="" onChange={this.handleChangeName}/>	
 
-                  <label for="email">Username</label>
-                  <input type="text" placeholder="Enter username" name="name" onChange = {this.handleChangeusername} />
+                  <label>Username</label>
+                  <input type="text" placeholder="Type here your username" name="" onChange={this.handleChangeusername}/>								
 
-                  <label for="phone">Phone</label>
-                  <input type="number" placeholder="(DDD) 00000-0000" name="name" onChange = {this.handleChangePhone}  required/>
+                  <label>Profile picture</label>
+                  <input type="file" name="file" id ="file" onChange={this.onChangeImg}/>
+                  {/* <label for="file" class= "btn" id = "file-btn" onChange={this.onChangeImg}>Choose a profile picture</label> */}
 
-                  <label for="customer_pic">Picture:</label>
-                  <input type="file" id="customer_pic" name="picture" onChange = {this.onChangeImg} />
+                  <label>Phone</label>
+                  <input type="tel" placeholder="Type here your phone number" name="" onChange={this.handleChangePhone}/>								
 
-                  <label for="email">Email</label>
-                  <input type="text" placeholder="Enter Email" name="email" onChange = {this.handleChangeEmail}  required/>
+                  <label>Email</label>
+                  <input type="email" placeholder="Type here your email" name="" onChange={this.handleChangeEmail}/>								
 
-                  <label for="psw">Password</label>
-                  <input type="password" placeholder="Enter Password" name="psw"  onChange = {this.handleChangePassword} required/>
-                  
-                  <label for="cPsw">Confirm Password</label>
-                  <input type="Password" placeholder="Enter the Password Again" name="cPsw"  onChange = {this.handleChangeConfPassword} required/>
-
-                  <button type="button" class="btn" onClick = {this.handleSubmit}>Create</button>
-                  <button type="button" class="btn cancel" onclick="closeForm(2)">Cancel</button>
+                  <label>Password</label>
+                  <input type="password" placeholder="Type here your password" name="" onChange={this.handleChangePassword}/>	
+                
+                  <label>Confirm your password</label>
+                  <input type="password" placeholder="Confirm your password" name="" onChange={this.handleChangeConfPassword}/>
+                
+                  <button type="button" onClick={this.handleSubmit} class="btn">Register</button>
+                  <button type="button" onClick={this.cancelSubmission} class="btn cancel">Cancel</button>
               </form>
           </div>
 
