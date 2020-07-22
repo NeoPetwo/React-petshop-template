@@ -11,6 +11,7 @@ export default class AdminInventoryAdd extends React.Component {
     price: "",
     description: "",
     quantity: "",
+    quantitySold: "",
     img: "", //Image path
     slug: "",
     qttSelected: 1,
@@ -33,6 +34,10 @@ export default class AdminInventoryAdd extends React.Component {
   handleChangeQuantity = (event) => {
     if (event.target.value <= 0) return;
     this.setState({quantity: event.target.value});
+  }
+  handleChangeQuantitySold = (event) => {
+    if (event.target.value <= 0) return;
+    this.setState({quantitySold: event.target.value});
   }
   onTagsChanged = (event) => {
     this.setState({tags: event.target.value});
@@ -84,7 +89,8 @@ export default class AdminInventoryAdd extends React.Component {
         price: this.state.price,
         tags: tags,
         img: `/img/${this.state.selectedImg.name}`,
-        quantity: this.state.quantity
+        quantity: this.state.quantity,
+        quantitySold: this.state.quantitySold
       }
     });
 
@@ -123,6 +129,9 @@ export default class AdminInventoryAdd extends React.Component {
 
                     <label for="qnt">Quantity in stock</label>
                     <input type="number" value={this.state.quantity} onChange={this.handleChangeQuantity} />
+
+                    <label for="qnt">Quantity sold</label>
+                    <input type="number" value={this.state.quantitySold} onChange={this.handleChangeQuantitySold} />
 
                     <label for="tags">Tags</label>
                     <input type="text" placeholder="" name="tags" onChange={this.onTagsChanged} />

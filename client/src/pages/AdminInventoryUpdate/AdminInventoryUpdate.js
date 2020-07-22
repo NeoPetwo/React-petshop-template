@@ -12,6 +12,7 @@ export default class AdminInventoryUpdate extends React.Component {
         price: "",
         description: "",
         quantity: "",
+        quantitySold: "",
         img: "",
         slug: "",
         tags: "",
@@ -42,6 +43,7 @@ export default class AdminInventoryUpdate extends React.Component {
           price: res.data[0].price,
           description: res.data[0].description,
           quantity: res.data[0].quantity,
+          quantitySold: res.data[0].quantitySold,
           img: res.data[0].img,
           slug: res.data[0].slug,
           tags: tagsStr
@@ -67,6 +69,11 @@ export default class AdminInventoryUpdate extends React.Component {
   handleChangeQuantity = (event) => {
     if (event.target.value <= 0) return;
     this.setState({quantity: event.target.value});
+  }
+
+  handleChangeQuantitySold = (event) => {
+    if (event.target.value <= 0) return;
+    this.setState({quantitySold: event.target.value});
   }
 
   onTagsChanged = (event) => {
@@ -114,7 +121,8 @@ export default class AdminInventoryUpdate extends React.Component {
         price: this.state.price,
         tags: tags,
         img:  `/img/${this.state.selectedImg.name}`,
-        quantity: this.state.quantity
+        quantity: this.state.quantity,
+        quantitySold: this.state.quantitySold
       }
     });
     e.persist(); // e.preventDefault();
@@ -161,6 +169,9 @@ export default class AdminInventoryUpdate extends React.Component {
 
                     <label for="qnt">Quantity in stock</label>
                     <input type="number" value={this.state.quantity} onChange={this.handleChangeQuantity} />
+
+                    <label for="qnt">Quantity sold</label>
+                    <input type="number" value={this.state.quantitySold} onChange={this.handleChangeQuantitySold} />
 
                     <label for="tags">Tags</label>
                     <input type="text" value={this.state.tags} name="tags" onChange={this.onTagsChanged} />

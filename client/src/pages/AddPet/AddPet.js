@@ -22,6 +22,7 @@ export default class AddPet extends React.Component {
         this.state = {
             owner: user.id,
             name: "",
+            race: "",
             description: "",
             selectedImg: null // Image file
         }
@@ -55,6 +56,9 @@ export default class AddPet extends React.Component {
     handleChangeDescription = (event) => {
         this.setState({description: event.target.value});
     }
+    handleChangeRace = (event) => {
+        this.setState({race: event.target.value});
+    }
     onChangeImg = (event) =>{
         console.log(event.target.files[0]);
         this.setState({
@@ -71,6 +75,7 @@ export default class AddPet extends React.Component {
             url: `${SERVER_URL}/pets`,
             data: {
                 owner: this.state.owner,
+                race: this.state.race,
                 name: this.state.name,
                 description: this.state.description,
                 img: `/img/${this.state.selectedImg.name}`,
@@ -115,7 +120,7 @@ export default class AddPet extends React.Component {
                 <div id="section-double">
                     <div class="catalog_link">
                         <div id="uActSect-newpet">
-                            <h1>New pet</h1>
+                            {/* <h1>New pet</h1> */}
                             <form class="form-container">
 
                                 <div>
@@ -123,7 +128,11 @@ export default class AddPet extends React.Component {
                                     <input type="text" placeholder="Pet's name" name="name" onChange={this.handleChangeName}/>
                                 </div>
                                 <div>
-                                    <label for="psw">Description</label>
+                                    <label for="race">Race</label>
+                                    <input type="text" placeholder="Enter the race of your pet" name="race" onChange={this.handleChangeRace}/>
+                                </div>
+                                <div>
+                                    <label for="">Description</label>
                                     <input type="text" placeholder="Enter a brief description of your friend" name="desc" onChange={this.handleChangeDescription}/>
                                 </div>
                                 <div>

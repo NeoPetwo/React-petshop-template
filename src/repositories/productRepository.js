@@ -12,7 +12,7 @@ const Product = mongoose.model('Product');
 exports.get = async () => {
   const res = await Product.find({
     active: true
-  }, 'title description price slug tags img quantity');
+  }, 'title description price slug tags img quantity quantitySold');
   return res;
 }
 
@@ -57,6 +57,7 @@ exports.update = async (id, data) => {
         price: data.price,
         slug: data.slug,
         quantity: data.quantity,
+        quantitySold: data.quantitySold,
         img: data.img,
         tags: data.tags
       }

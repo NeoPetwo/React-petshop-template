@@ -46,6 +46,10 @@ const schema = new Schema({
   quantity: {
       type: Number,
       required: true
+  },
+  quantitySold: {
+      type: Number,
+      required: true  
   }
 });
 
