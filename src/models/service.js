@@ -25,13 +25,17 @@ const schema = new Schema({
         type: String,
         required: [true, 'A descrição é obrigatória']
     },
-    duration: {
-        type: Number,
+    startHour: {
+        type: String,
+        required: true
+    },
+    endingHour: {
+        type: String,
         required: true
     },
 
-    dateHour: {
-        type: Date,
+    date: {
+        type: String,
         required: true
     }
 

@@ -43,7 +43,7 @@ exports.getPartnerHours = async (data) => {
 }
 
 exports.create = async (data) => {
-
+  
   var service = new Service(data);
   const res = await service.save();
   return res;

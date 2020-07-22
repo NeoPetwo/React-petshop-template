@@ -35,6 +35,7 @@ exports.getTypes = async (req, res, next) => {
 
 exports.getBySlug = async (req, res, next) => {
   try {
+    
     const data = await repository.getBySlug(req.params.slug);
     
     res.status(200).send(data);
@@ -61,7 +62,8 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-   const data = await repository.create(req.body);
+    
+    const data = await repository.create(req.body);
     res.status(201).send({
       message: 'Serviço Cadastrado!!!!'
     });

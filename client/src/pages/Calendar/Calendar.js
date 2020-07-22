@@ -16,7 +16,8 @@ export default class Calendar extends React.Component {
 		this.state = {
 			allServices: [],
 			services2show: [],
-			typesOfServices: []
+			typesOfServices: [],
+			filteredDate: ''
 		};
 		this.fetchServices();
 		this.fecthTypes();
@@ -56,6 +57,18 @@ export default class Calendar extends React.Component {
 		});
 	}
 
+	filterByDate= (date) => {
+		//Reseta Filtro
+		let filteredList = this.state.allServices.filter((service) => {
+			if (service.date === date) return service;
+		});
+
+		this.setState({
+			services2show: filteredList
+		});
+	}
+
+
 	resetTypeFilter = () =>
 	{
 		this.setState({
@@ -70,6 +83,10 @@ export default class Calendar extends React.Component {
 			this.filterByType(event.target.value);
 			
 	}	
+
+	HandleChangeDate = (event) =>{
+		this.filterByDate(event.target.value)
+	}
 	
 
 	render() {
@@ -85,13 +102,9 @@ export default class Calendar extends React.Component {
 									<option>{type}</option>
 								);
 							})}
-								
-								{/* <option>Haircut</option>
-								<option>Bathing</option>
-								<option>Veterinary appointment</option> */}
 						</select>
 						<h2 >Schedule Service</h2>
-						<input type="date" class = "box"/>
+						<input type="date" class = "box" onChange = {this.HandleChangeDate}/>
 					</div>
 
 
