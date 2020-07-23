@@ -65,10 +65,10 @@ export default class serviceCard extends React.Component {
             </div>
             
             <p class="description">
-                    <b>Description:</b><br/>
-                    {this.props.service.description}
-                    <br/>
-                    {this.props.service.date}
+                <b>Description:</b><br/>
+                  {this.props.service.description}
+                <br/>
+                  {this.props.service.date}
             </p>
             <button onClick={this.schedule} class="schedule-button" type="submit">Schedule</button>
           </form>
