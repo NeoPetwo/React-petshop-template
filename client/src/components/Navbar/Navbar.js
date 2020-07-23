@@ -29,7 +29,7 @@ export default class Navbar extends React.Component {
         url: `${SERVER_URL}/cart/${this.state.user.id}`
       });
       this.setState({
-        cartQtt: res.data.items.length
+        cartQtt: res.data.items === undefined ? 0 : res.data.items.length
       });
     } catch (err) {
       console.log(err);

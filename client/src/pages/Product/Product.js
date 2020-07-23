@@ -80,31 +80,52 @@ export default class Product extends React.Component {
         const cookies = new Cookies();
         const user = cookies.get('loggedUser');
         await this.setState({user: user});
-
         await this.fetchCart();
-        let items = [];
-		for (let i=0; i<this.state.cart.items.length; i++) {
-			items.push({
-				quantity: this.state.cart.items[i].quantity,
-				product: this.state.cart.items[i].product._id
-			});
-        }
-        
-        //Adding new product
-        items.push({
-            quantity: this.state.qttSelected,
-            product: this.state.productid
-        });
 
-		await axios({
-			method: 'PUT',
-			url: `${SERVER_URL}/cart/${this.state.cart._id}`,
-			data: {
-				customer: this.state.user.id,
-				status: this.state.cart.status,
-				items: items
-			}
-        });
+        //If the user do not have a cart yet
+        if (this.state.cart === "") {
+            console.log('tem carrinho não né');
+            try {
+                await axios({
+                    method: 'POST',
+                    url: `${SERVER_URL}/cart`,
+                    data: {
+                        customer: this.state.user.id,
+                        status: 'active',
+                        items: [{
+                            quantity: this.state.qttSelected,
+                            product: this.state.productid
+                        }]
+                    }
+                });
+            } catch (err) {
+                console.log('Error on POST cart', err);
+            }
+        } else {
+            let items = [];
+            for (let i=0; i<this.state.cart.items.length; i++) {
+                items.push({
+                    quantity: this.state.cart.items[i].quantity,
+                    product: this.state.cart.items[i].product._id
+                });
+            }
+            
+            //Adding new product
+            items.push({
+                quantity: this.state.qttSelected,
+                product: this.state.productid
+            });
+
+            await axios({
+                method: 'PUT',
+                url: `${SERVER_URL}/cart/${this.state.cart._id}`,
+                data: {
+                    customer: this.state.user.id,
+                    status: this.state.cart.status,
+                    items: items
+                }
+            });
+        }
         
         //Reload page to update cart number of navbar
         await window.location.reload(false);

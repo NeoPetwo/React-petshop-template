@@ -16,9 +16,9 @@ exports.get = async (data) => {
 
 exports.getByCustomerId = async (customerid) => {
   const res = await Cart
-    .findOne({customer: customerid})
+    .findOne({customer: customerid, status: 'active'})
     .populate('customer', 'name')
-    .populate('items.product', 'title img price');
+    .populate('items.product', 'title img price'); 
   return res;
 }
 
