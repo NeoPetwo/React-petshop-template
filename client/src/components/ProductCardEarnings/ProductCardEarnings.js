@@ -4,7 +4,6 @@ import './ProductCardEarnings.scss';
 
 export default class ProductCardEarnings extends React.Component {
   render() {
-    console.log(this.props.product);
     return (
       <div class="product-card-inventory">
         <div className="product">
@@ -15,11 +14,7 @@ export default class ProductCardEarnings extends React.Component {
                 <br/>
                 <p>Quantity sold: <span style={{color: 'blue'}} className="price">{this.props.product.quantity}</span></p>
                 <br/>
-                <p>Product profit: <span style={{color: 'green'}} className="price">R$ {(this.props.product.price * this.props.product.quantity).toFixed(2)}</span></p>
-                {/* <div className="btns">
-                  <div to={`/admin`} id="edit-btn"><i className="fa fa-pencil" aria-hidden="true" /> Edit</div>
-                  <div id="delete-btn"><i className="fa fa-trash" aria-hidden="true" /> Delete</div>
-                </div> */}
+                <p>Total Product profit: <span style={{color: 'green'}} className="price">R$ {(this.props.product.price * this.props.product.quantity).toFixed(2)}</span></p>
             </div>
         </div>
       </div>

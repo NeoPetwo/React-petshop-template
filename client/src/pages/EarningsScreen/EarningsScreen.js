@@ -13,7 +13,8 @@ export default class EarningsScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      filteredOrders: []
+      filteredOrders: [],
+      totalProfit: 0
     };
     this.fetchOrders();
   }
@@ -47,7 +48,8 @@ export default class EarningsScreen extends React.Component {
     });
 
     const filteredOrders = await this.filterOrders(res.data);
-    this.setState({filteredOrders: filteredOrders});
+    await this.setState({filteredOrders: filteredOrders});
+    this.calculateTotalProfit();
   }
 
   indexOfObjAttr = (array, attr, value) => {
@@ -59,15 +61,25 @@ export default class EarningsScreen extends React.Component {
     return -1;
   }
 
+  calculateTotalProfit = () => {
+    let sum = 0;
+    this.state.filteredOrders.forEach((item, index) => {
+      sum += item.quantity * item.price
+    });
+    this.setState({
+      totalProfit: sum
+    });
+  }
+
   render() {
   return (
     <div class="admin-inventory-consult">
       <div class="banner " id="catalog">
         <div id="product-grid" class="column">
-            <h2>Products Catalog</h2>
+            <h2>Total Products Sold: {this.state.filteredOrders.length}</h2>
+            <h2>Total Profit: R$ {(this.state.totalProfit.toFixed(2))}</h2>
             <div class="columns is-multiline">
                 {this.state.filteredOrders.map((order, index) => {
-                    // console.log(order);
                     return (
                         <div class="column is-one-quarter">
                             <ProductCardEarnings product={order} key={index} />
