@@ -44,7 +44,8 @@ const schema = new Schema({
     },
     scheduled: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
     customer: {
         type: mongoose.Schema.Types.ObjectId,
