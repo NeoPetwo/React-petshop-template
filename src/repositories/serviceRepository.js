@@ -9,7 +9,7 @@ const Service = mongoose.model('Service');
 // Funções para CRUD básico
 
 exports.get = async () => {
-  const res = await Service.find({});
+  const res = await Service.find({}).populate('customer').populate('pet');
   return res;
 }
 
@@ -53,10 +53,15 @@ exports.update = async (id, data) => {
   await Service
     .findByIdAndUpdate(id, {
       $set: {
-        title: data.title,
+        scheduled: data.scheduled,
+        type: data.type,
         description: data.description,
-        price: data.price,
         slug: data.slug,
+        startHour: data.startHour,
+        endingHour: data.endingHour,
+        data: data.data,
+        pet: data.pet,
+        customer: data.customer,
       }
     });
 }

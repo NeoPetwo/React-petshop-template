@@ -11,29 +11,38 @@ export default class serviceCard extends React.Component {
   }
 
   schedule = async () => {
+    console.log('foi');
     const cookies = new Cookies();
     const user = cookies.get('loggedUser');
-    await axios.get({
-      method: 'PUT',
-      url: `${SERVER_URL}/services/${this.props.service.id}`,
-      data: {
-        type: this.props.service.type,
-        description: this.props.service.description,
-        startHour: this.props.service.startHour,
-        endingHour: this.props.service.endingHour,
-        date: this.props.service.date,
-        slug: this.props.service.slug,
-        pet: this.state.selectedPet._id,
-        scheduled: true,
-        customer: user.id
-      }
-    });
+    try {
+      console.log('service', this.props.service);
+      console.log('selectedPet', this.state.selectedPet._id);
+      console.log('user id', user.id);
+      await axios({
+        method: 'PUT',
+        url: `${SERVER_URL}/services/${this.props.service._id}`,
+        data: {
+          type: this.props.service.type,
+          description: this.props.service.description,
+          startHour: this.props.service.startHour,
+          endingHour: this.props.service.endingHour,
+          date: this.props.service.date,
+          slug: this.props.service.slug,
+          pet: this.state.selectedPet._id,
+          scheduled: true,
+          customer: user.id
+        }
+      });
+      alert('Service scheduled')
+    } catch (err) {
+      console.log('Error', err);
+    }
   }
 
   handleSelect = (e) => {
     const index = e.target.value;
     this.setState({
-      selectedPet: this.props.service.pets[index]
+      selectedPet: this.props.pets[index]
     });
   }
 
@@ -43,7 +52,7 @@ export default class serviceCard extends React.Component {
       <div class="service-card ">
         <div class = "service row">        
           <div class="hour-section">Hour:<br/> <span class = "hour-text">{this.props.service.startHour} - {this.props.service.endingHour}</span></div>
-          <form class="info row">
+          <div class="info row">
             <div class = "column">
                     <p class= "service-name">Type:<b> {this.props.service.type}</b></p>
                     {/* <select className ="select-pet" onChange={this.handleSelect}>
@@ -56,7 +65,7 @@ export default class serviceCard extends React.Component {
 
                     <select className ="select-pet" onChange={this.handleSelect}>
                       <option value="0">- Select a Pet -</option>
-                      {this.props.service.pets.map((pet, index) => {
+                      {this.props.pets.map((pet, index) => {
                           return (
                               <option key={index} value={index}>{pet.name}</option>
                           );
@@ -71,7 +80,7 @@ export default class serviceCard extends React.Component {
                   {this.props.service.date}
             </p>
             <button onClick={this.schedule} class="schedule-button" type="submit">Schedule</button>
-          </form>
+          </div>
         </div>
       </div>
     );

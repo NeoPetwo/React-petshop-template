@@ -19,7 +19,7 @@ const schema = new Schema({
         required: [true, 'O slug é obrigatório'],
         trim: true,
         index: true,
-        unique: true
+        unique: false
     },
     description: {
         type: String,
@@ -40,7 +40,7 @@ const schema = new Schema({
     pet: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Pet',
-        required: false
+        required: false,
     },
     scheduled: {
         type: Boolean,

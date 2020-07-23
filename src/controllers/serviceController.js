@@ -81,6 +81,7 @@ exports.put = async (req, res, next) => {
         message: 'Serviço atualizado com louvor!!'
     });
   } catch(err) {
+    console.log('Erro no put', err);
     res.status(500).send({
       message: 'Falha ao processar sua requisição.',
       data: err
