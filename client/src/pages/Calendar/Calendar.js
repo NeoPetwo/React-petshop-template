@@ -31,6 +31,7 @@ export default class Calendar extends React.Component {
   };
 
   fetchServices = async () => {
+    
     let res = await axios({
       method: "GET",
       url: `${SERVER_URL}/services`,
@@ -48,16 +49,17 @@ export default class Calendar extends React.Component {
   fetchUserPets = async () => {
     const cookies = new Cookies();  
     var user = cookies.get('loggedUser');
-
-    let res = await axios({
-      method: "GET",
-      url: `${SERVER_URL}/pets/userpets/${user.id}`,
-    });
-    this.setState({
-      userPets: res.data,
-    }); 
-
-    console.log(res.data);
+    if(user !== undefined)
+    {
+      let res = await axios({
+        method: "GET",
+        url: `${SERVER_URL}/pets/userpets/${user.id}`,
+      });
+      this.setState({
+        userPets: res.data,
+      }); 
+    }
+    
   }
 
   fecthTypes = async () => {
@@ -77,8 +79,8 @@ export default class Calendar extends React.Component {
     });
     this.setState({
       services2show: filteredList,
-	});
-  };
+	  });
+    };
 
   filterByDate = (date) => {
 	  //Reseta Filtro
@@ -92,6 +94,8 @@ export default class Calendar extends React.Component {
       services2show: filteredList,
     });
   };
+   
+
 
   resetTypeFilter = () => {
     this.setState({
