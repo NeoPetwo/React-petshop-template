@@ -32,7 +32,7 @@ export default class Navbar extends React.Component {
         cartQtt: res.data.items === undefined ? 0 : res.data.items.length
       });
     } catch (err) {
-      console.log(err);
+      console.log('Error on GETing cart', err);
     }
   }
 

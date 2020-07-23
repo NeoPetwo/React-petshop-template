@@ -68,19 +68,19 @@ export default class Home extends React.Component {
     <div class="banner popular-list">
         <h2>Popular products</h2>
         <div>
-            <Link to='/catalog/product'>
+            <Link to='/catalog/product/dog-house'>
                 <img src={dogHouse}/>
                 <p>Dog houses</p>
             </Link>
-            <Link to='/catalog/product'>
+            <Link to='/catalog/product/pet-toy'>
                 <img src={petToy}/>
                 <p>Toys</p>
             </Link>
-            <Link to='/catalog/product'>
+            <Link to='/catalog/product/bird-house3'>
                 <img src={birdHouse}/>
                 <p>Bird houses</p>
             </Link>
-            <Link to='/catalog/product'>
+            <Link to='/catalog/product/traveller-capri'>
                 <img src={travellerCapri}/>
                 <p>Traveller Capri</p>
             </Link>

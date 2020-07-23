@@ -18,7 +18,6 @@ export default class Cart extends React.Component {
       user: user,
       cart: null
 		}
-		console.log('before fetch on contructor');
 		this.fetchCart();
 	}
 	
@@ -63,18 +62,14 @@ export default class Cart extends React.Component {
 	}
 
   fetchCart = async () => {
-		console.log('Inside fetch');
     try {
-			console.log('VOu chamar o axios');
       const res = await axios({
         method: "GET",
         url: `${SERVER_URL}/cart/${this.state.user.id}`
 			});
-			console.log('Chamei o axios', res.data);
       this.setState({
         cart: res.data
 			});
-			console.log('carrinho que veio', res.data);
     } catch (err) {
       console.log(err);
     }

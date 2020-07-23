@@ -45,7 +45,6 @@ export default class Product extends React.Component {
     }
 
     addItem = () => {
-        console.log('max', this.state.maxQuantity);
         if (this.state.qttSelected === this.state.maxQuantity) return;
 
         this.setState({
@@ -84,7 +83,6 @@ export default class Product extends React.Component {
 
         //If the user do not have a cart yet
         if (this.state.cart === "") {
-            console.log('tem carrinho não né');
             try {
                 await axios({
                     method: 'POST',
@@ -140,6 +138,7 @@ export default class Product extends React.Component {
                 </div>
                 <div class="paymentArea">
                     <h1>{this.state.title}</h1>
+                    <h4>{this.state.description}</h4>
                     <section>
 
                         <div class="rating">
