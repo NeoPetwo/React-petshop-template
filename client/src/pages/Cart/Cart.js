@@ -114,6 +114,10 @@ export default class Cart extends React.Component {
 		window.location.reload(false);
 	}
 
+	checkout = () => {
+		this.props.history.push('/payment');
+	}
+
   render() {
   return (
 	<div class="cart">
@@ -157,7 +161,7 @@ export default class Cart extends React.Component {
 					<p>Cart Total:</p>
 					<p id="cartTotal">R$ {this.cartTotal()}</p>
 				</div>
-				<button class="btn" onclick="window.location.href = 'payment_page.html';" >Checkout</button>
+				<button class="btn" onClick={this.checkout} >Checkout</button>
 			</div>
 		</div>
 	</div>
