@@ -18,6 +18,10 @@ const schema = new Schema({
     type: String,
     required: [true, 'Name is required']
   },
+  race: {
+    type: String,
+    required: false
+  },
   description: {
     type: String,
     required: [true, 'Description is required']

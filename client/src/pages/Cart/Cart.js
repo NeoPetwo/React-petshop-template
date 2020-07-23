@@ -17,7 +17,7 @@ export default class Cart extends React.Component {
     this.state = {
       user: user,
       cart: null
-    }
+		}
 		this.fetchCart();
 	}
 	
@@ -26,8 +26,21 @@ export default class Cart extends React.Component {
 		if (this.state.cart !== null) this.updateCart();
 	}
 
+	cartExist = () => {
+		if (this.state.cart === null || 
+				this.state.cart?.items === null ||
+				this.state.cart === undefined || 
+				this.state.cart?.items === undefined
+			) {
+				return false;
+			} else {
+				return true;
+			}
+	}
+
 	updateCart = async () => {
-		console.log(this.state.cart);
+		if (!this.cartExist()) return;
+
 		let items = [];
 
 		for (let i=0; i<this.state.cart.items.length; i++) {
@@ -53,7 +66,7 @@ export default class Cart extends React.Component {
       const res = await axios({
         method: "GET",
         url: `${SERVER_URL}/cart/${this.state.user.id}`
-      });
+			});
       this.setState({
         cart: res.data
 			});
@@ -63,11 +76,11 @@ export default class Cart extends React.Component {
 	}
 	
 	cartTotal = () => {
-		if (this.state.cart === null) return 0;
+		if (!this.cartExist()) return 0;
 
 		let sum = 0;
 		let items = this.state.cart.items;
-		for (let i=0; i<items.length; i++) {
+		for (let i=0; i<items?.length; i++) {
 			sum += items[i].quantity*items[i].product.price;
 		}
 		return sum.toFixed(2);
@@ -96,6 +109,13 @@ export default class Cart extends React.Component {
 		this.setState({
 			cart: newCart
 		});
+
+		//Reload page to update cart number of navbar
+		window.location.reload(false);
+	}
+
+	checkout = () => {
+		this.props.history.push('/payment');
 	}
 
   render() {
@@ -111,7 +131,8 @@ export default class Cart extends React.Component {
 				<p>Price</p>
 			</div>
 
-			{this.state.cart !== null && this.state.cart.items.map((item, index) => {
+			{this.state.cart !== null && this.state?.cart?.items?.map((item, index) => {
+				if (item.product === undefined) return; //Handling errors
 				return (
 					<div class="product">
 						<div>
@@ -140,7 +161,7 @@ export default class Cart extends React.Component {
 					<p>Cart Total:</p>
 					<p id="cartTotal">R$ {this.cartTotal()}</p>
 				</div>
-				<button class="btn" onclick="window.location.href = 'payment_page.html';" >Checkout</button>
+				<button class="btn" onClick={this.checkout} >Checkout</button>
 			</div>
 		</div>
 	</div>

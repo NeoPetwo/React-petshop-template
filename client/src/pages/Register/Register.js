@@ -50,6 +50,11 @@ export default class Register extends React.Component {
       return false;
     }
 
+    if (this.state.confPassword !== this.state.password) {
+      alert('Passwords typed are different');
+      return;
+    }
+
     //Images upload
     let data = new FormData();
     data.append("file", this.state.selectedImg);

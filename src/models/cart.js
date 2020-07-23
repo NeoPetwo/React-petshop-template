@@ -17,8 +17,8 @@ const schema = new Schema({
   status: {
     type: String,
     required: true,
-    enum: ['created', 'done'],
-    default: 'created'
+    enum: ['done', 'active'],
+    default: 'active'
   },
   items: [{
     quantity: {

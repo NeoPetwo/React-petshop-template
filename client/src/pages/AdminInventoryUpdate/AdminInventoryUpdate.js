@@ -12,6 +12,7 @@ export default class AdminInventoryUpdate extends React.Component {
         price: "",
         description: "",
         quantity: "",
+        quantitySold: "",
         img: "",
         slug: "",
         tags: "",
@@ -27,15 +28,25 @@ export default class AdminInventoryUpdate extends React.Component {
           method: 'GET',
           url: `${SERVER_URL}/products/${productslug}`
       });
+
+      let tags = res.data[0].tags;
+      let tagsStr = "";
+      for (let i=0; i<tags.length; i++) {
+        tagsStr += (" " + tags[i]);
+      }
+      console.log(tags);
+      console.log(tagsStr);
+
       this.setState({
           id: res.data[0]._id,
           title: res.data[0].title,
           price: res.data[0].price,
           description: res.data[0].description,
           quantity: res.data[0].quantity,
+          quantitySold: res.data[0].quantitySold,
           img: res.data[0].img,
           slug: res.data[0].slug,
-          tags: res.data[0].tags
+          tags: tagsStr
       });
   }
 
@@ -60,6 +71,15 @@ export default class AdminInventoryUpdate extends React.Component {
     this.setState({quantity: event.target.value});
   }
 
+  handleChangeQuantitySold = (event) => {
+    if (event.target.value <= 0) return;
+    this.setState({quantitySold: event.target.value});
+  }
+
+  onTagsChanged = (event) => {
+    this.setState({tags: event.target.value});
+  }
+
   onChangeImg = (event) =>{
     console.log(event.target.files[0]);
     this.setState({
@@ -67,21 +87,31 @@ export default class AdminInventoryUpdate extends React.Component {
     });
   }
 
-  handleSubmit = async (e) => {
-    if (this.state.selectedImg === null) {
-      alert('Select an image');
-      e.persist(); // e.preventDefault();
-      return false;
-    }
+  parseTags = () => {
+    return this.state.tags.split(" ");
+  }
 
-    //Image upload
-    let data = new FormData(); 
-    data.append('file', this.state.selectedImg);
-    let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
-    if (res1.status !== 201) {
+  handleSubmit = async (e) => {
+    if (this.state.selectedImg !== null) {
+      //Image upload
+      let data = new FormData(); 
+      data.append('file', this.state.selectedImg);
+      let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
+      if (res1.status !== 201) {
       alert('Error uploading the image');
       e.persist(); // e.preventDefault();
       return false;
+      }
+    }
+
+    let tags = await this.parseTags();
+
+    //Define img path
+    let img = null;
+    if (this.state.selectedImg === null || this.state.selectedImg === undefined) {
+        img = this.state.img;
+    } else {
+        img = `/img/${this.state.selectedImg.name}`;
     }
 
     let res = await axios({
@@ -92,9 +122,10 @@ export default class AdminInventoryUpdate extends React.Component {
         description: this.state.description,
         slug: this.state.slug,
         price: this.state.price,
-        tags: this.state.tags,
-        img:  `/img/${this.state.selectedImg.name}`,
-        quantity: this.state.quantity
+        tags: tags,
+        img: img,
+        quantity: this.state.quantity,
+        quantitySold: this.state.quantitySold
       }
     });
     e.persist(); // e.preventDefault();
@@ -142,8 +173,11 @@ export default class AdminInventoryUpdate extends React.Component {
                     <label for="qnt">Quantity in stock</label>
                     <input type="number" value={this.state.quantity} onChange={this.handleChangeQuantity} />
 
+                    <label for="qnt">Quantity sold</label>
+                    <input type="number" value={this.state.quantitySold} onChange={this.handleChangeQuantitySold} />
+
                     <label for="tags">Tags</label>
-                    <input type="text" placeholder="" name="tags" />
+                    <input type="text" value={this.state.tags} name="tags" onChange={this.onTagsChanged} />
 
                     <button type="button" onClick={this.handleSubmit} class="btn">Update product</button>
                     <button type="button" class="btn cancel" onClick={this.cancelUpdate} >Cancel</button>

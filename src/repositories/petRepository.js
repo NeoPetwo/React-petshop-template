@@ -37,7 +37,8 @@ exports.update = async (id, data) => {
         owner: data.owner,
         name: data.name,
         description: data.description,
-        img: data.img
+        img: data.img,
+        race: data.race
       }
     });
 }

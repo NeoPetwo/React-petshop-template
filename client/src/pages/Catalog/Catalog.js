@@ -93,7 +93,8 @@ export default class Catalog extends React.Component {
                         <li class="category"><a onClick={() => this.resetFilter()}>All categories</a></li>
                         {this.state.tags.map((tag, index) => {
                             return (
-                                <li key={index} class="category"><a onClick={() => this.filterByCategory(tag)}>{this.capitalizeFirstLetter(tag)}</a></li>
+                                // <li key={index} class="category"><a onClick={() => this.filterByCategory(tag)}>{this.capitalizeFirstLetter(tag)}</a></li>
+                                <li key={index} class="category"><a onClick={() => this.filterByCategory(tag)}>{tag}</a></li>
                             )    
                         })}
                     </ul>
@@ -101,7 +102,7 @@ export default class Catalog extends React.Component {
                 <div id="product-grid" class="column">
                     <h2>Products Catalog</h2>
                     <div class="columns is-multiline">
-                        {this.state.products2show.map((product, index) => {
+                        {this.state.products2show.map((product, index) => { 
                             return (
                                 <div class="column is-one-third">
                                     <ProductCard product={product} key={index} />

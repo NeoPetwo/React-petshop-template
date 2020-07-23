@@ -6,12 +6,11 @@ const mongoose = require('mongoose');
 const Order = mongoose.model('Order');
 
 exports.get = async (data) => {
-
   //Essa função populate busca o id de customer e já coloca na response. E eu escolho qual campo vou retornar
   const res = await Order
     .find({})
     .populate('customer', 'name')
-    .populate('items.product', 'title');
+    .populate('items.product', 'title price img');
   return res;
 }
 

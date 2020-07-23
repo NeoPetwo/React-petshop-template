@@ -9,5 +9,6 @@ const controller = require('../controllers/orderController');
 
 router.get('/', controller.get);
 router.post('/', controller.post);
+router.post('/buy', controller.buy);
 
 module.exports = router;

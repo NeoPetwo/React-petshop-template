@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+
 import dogHouse from '../../images/dogHouse.png';
 import './Product.scss';
 
@@ -9,6 +11,7 @@ export default class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            productid: "",
             title: "",
             price: "",
             description: "",
@@ -17,6 +20,8 @@ export default class Product extends React.Component {
             slug: "",
             tags: "",
             qttSelected: 1,
+            user: "",
+            cart: null,
         };
         this.fetchInfo();
     }
@@ -28,6 +33,7 @@ export default class Product extends React.Component {
             url: `${SERVER_URL}/products/${productslug}`
         });
         this.setState({
+            productid: res.data[0]._id,
             title: res.data[0].title,
             price: res.data[0].price,
             description: res.data[0].description,
@@ -39,7 +45,6 @@ export default class Product extends React.Component {
     }
 
     addItem = () => {
-        console.log('max', this.state.maxQuantity);
         if (this.state.qttSelected === this.state.maxQuantity) return;
 
         this.setState({
@@ -56,6 +61,75 @@ export default class Product extends React.Component {
         });
     }
 
+    fetchCart = async () => {
+        try {
+          const res = await axios({
+            method: "GET",
+            url: `${SERVER_URL}/cart/${this.state.user.id}`
+          });
+          this.setState({
+            cart: res.data
+          });
+        } catch (err) {
+          console.log(err);
+        }
+    }
+
+    addToCart = async () => {
+        const cookies = new Cookies();
+        const user = cookies.get('loggedUser');
+        await this.setState({user: user});
+        await this.fetchCart();
+
+        //If the user do not have a cart yet
+        if (this.state.cart === "") {
+            try {
+                await axios({
+                    method: 'POST',
+                    url: `${SERVER_URL}/cart`,
+                    data: {
+                        customer: this.state.user.id,
+                        status: 'active',
+                        items: [{
+                            quantity: this.state.qttSelected,
+                            product: this.state.productid
+                        }]
+                    }
+                });
+            } catch (err) {
+                console.log('Error on POST cart', err);
+            }
+        } else {
+            let items = [];
+            for (let i=0; i<this.state.cart.items.length; i++) {
+                items.push({
+                    quantity: this.state.cart.items[i].quantity,
+                    product: this.state.cart.items[i].product._id
+                });
+            }
+            
+            //Adding new product
+            items.push({
+                quantity: this.state.qttSelected,
+                product: this.state.productid
+            });
+
+            await axios({
+                method: 'PUT',
+                url: `${SERVER_URL}/cart/${this.state.cart._id}`,
+                data: {
+                    customer: this.state.user.id,
+                    status: this.state.cart.status,
+                    items: items
+                }
+            });
+        }
+        
+        //Reload page to update cart number of navbar
+        await window.location.reload(false);
+        this.props.history.push('/cart');
+    }
+
     render() {
         return (
             <div class="product">
@@ -64,6 +138,7 @@ export default class Product extends React.Component {
                 </div>
                 <div class="paymentArea">
                     <h1>{this.state.title}</h1>
+                    <h4>{this.state.description}</h4>
                     <section>
 
                         <div class="rating">
@@ -81,11 +156,7 @@ export default class Product extends React.Component {
                             <button onClick={this.addItem} class="qttBtn fas fa-plus"></button>
                         </div>
                     </section>
-                    <section>
-                        <p><i class="fas fa-truck"></i>   Shipping details</p>
-                        <input id="zip-code" placeholder="Zip code"/>
-                    </section>
-                    <button class="btn">Add to cart</button>
+                    <button onClick={this.addToCart} class="btn">Add to cart</button>
                 </div>
             </div>
         );

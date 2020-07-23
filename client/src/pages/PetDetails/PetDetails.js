@@ -13,6 +13,7 @@ export default class PetDetails extends React.Component {
         pets: [], 
         selectedPet: {
             name: "Your pet name",
+            race: 'Your pet race',
             description: "Your pet description",
             img: "img path"
         }
@@ -51,8 +52,9 @@ export default class PetDetails extends React.Component {
                             <div class="content">
                                 <header class="major">
                                     <h2>{this.state.selectedPet.name}</h2>
-                                    {/* <h3>Status: Waiting for you!</h3> */}
                                 </header>
+                                <p>Race: {this.state.selectedPet.race}</p>
+                                <br/>
                                 <p>{this.state.selectedPet.description}</p>
                                 <br/>
                                 <select name="demo-category" id="demo-category" onChange={this.handleSelect}>
