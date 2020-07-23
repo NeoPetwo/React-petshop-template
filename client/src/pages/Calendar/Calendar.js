@@ -5,7 +5,6 @@ import "./Calendar.scss";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 
 import { SERVER_URL } from "../../variables";
-import serviceCard from "../../components/ServiceCard/ServiceCard";
 
 export default class Calendar extends React.Component {
   constructor() {
@@ -19,7 +18,6 @@ export default class Calendar extends React.Component {
     this.fetchServices();
     this.fecthTypes();
   }
-
 
   getTodayDate = () => {
     var curr = new Date();
@@ -63,7 +61,6 @@ export default class Calendar extends React.Component {
 
   filterByDate = (date) => {
 	//Reseta Filtro
-	console.log(this.state.allServices)
     let filteredList = this.state.allServices.filter((service) => {
 		
 		if (service.date === date)
@@ -80,6 +77,7 @@ export default class Calendar extends React.Component {
       services2show: this.state.allServices,
     });
   };
+  
   handleChangeSelect = (event) => {
     if (event.target.value === "Todos Serviços") this.resetTypeFilter();
     else this.filterByType(event.target.value);

@@ -1,96 +1,128 @@
-import React from 'react';
-import './AdminServices.scss';
+import React from "react";
+import "./AdminServices.scss";
+import axios from "axios";
+
+import ServiceCard from "../../components/AdminServiceCard/AdminServiceCard";
+
+import { SERVER_URL } from "../../variables";
 
 export default class AdminServices extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      allServices: [],
+      services2show: [],
+      typesOfServices: [],
+    };
+
+    this.fetchServices();
+    this.fecthTypes();
+  }
+
+  getTodayDate = () => {
+    var curr = new Date();
+    var date = curr.toISOString().substr(0, 10);
+    return date;
+  };
+
+  fetchServices = async () => {
+    let res = await axios({
+      method: "GET",
+      url: `${SERVER_URL}/services`,
+    });
+
+    this.setState({
+      allServices: res.data,
+      services2show: res.data,
+    });
+
+    this.filterByDate(this.getTodayDate());
+  };
+
+  fecthTypes = async () => {
+    let res = await axios({
+      method: "GET",
+      url: `${SERVER_URL}/services/alltypes`,
+    });
+    this.setState({
+      typesOfServices: res.data,
+    });
+  };
+
+  filterByType = (type) => {
+    //Reseta Filtro
+    let filteredList = this.state.allServices.filter((service) => {
+      if (service.type === type) return service;
+    });
+    this.setState({
+      services2show: filteredList,
+    });
+  };
+
+  filterByDate = (date) => {
+    //Reseta Filtro
+    let filteredList = this.state.allServices.filter((service) => {
+      if (service.date === date) return service;
+    });
+
+    this.setState({
+      services2show: filteredList,
+    });
+  };
+
+  resetTypeFilter = () => {
+    this.setState({
+      services2show: this.state.allServices,
+    });
+  };
+
+  handleChangeSelect = (event) => {
+    if (event.target.value === "Todos Serviços") this.resetTypeFilter();
+    else this.filterByType(event.target.value);
+  };
+
+  handleChangeDate = (event) => {
+    this.filterByDate(event.target.value);
+  };
+
   render() {
-  return (
-    <div class="admin-services">
-      <div class="adm_registration">
-        <div class="content-wrapper">
-          <div class="calendar-contain">
-            <section class="title-bar">
-                    {/* <span class="title-bar__year">
-                      Calendar > April 2020
-                    </span> */}
-                  <div class="title-bar__select">
-                      <select name="Mês" id="month-select">
-                          <option value="4">April</option>
-                          <option value="1">January</option>
-                          <option value="2">February</option>
-                          <option value="3">March</option>
-                          <option value="5">May</option>
-                          <option value="6">June</option>
-                          <option value="7">July</option>
-                          <option value="8">August</option>
-                          <option value="9">September</option>
-                          <option value="10">October</option>
-                          <option value="11">November</option>
-                          <option value="12">December</option>
-                      </select>
-                      <select name="Year" id="year-select">
-                          <option value="4">2020</option>
-                          <option value="1">2019</option>
-                          <option value="2">2018</option>
-                          <option value="3">2017</option>
-                      </select>
-                  </div>
+    return (
+      <div class="calendar">
+        <div class="column">
+          <div class="banner bg-green row" id="input-bar">
+            <select class="box" onChange={this.handleChangeSelect}>
+              <option>Todos Serviços</option>
+              {this.state.typesOfServices.map((type, index) => {
+                return <option>{type}</option>;
+              })}
+            </select>
+            <h2>Schedule Service</h2>
 
-            </section>
+            <input
+              type="date"
+              class="box"
+              onChange={this.handleChangeDate}
+              defaultValue={this.getTodayDate()}
+            />
+          </div>
 
-                <aside class="calendar__sidebar">
-                    <div class="sidebar__nav">
-                        {/* <!-- Icons by Icons8 --> */}
-                        <ul>
-                            <li><a href="#"> <i class="fas fa-plus"></i> Add</a></li>
-                            <li><a href="#"> <i class="fas fa-trash-alt"></i> Remove</a></li>
-                            <li><a href="#"> <i class="fas fa-exchange-alt"></i>  Change</a></li>
-                        </ul>
-                    </div>
-                    <h2 class="sidebar__heading">Quarta<br/>15 de Abril</h2>
-                    <h3>Scheduled Services</h3>
-                    <ul class="sidebar__list">
-                        <li class="sidebar__list-item">
-                            <a href="#">
-                            <span class="list-item__time">8.30</span>
-                            Grooming </a>
-                        </li>
-                        <li class="sidebar__list-item">
-                            <a href="#">
-                                <span class="list-item__time">10.30</span>
-                                Shower </a>
-                        </li>
-                        <li class="sidebar__list-item">
-                            <a href="#">
-                                <span class="list-item__time">14.30</span>
-                                Shower </a>
-                        </li>
-                        <li class="sidebar__list-item">
-                            <a href="#">
-                                <span class="list-item__time">15.00</span>
-                                Grooming </a>
-                        </li>
-                        <li class="sidebar__list-item">
-                            <a href="#">
-                                <span class="list-item__time">16.30</span>
-                                Shower </a>
-                        </li>
-                        <li class="sidebar__list-item">
-                            <a href="#">
-                                <span class="list-item__time">17.00</span>
-                                Grooming </a>
-                        </li>
-                    </ul>
-                </aside>
-
-
-
-            </div>
-
-
+          <div class="banner bg-white" id="activities-list">
+            <h2>Available times</h2>
+            <br/>
+            {this.state.services2show.map((service, index) => {
+              return (
+                <div
+                  className={
+                    index.valueOf() % 2 == 0 ? "bg-darker" : "bg-lighter"
+                  }
+                >
+                  <ServiceCard service={service} key={index} />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-    
-  );
+    );
   }
 }

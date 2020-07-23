@@ -62,7 +62,6 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-    
     const data = await repository.create(req.body);
     res.status(201).send({
       message: 'Serviço Cadastrado!!!!'
@@ -91,7 +90,7 @@ exports.put = async (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
   try {
-    await repository.delete(req.body._id);
+    await repository.delete(req.body.id);
 
     res.status(200).send({
         message: 'Serviço removido com sucesso!!'

@@ -1,0 +1,119 @@
+/*Petshopt Mockup - First delivery*/
+/*Daniel da Rocha Fróes 10255956*/
+/*Gabriel Santos Nicolau 10684600*/
+/*Kaio Tadeu Rodrigues 7561083*/
+/*Navbar*/
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+.admin-service-card {
+  
+
+  .service{
+    color: #777;
+    width: 100%;
+    box-shadow:2px 2px 5px  #919191;
+  }
+  .row{
+    display: flex;
+    flex-direction: row;
+    /* align-items: baseline; */
+  }
+
+  .column{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hour-section{
+    
+    padding-left: 1em;
+    padding-right: 1em;
+    width:max-content;
+    padding: 1em;
+    // box-shadow:2px 0 5px  #919191;
+  }
+
+
+  .hour-text{
+    font-size: 23px;
+    color: rgb(95, 95, 95);
+    
+  }
+
+  .info{ 
+    width: 85%;
+    text-align: start;
+    justify-content: space-between;
+    padding:1em;
+    flex-wrap: wrap;
+    
+  }
+
+
+  .info .column{
+    width: 30%;
+    
+  }
+
+  .select-pet{
+    padding: 0;
+    margin: 0;
+    background-color: #6FB98F;
+    color: #FFF;
+    text-align-last: center;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 2em;
+  }
+
+
+  .description{
+    width: 50%
+
+  }
+
+  .schedule-button{
+    width: 100px;
+    height: 40px;
+    margin-top:1.5em;
+    background-color: #6FB98F;
+    color: #FFF;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 20px;
+  }
+
+  .schedule-button:hover {
+    background-color: #EBB32B;
+    color: #000;
+    transition: background-color 200ms ease;
+  }
+
+  .schedule-button:focus{
+    outline: 0;
+  }
+
+  .row{
+    display: flex;
+    flex-direction: row;
+      /* align-items: baseline; */
+  }
+
+  .column{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .link{
+    color: #777;
+    text-decoration: none; /* no underline */
+  }
+  
+  .sidebar__nav{
+    list-style-type: none;
+  }
+}

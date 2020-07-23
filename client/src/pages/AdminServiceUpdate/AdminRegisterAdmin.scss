@@ -1,0 +1,102 @@
+/*Petshopt Mockup - First delivery*/
+/*    Daniel da Rocha Fróes 10255956*/
+/*    Gabriel Santos Nicolau 10684600*/
+/*    Kaio Tadeu Rodrigues 7561083*/
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+	.adm_registration {
+			text-align: center;
+			padding: 1em 1em 1em 1em;
+	}
+
+	.adm_registration ul {
+			display: inline-flex;
+			padding: 1em 1em 1em 1em;
+	}
+
+	/*Adm Form style*/
+	.form-container {
+			background-color: #DFF2FD;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: left;
+			border: solid 1px;
+	}
+
+	.form-popup form {
+			align-self: flex-start;
+			font-size: 22px;
+			padding: 5%;
+	}
+
+	.form-popup label {
+			align-self: flex-start;
+			font-size: 18px;
+			font-family: "Source Sans Pro", Helvetica, sans-serif;
+	}
+
+	.form-popup input {
+			width: 100%;
+			margin-bottom: 20px;
+			padding: 8px;
+			border-radius: 9px;
+			font-size: 15px;
+	}
+
+	.form-popup .btn {
+			border: none;
+			font-weight: bold;
+			padding: 10px 25px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 10px;
+			background-color: #6FB98F;
+			color: #FFF;
+			width: 90%;
+			margin: 1%;
+	}
+
+
+	.form-popup .btn:hover {
+			background-color: #004445;
+			color: #FFF;
+			transition: background-color 200ms ease;
+	}
+	.form-popup .cancel:hover{
+			background-color: firebrick;
+	}
+
+	.form-container h1 {
+			margin-top: 5%;
+			font-family: 'Pacifico', cursive;
+			font-weight: 100;
+			color: black;
+	}
+
+	.form-container label {
+			font-size: 20px;
+			color: black;
+	}
+
+	.form-container select {
+			width: 100%;
+			margin-bottom: 20px;
+			padding: 8px;
+			border-radius: 9px;
+			font-size: 15px;
+	}
+
+	input:focus {
+			outline: 3px solid gold;
+	}
+
+	.form-container p {
+			font-size: 18px;
+			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			margin-top: 20px;
+	}
