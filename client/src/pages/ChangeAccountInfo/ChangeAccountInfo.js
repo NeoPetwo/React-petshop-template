@@ -181,7 +181,7 @@ export default class ChangeAccountInfo extends React.Component {
                         <input type="file" id="customer_pic" name="picture" onChange={this.onChangeImg}/>
                     </div> 
                     <div>
-                        <button type="button" class="btn" onClick={this.handleSubmit}>Create</button>
+                        <button type="button" class="btn" onClick={this.handleSubmit}>Update</button>
                         <button type="button" class="btn cancel" onClick={this.cancelSubmission} >Cancel</button>
                     </div>
                 </form>

@@ -92,24 +92,44 @@ export default class AdminInventoryUpdate extends React.Component {
   }
 
   handleSubmit = async (e) => {
-    if (this.state.selectedImg === null) {
-      
-      alert('Select an image');
-      e.persist(); // e.preventDefault();
-      return false;
-    }
-
-    //Image upload
-    let data = new FormData(); 
-    data.append('file', this.state.selectedImg);
-    let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
-    if (res1.status !== 201) {
+    if (this.state.selectedImg !== null) {
+      //Image upload
+      let data = new FormData(); 
+      data.append('file', this.state.selectedImg);
+      let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
+      if (res1.status !== 201) {
       alert('Error uploading the image');
       e.persist(); // e.preventDefault();
       return false;
+      }
     }
 
+    // if (this.state.selectedImg === null) {
+      
+    //   alert('Select an image');
+    //   e.persist(); // e.preventDefault();
+    //   return false;
+    // }
+
+    // //Image upload
+    // let data = new FormData(); 
+    // data.append('file', this.state.selectedImg);
+    // let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
+    // if (res1.status !== 201) {
+    //   alert('Error uploading the image');
+    //   e.persist(); // e.preventDefault();
+    //   return false;
+    // }
+
     let tags = await this.parseTags();
+
+    //Define img path
+    let img = null;
+    if (this.state.selectedImg === null || this.state.selectedImg === undefined) {
+        img = this.state.img;
+    } else {
+        img = `/img/${this.state.selectedImg.name}`;
+    }
 
     let res = await axios({
       method: 'PUT',
@@ -120,7 +140,7 @@ export default class AdminInventoryUpdate extends React.Component {
         slug: this.state.slug,
         price: this.state.price,
         tags: tags,
-        img:  `/img/${this.state.selectedImg.name}`,
+        img: img,
         quantity: this.state.quantity,
         quantitySold: this.state.quantitySold
       }
