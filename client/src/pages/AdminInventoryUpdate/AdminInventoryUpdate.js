@@ -104,23 +104,6 @@ export default class AdminInventoryUpdate extends React.Component {
       }
     }
 
-    // if (this.state.selectedImg === null) {
-      
-    //   alert('Select an image');
-    //   e.persist(); // e.preventDefault();
-    //   return false;
-    // }
-
-    // //Image upload
-    // let data = new FormData(); 
-    // data.append('file', this.state.selectedImg);
-    // let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
-    // if (res1.status !== 201) {
-    //   alert('Error uploading the image');
-    //   e.persist(); // e.preventDefault();
-    //   return false;
-    // }
-
     let tags = await this.parseTags();
 
     //Define img path

@@ -1,0 +1,125 @@
+/*Petshopt Mockup - First delivery*/
+/*                  Daniel da Rocha Fróes 10255956*/
+/*Gabriel Santos Nicolau 10684600*/
+/*Kaio Tadeu Rodrigues 7561083*/
+/*Navbar*/
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+
+.product-card-inventory {
+    .product{
+        width: 90%;
+        border-radius: 3px;
+        border: 1px solid rgb(202, 202, 202);
+        background-color:rgb(248, 248, 248) ;
+        box-shadow: 0px 0px 5px 0px #919191;;
+        margin-bottom: 2em;
+        padding-bottom: 3em;
+        display: flexbox;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    img{
+        width: 80%;
+        height: auto;
+        border-bottom: 2px solid rgb(214, 214, 214);
+    }
+
+    .info{
+        padding-left: 10%;
+        padding-right: 10%;
+        color:rgb(100, 100, 100);
+        
+        $font-size: 17px;
+        p {
+            font-size: $font-size;
+        }
+
+        span {
+            font-size: $font-size;
+        }
+
+        .price {
+            color: 'blue'
+        }
+
+        .quantity {
+
+        }
+
+        .profit {
+
+        }
+    }
+
+    .description{
+        margin-bottom: 1em;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .price{
+        font-size: 20px;
+    }
+    
+    
+    .discount{
+        /* padding-left: 0.5em; */
+        margin-bottom: 0.3em;
+    }
+    
+    #box {
+        padding:0.2em;
+        background-color: #6FB98F;
+        font-weight: bold;
+        border-radius: 5px;
+        color:white;
+        text-align: center;
+        margin-right: 0.5em;
+    }
+    
+    .discount .price{
+        text-decoration: line-through;
+        font-size: 15px;
+        color: #aaaaaa;
+    }
+
+    .btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+
+        $border-radius: 10px;
+        $margin-horizontal: 7px;
+        $font-size: 17px;
+
+        #edit-btn {
+            background-color: #6FB98F;
+            padding: 7px;
+            color: white;
+            font-size: $font-size;
+            margin-right: $margin-horizontal;
+            border-radius: $border-radius;
+        }
+
+        #delete-btn {
+            background-color: rgb(231, 84, 70);
+            padding: 7px;
+            color: white;
+            font-size: $font-size;
+            margin-left: $margin-horizontal;
+            border-radius: $border-radius;
+        }
+
+        .fa-pencil {
+            color: white;
+            margin-right: 3px;
+        }
+    }
+}
