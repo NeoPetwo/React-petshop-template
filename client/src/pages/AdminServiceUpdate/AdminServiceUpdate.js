@@ -70,9 +70,7 @@ export default class AdminRegisterServices extends React.Component {
     }
    
   }
-  
-  
-  
+
   render() {
   
 

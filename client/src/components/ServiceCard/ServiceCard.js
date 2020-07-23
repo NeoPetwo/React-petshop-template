@@ -13,18 +13,17 @@ export default class serviceCard extends React.Component {
                     <p class= "service-name">Type:<b> {this.props.service.type}</b></p>
                     <select class = "select-pet">
                         <option>Select your pet</option>
-                        <option>My_pet 1</option> 
-                        <option>My_pet 2</option> 
-                        <option>My_pet 3</option> 
-                        <option>My_pet 4</option> 
+                        {this.props.pets.map((pet, index) => {
+                          return <option>{pet.name}</option>;
+                        })}
                     </select>
             </div>
             
             <p class="description">
-                    <b>Description:</b><br/>
-                    {this.props.service.description}
-                    <br/>
-                    {this.props.service.date}
+                <b>Description:</b><br/>
+                  {this.props.service.description}
+                <br/>
+                  {this.props.service.date}
             </p>
             <input class="schedule-button" type="submit" value="Schedule"/>
           </form>

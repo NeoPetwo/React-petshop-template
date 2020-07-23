@@ -1,22 +1,27 @@
 import React from "react";
 import axios from "axios";
-
 import "./Calendar.scss";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
+
+import Cookies from 'universal-cookie';
+
 
 import { SERVER_URL } from "../../variables";
 
 export default class Calendar extends React.Component {
+   
   constructor() {
     super();
     this.state = {
       allServices: [],
       services2show: [],
       typesOfServices: [],
+      userPets: [],
     };
 
     this.fetchServices();
     this.fecthTypes();
+    this.fetchUserPets(); 
   }
 
   getTodayDate = () => {
@@ -39,6 +44,22 @@ export default class Calendar extends React.Component {
 	this.filterByDate(this.getTodayDate());
   };
 
+
+  fetchUserPets = async () => {
+    const cookies = new Cookies();  
+    var user = cookies.get('loggedUser');
+
+    let res = await axios({
+      method: "GET",
+      url: `${SERVER_URL}/pets/userpets/${user.id}`,
+    });
+    this.setState({
+      userPets: res.data,
+    }); 
+
+    console.log(res.data);
+  }
+
   fecthTypes = async () => {
     let res = await axios({
       method: "GET",
@@ -60,7 +81,7 @@ export default class Calendar extends React.Component {
   };
 
   filterByDate = (date) => {
-	//Reseta Filtro
+	  //Reseta Filtro
     let filteredList = this.state.allServices.filter((service) => {
 		
 		if (service.date === date)
@@ -118,7 +139,7 @@ export default class Calendar extends React.Component {
                     index.valueOf() % 2 == 0 ? "bg-darker" : "bg-lighter"
                   }
                 >
-                  <ServiceCard service={service} key={index} />
+                  <ServiceCard service={service} key={index} pets={this.state.userPets} />
                 </div>
               );
             })}
