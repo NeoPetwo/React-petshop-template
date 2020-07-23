@@ -33,14 +33,24 @@ const schema = new Schema({
         type: String,
         required: true
     },
-
     date: {
         type: String,
         required: true
+    },
+    pet: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Pet',
+        required: false
+    },
+    scheduled: {
+        type: Boolean,
+        required: true
+    },
+    customer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Customer',
+        required: false
     }
-
-    
-    
 });
 
 
