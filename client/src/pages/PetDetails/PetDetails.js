@@ -19,6 +19,23 @@ export default class PetDetails extends React.Component {
         },
         petServices: []
     }
+
+    // componentDidUpdate() {
+    //     this.state.petServices.sort(this.compare);
+    // }
+
+    compare = (a, b) => {
+        // if (a is less than b by some ordering criterion) {
+        if (a.startHour < b.startHour) {
+          return -1;
+        }
+        // if (a is greater than b by the ordering criterion) {
+        if (a.startHour > b.startHour) {
+          return 1;
+        }
+        // a must be equal to b
+        return 0;
+    }
     
     componentDidMount() {
         this.fetchUserPets();
@@ -43,6 +60,7 @@ export default class PetDetails extends React.Component {
             method: 'GET',
             url: `${SERVER_URL}/services/petservices/${this.state.selectedPet._id}`
         });
+        res.data.sort(this.compare);
         this.setState({
             petServices: res.data
         })
@@ -95,9 +113,10 @@ export default class PetDetails extends React.Component {
                             <table id="price-table">
                                 <thead>
                                 <tr>
-                                    <th>Paid</th>
-                                    <th>Name</th>
+                                    <th>Type</th>
                                     <th>Price</th>
+                                    <th>When</th>
+                                    <th>Paid</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -105,9 +124,10 @@ export default class PetDetails extends React.Component {
                                     return (
                                         <React.Fragment>
                                             <tr>
-                                                <td>{service.paid === true ? yes : no}</td>
                                                 <td>{service.type}</td>
                                                 <td>R$ {service.price}</td>
+                                                <td>{service.startHour}-{service.endingHour} - {service.date}</td>
+                                                <td>{service.paid === true ? yes : no}</td>
                                             </tr>
                                         </React.Fragment>
                                     )
