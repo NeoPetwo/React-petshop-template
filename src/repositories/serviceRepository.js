@@ -8,11 +8,13 @@ const Service = mongoose.model('Service');
 // Funções para o banco de dados, no contexto de serviços
 // Funções para CRUD básico
 
+//Pega todos os serviços
 exports.get = async () => {
   const res = await Service.find({}).populate('customer').populate('pet');
   return res;
 }
 
+//pega o serviço pelo slug
 exports.getBySlug = async (slug) => {
   const res = await Service.findOne({ 
     slug: slug
@@ -20,37 +22,35 @@ exports.getBySlug = async (slug) => {
   return res;
 }
 
+//Pega um serviço a partir de seu id
 exports.getById = async (id) => {
   const res = await Service.findById(id);
   return res;
 }
 
+//Pega os serviços que estão ligados a determinado usuário
 exports.getByUserId = async (userid) => {
   const res = await Service.find({customer: userid});
   return res;
 }
 
+//Pega os serviços que estão ligados a determinado pet
 exports.getByPetId = async (petid) => {
   const res = await Service.find({pet: petid});
   return res;
 }
 
+//Pega todos os tipos distintos de serviço
 exports.getTypes = async () => {
   const res = await Service.collection.distinct("type");
 
   return res;
 }
-// Nessa função utilizamos o regex
-exports.getPartnerHours = async (data) => {
-  const res = await Service.find({
-    partner: { $regex: new RegExp(data.name.toLowerCase(), "i") } ,
-    hours: { $in: data.hours }
-    //Importante --> Query operators: https://docs.mongodb.com/manual/reference/operator/query/#query-selectors
-  }, 'title partner');
 
-  return res;
-}
 
+
+
+//Cria um novo serviço
 exports.create = async (data) => {
   
   var service = new Service(data);
@@ -58,6 +58,7 @@ exports.create = async (data) => {
   return res;
 }
 
+//Atualiza um serviço especifico
 exports.update = async (id, data) => {
   await Service
     .findByIdAndUpdate(id, {
@@ -78,6 +79,7 @@ exports.update = async (id, data) => {
     });
 }
 
+//Atualiza o status de um serviço para pago ou não
 exports.updateStatus = async (id, newStatus) => {
   await Service
     .findByIdAndUpdate(id, {
@@ -87,6 +89,19 @@ exports.updateStatus = async (id, newStatus) => {
     });
 }
 
+//Deleta um serviço especifico
 exports.delete = async (id) => {
   await Service.findByIdAndRemove(id);
+}
+
+
+// Nessa função utilizamos o regex
+exports.getPartnerHours = async (data) => {
+  const res = await Service.find({
+    partner: { $regex: new RegExp(data.name.toLowerCase(), "i") } ,
+    hours: { $in: data.hours }
+    //Importante --> Query operators: https://docs.mongodb.com/manual/reference/operator/query/#query-selectors
+  }, 'title partner');
+
+  return res;
 }

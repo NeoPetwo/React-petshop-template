@@ -9,6 +9,7 @@ const Product = mongoose.model('Product');
 // Há funções de retorno baseado em tipo de requisição (por slug, tag, todos os produtos...)
 // Além disso funções de adicionar, editar e apagar produtos
 
+//Pega as informações de todos os produtos ativos
 exports.get = async () => {
   const res = await Product.find({
     active: true
@@ -16,6 +17,7 @@ exports.get = async () => {
   return res;
 }
 
+//Pega um produto por seu slug
 exports.getBySlug = async (slug) => {
   const res = await Product.findOne({ 
     active: true,
@@ -23,12 +25,13 @@ exports.getBySlug = async (slug) => {
   }, 'title description price slug tags img quantity');
   return res;
 }
-
 exports.getBySlug = async (slug) => {
   const res = await Product.find({slug: slug});
   return res;
 }
 
+
+//Pega um produto pela tag
 exports.getByTag = async (tag) => {
   const res = await Product.find({
     active: true,
@@ -37,17 +40,20 @@ exports.getByTag = async (tag) => {
   return res;
 }
 
+//Pega todas as tags distintas entre os produtos
 exports.getTags = async () => {
   const res = await Product.collection.distinct("tags");
   return res;
 }
 
+//Cria um produto
 exports.create = async (data) => {
   var product = new Product(data);
   const res = await product.save();
   return res;
 }
 
+//Atualiza um produto
 exports.update = async (id, data) => {
   await Product
     .findByIdAndUpdate(id, {
@@ -64,6 +70,7 @@ exports.update = async (id, data) => {
     });
 }
 
+//Deleta um produto especifico
 exports.delete = async (id) => {
   await Product.findByIdAndRemove(id);
 }

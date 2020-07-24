@@ -9,6 +9,8 @@ import './ProductCardInventory.scss';
 import { SERVER_URL } from '../../variables';
 
 export default class ProductCardInventory extends React.Component {
+  
+  //deleta produto do carrinho
   handleDelete = async () => {
     await axios({
       method: 'DELETE',

@@ -27,6 +27,8 @@ export default class Navbar extends React.Component {
     this.fetchCart();
   }
 
+
+  //Pega a quantidade de produtos no carrinho do servidor
   fetchCart = async () => {
     try {
       const res = await axios({
@@ -41,6 +43,7 @@ export default class Navbar extends React.Component {
     }
   }
 
+  //lida com o logout
   logout = () => {
     const cookies = new Cookies();
     cookies.remove('loggedUser', { path: '/' });
@@ -53,6 +56,8 @@ export default class Navbar extends React.Component {
   }
 
   render() {
+
+    //se estiver logado, coloca a opção de login, caso o contrário coloca a opção de logout
     let loginLogoutBtn;
     if (this.state.user === undefined) {
       loginLogoutBtn =  <li><NavLink to='/login'><i class="fas fa-lock"></i> Login</NavLink></li>

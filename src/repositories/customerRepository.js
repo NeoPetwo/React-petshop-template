@@ -5,11 +5,13 @@
 const mongoose = require('mongoose');
 const Customer = mongoose.model('Customer');
 
+//Pega todos os custumers
 exports.getAll = async () => {
   const res = await Customer.find({});
   return res;
 }
 
+//Pega um custumer especifico pela id
 exports.getById = async (id) => {
   const res = await Customer.findById(id, 'name username email phone img admin');
   return res;
@@ -21,6 +23,7 @@ exports.create = async (data) => {
   await customer.save();
 }
 
+//Valida o login do custumer
 exports.login = async (data) => {
   const res = await Customer.find({
     email: data.email
@@ -32,6 +35,7 @@ exports.login = async (data) => {
   }
 }
 
+//Atualiza as informações do custumer
 exports.update = async (id, data) => {
   await Customer.findByIdAndUpdate(id, {
     $set: {
@@ -45,6 +49,7 @@ exports.update = async (id, data) => {
   });
 }
 
+//Deleta o custumer
 exports.delete = async (id) => {
   await Customer.findByIdAndRemove(id);
 }

@@ -25,6 +25,7 @@ export default class AdminInventoryUpdate extends React.Component {
     this.fetchInfo();
   }
 
+  //Requisição para pegar as informações do produto selecionado apartir do slug da url
   fetchInfo = async () => {
       const { productslug } = this.props.match.params;
       let res = await axios({
@@ -93,7 +94,7 @@ export default class AdminInventoryUpdate extends React.Component {
   parseTags = () => {
     return this.state.tags.split(" ");
   }
-
+  //Requisição para editar o produto
   handleSubmit = async (e) => {
     if (this.state.selectedImg !== null) {
       //Image upload

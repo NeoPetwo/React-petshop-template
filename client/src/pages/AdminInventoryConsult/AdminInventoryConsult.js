@@ -19,6 +19,7 @@ export default class AdminRegisterServices extends React.Component {
     this.fetchProducts();
   }
 
+  //Requisição para pegar os produtos do servidor
   fetchProducts = async () => {
     let res = await axios({
         method: 'GET',

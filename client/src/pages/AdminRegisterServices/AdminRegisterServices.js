@@ -60,7 +60,7 @@ export default class AdminRegisterServices extends React.Component {
 
     return this.state.type + this.state.startHour + this.state.date
   }
-  
+  //Requisição para criar um novo serviço
   handleSubmit = async(e)=>{
     try {
       if (this.state.selectedImg === null) {

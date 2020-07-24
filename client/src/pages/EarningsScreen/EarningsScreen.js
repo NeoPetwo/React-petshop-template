@@ -24,6 +24,7 @@ export default class EarningsScreen extends React.Component {
     this.fetchServices();
   }
 
+  //Junta a quantidade  dos produtos iguais comprados pelos usuários
   filterOrders = async (orders) => {
     let filteredOrders = [];
     orders.forEach((order, index) => {
@@ -47,7 +48,7 @@ export default class EarningsScreen extends React.Component {
     });
     return filteredOrders;
   }
-
+  //Junta a quantidade  dos serviços iguais comprados pelos usuários
   filterServices = (services) => {
     let filteredServices = [];
     services
@@ -72,6 +73,7 @@ export default class EarningsScreen extends React.Component {
     return filteredServices;
   }
 
+  //Requisição para pegar itens que foram comprados
   fetchOrders = async () => {
     const res = await axios({
         method: 'GET',
@@ -83,6 +85,7 @@ export default class EarningsScreen extends React.Component {
     this.calculateTotalProfit();
   }
 
+  //requisição para pegar os serviços
   fetchServices = async () => {
     const res = await axios({
       method: 'GET',

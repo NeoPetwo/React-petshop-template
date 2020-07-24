@@ -45,7 +45,8 @@ export default class AdminRegisterAdmin extends React.Component {
       selectedImg: event.target.files[0]
     });
 	}
-	
+  
+  //Requisição para criar um novo admin
 	handleSubmit = async (e) => {
     if (this.state.selectedImg === null) {
       alert('Select an image');

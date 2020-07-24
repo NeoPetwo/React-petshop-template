@@ -26,6 +26,7 @@ constructor() {
     this.fetchUserInfo();
 }
 
+//pega as informações do usuário
 fetchUserInfo = async () => {
     const cookies = new Cookies();
     const user = cookies.get('loggedUser');

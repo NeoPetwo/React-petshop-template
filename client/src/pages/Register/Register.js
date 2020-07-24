@@ -45,6 +45,7 @@ export default class Register extends React.Component {
     });
   };
 
+  //Requisição para criar um novo usuário
   handleSubmit = async (e) => {
     if (this.state.selectedImg === null) {
       alert("Select an image");

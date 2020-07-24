@@ -31,7 +31,7 @@ export default class ChangeAccountInfo extends React.Component {
         }
         this.fetchUserInfo();
     }
-
+    //Requisição para pegar as informações do usuário logado
     fetchUserInfo = async () => {
         const cookies = new Cookies();
         const user = cookies.get('loggedUser');
@@ -71,6 +71,8 @@ export default class ChangeAccountInfo extends React.Component {
         });
     }
 
+
+    //Requisição de update das informações nas contas
     handleSubmit = async (e) => {
         if (this.state.selectedImg !== null) {
             //Image upload

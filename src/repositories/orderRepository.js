@@ -5,6 +5,7 @@
 const mongoose = require('mongoose');
 const Order = mongoose.model('Order');
 
+//Pega todas as compras
 exports.get = async (data) => {
   //Essa função populate busca o id de customer e já coloca na response. E eu escolho qual campo vou retornar
   const res = await Order
@@ -13,7 +14,7 @@ exports.get = async (data) => {
     .populate('items.product', 'title price img');
   return res;
 }
-
+//cria uma compra
 exports.create = async (data) => {
   const order = new Order(data);
   await order.save();
