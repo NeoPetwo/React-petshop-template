@@ -24,17 +24,46 @@ export default class adminServiceCard extends React.Component {
 
 
   render() {
+
+
+    let scheduledInfo;
+
+    if(!this.props.service.scheduled) {
+      scheduledInfo = <React.Fragment >
+                      <div className = "scheduled-true">
+                        <span className="bold ">Service not scheduled</span>
+                      </div>
+                      </React.Fragment>;
+    }
+    else {
+      scheduledInfo =  <React.Fragment >
+                        <div class = "scheduled-true">
+                          <span className="bold busyHour">Service scheduled</span>
+                          <br/>
+                          <br/>
+                          <span class = "bold"> Customer: </span>{this.props.service.customer.name}
+                          <br/>
+                          <span class = "bold">Pet: </span>{this.props.service.pet.name}
+                        </div>
+                        </React.Fragment>;
+    }
+
+
+
     return (
       <div class="admin-service-card ">
         <div class = "service row">        
           <div class="hour-section">Hour:<br/> <span class = "hour-text">{this.props.service.startHour} - {this.props.service.endingHour}</span></div>
           <form class="info row">
             <p class="description">
-                    <b>Description:</b><br/>
-                    {this.props.service.description}
-                    <br/>
-                    {this.props.service.date}
+              <b>Price:</b> R$ {(this.props.service.price).toFixed(2)}<br/>
+              <b>Description:</b><br/>
+              {this.props.service.description}
+              <br/>
+              {this.props.service.date}
             </p>
+            {scheduledInfo}
+            <img src={`${this.props.service.img}`} />
             <div >
                 {/* <!-- Icons by Icons8 --> */}
                 <ul class="sidebar__nav">

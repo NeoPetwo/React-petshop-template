@@ -27,6 +27,8 @@
     flex-direction: column;
   }
 
+
+
   .hour-section{
     
     padding-left: 1em;
@@ -43,19 +45,24 @@
     
   }
 
-  .info{ 
+  .info { 
     width: 85%;
     text-align: start;
     justify-content: space-between;
     padding:1em;
     flex-wrap: wrap;
     
+    img {
+      height: 70px;
+      width: auto;
+      float: left;
+      // background-color: red;
+    }
   }
 
 
   .info .column{
-    width: 30%;
-    
+    width: 25%;
   }
 
   .select-pet{
@@ -71,8 +78,10 @@
 
 
   .description{
-    width: 50%
-
+    width: 22%;
+    // display: flex;
+    // flex-direction: column;
+    // background-color: white;
   }
 
   .schedule-button{
@@ -86,7 +95,17 @@
     font-weight: bold;
     border-radius: 20px;
   }
+  .scheduled-true{
+    width: 20%;
 
+  }
+  .bold{
+    font-weight: bold;
+  }
+  .busyHour {
+    color: red;
+  }
+  
   .schedule-button:hover {
     background-color: #EBB32B;
     color: #000;

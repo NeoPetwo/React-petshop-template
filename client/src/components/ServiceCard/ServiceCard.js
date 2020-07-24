@@ -102,8 +102,6 @@ export default class serviceCard extends React.Component {
           <div class="info row">
             <div class = "column">
                     <p class= "service-name">Type:<b> {this.props.service.type}</b></p>
-                   
-
                     <select className ="select-pet" onChange={this.handleSelect}>
                       {options}
                     </select>
