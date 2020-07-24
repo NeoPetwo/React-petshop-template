@@ -60,7 +60,9 @@ export default class AdminInventoryAdd extends React.Component {
   parseTags = () => {
     return this.state.tags.split(" ");
   }
+  
 
+  //Requisição para criar um novo produto
   handleSubmit = async (e) => {
     if (this.state.selectedImg === null) {
       alert('Select an image');

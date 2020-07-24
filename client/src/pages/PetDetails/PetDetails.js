@@ -11,6 +11,7 @@ import './PetDetails.scss';
 import { SERVER_URL } from '../../variables';
 
 export default class PetDetails extends React.Component {
+    
     state = {
         pets: [], 
         selectedPet: {
@@ -24,6 +25,7 @@ export default class PetDetails extends React.Component {
         petServices: []
     }
 
+    //Comparação da ordenação
     compare = (a, b) => {
         // if (a is less than b by some ordering criterion) {
         if (a.startHour < b.startHour) {
@@ -41,6 +43,7 @@ export default class PetDetails extends React.Component {
         this.fetchUserPets();
     }
 
+    //Requisição para pegar os pets do usuário
     fetchUserPets = async () => {
         const cookies = new Cookies();
         const user = cookies.get('loggedUser');
@@ -54,6 +57,7 @@ export default class PetDetails extends React.Component {
         });
     }
 
+    //Pega os serviços em que o pet está atribuido
     fetchSelectedPetServices = async () => {
         console.log('_id', this.state.selectedPet._id);
         const res = await axios({
@@ -66,7 +70,7 @@ export default class PetDetails extends React.Component {
         })
         console.log('pet services', res.data);
     }
-
+    
     handleSelect = async (e) => {
         const index = e.target.value;
         await this.setState({

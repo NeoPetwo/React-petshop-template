@@ -29,6 +29,8 @@ export default class Cart extends React.Component {
 		if (this.state.cart !== null) this.updateCart();
 	}
 
+
+	//Check if the cart exists
 	cartExist = () => {
 		if (this.state.cart === null || 
 				this.state.cart?.items === null ||
@@ -41,6 +43,8 @@ export default class Cart extends React.Component {
 			}
 	}
 
+
+	//requisição de update no cart
 	updateCart = async () => {
 		if (!this.cartExist()) return;
 
@@ -65,20 +69,22 @@ export default class Cart extends React.Component {
 		});
 	}
 
-  fetchCart = async () => {
-    try {
-      const res = await axios({
-        method: "GET",
-        url: `${SERVER_URL}/cart/${this.state.user.id}`
-			});
-      this.setState({
-        cart: res.data
-			});
-    } catch (err) {
-      console.log(err);
-    }
+	//Requisição para pegar todos os produtos no cart do usuário logado
+  	fetchCart = async () => {
+		try {
+		const res = await axios({
+			method: "GET",
+			url: `${SERVER_URL}/cart/${this.state.user.id}`
+				});
+		this.setState({
+			cart: res.data
+				});
+		} catch (err) {
+		console.log(err);
+		}
 	}
 	
+	//Retorna a soma dos preços dos produtos dentro do cart
 	cartTotal = () => {
 		if (!this.cartExist()) return 0;
 
@@ -91,6 +97,7 @@ export default class Cart extends React.Component {
 		return sum.toFixed(2);
 	}
 
+	
 	onChangeQttMinus = (index) => {
 		let newCart = this.state.cart;
 		if (newCart.items[index].quantity === 0) return;

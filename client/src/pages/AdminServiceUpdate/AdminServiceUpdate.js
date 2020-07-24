@@ -23,12 +23,11 @@ export default class AdminServiceUpdate extends React.Component {
       img: "", //Image path
       selectedImg: null //Image file
     };
-    console.log(this.props.match.params)
     this.fetchInfo();
 	}
 
 
-
+  //Requisição para pegar a informação do serviço a partir do id no url
   fetchInfo = async () => {
     const serviceId  = this.props.match.params;
     console.log(serviceId._id)
@@ -95,6 +94,7 @@ export default class AdminServiceUpdate extends React.Component {
     return this.state.type + this.state.startHour + this.state.date
   }
   
+  //Requisição para editar o serviço
   handleSubmit = async(e)=>{
     try{
       if (this.state.selectedImg !== null) {

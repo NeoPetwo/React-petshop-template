@@ -124,14 +124,6 @@ exports.put = async (req, res, next) => {
 // Apaga produtos
 exports.delete = async (req, res, next) => {
   try {
-    //Apaga produto dos carrinhos de quem tiver
-      //Pegar carrinhos que tem esses produtos
-      // const carts = cartRepository.getCartsWithProductId(req.body.id);
-
-      //Pegar o array dos produtos e retirar esse elemento
-
-      //Editar a lista desse carrinho
-
     //Apaga o produto do inventário
     await repository.delete(req.body.id);
     res.status(200).send({

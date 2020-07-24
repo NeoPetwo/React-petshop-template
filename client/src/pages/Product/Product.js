@@ -33,13 +33,14 @@ export default class Product extends React.Component {
         this.fetchInfo();
     }
 
+   
     componentDidMount() {
         const cookies = new Cookies();
         const user = cookies.get('loggedUser');
         console.log('aqui', user);
         this.setState({user: user});
     }
-
+    //Requisição para pegar as informaçõs dos produtos
     fetchInfo = async () => {
         const { productslug } = this.props.match.params;
         let res = await axios({
@@ -75,6 +76,7 @@ export default class Product extends React.Component {
         });
     }
 
+    //Pega os items no carrinho
     fetchCart = async () => {
         try {
           const res = await axios({
@@ -89,6 +91,7 @@ export default class Product extends React.Component {
         }
     }
 
+    //Adiciona e atualiza OS itens no carrinho
     addToCart = async () => {
         // const cookies = new Cookies();
         // const user = cookies.get('loggedUser');

@@ -37,7 +37,7 @@ export default class Catalog extends React.Component {
         allproducts: res.data
     });
   }
-
+  //Pega todas tags distinstas nos produtos
   fecthTags = async () => {
       let res = await axios({
           method: 'GET',
@@ -52,6 +52,7 @@ export default class Catalog extends React.Component {
     return str[0].toUpperCase() + str.slice(1); 
   } 
 
+  //Filtra os produtos listados por categoria
   filterByCategory = (category) => {
     let filteredList = this.state.allproducts.filter((product) => {
         if (product.tags.includes(category)) return product;
@@ -61,6 +62,7 @@ export default class Catalog extends React.Component {
     });
   }
 
+  //Filtra os produtos listados por preço
   filterByPrice = (min, max) => {
     let filteredList = this.state.allproducts.filter((product) => {
         if (product.price >= min && product.price <= max) return product;
@@ -70,6 +72,7 @@ export default class Catalog extends React.Component {
     });
   }
 
+  //Reseta todos os filtros
   resetFilter = () => {
     this.setState({
         products2show: this.state.allproducts

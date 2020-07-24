@@ -33,6 +33,7 @@ export default class AddPet extends React.Component {
         }
     }
 
+    //Faz upload da imagem no servidor
     uploadImg =  async () => {
         if (this.state.selectedImg === null) {
             alert('Select an image');
@@ -73,7 +74,8 @@ export default class AddPet extends React.Component {
           selectedImg: event.target.files[0]
         });
         }
-
+    
+    //requisição de criar um novo pet no servidor
     handleSubmit = async () => {
         console.log({
             owner: this.state.owner,
@@ -105,7 +107,7 @@ export default class AddPet extends React.Component {
             this.props.history.push('/myaccount');
         }
     }
-
+    
     cancelSubmission = () => {
         this.props.history.push('/myaccount');
     }

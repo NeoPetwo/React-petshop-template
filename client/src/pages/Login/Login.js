@@ -22,6 +22,8 @@ export default class Login extends React.Component {
   handleChangePassword = (event) => {
     this.setState({password: event.target.value});
   }
+
+  //Da um post para validar o login
   handleSubmit = async () => {
     try {
       const res = await axios({
@@ -33,6 +35,7 @@ export default class Login extends React.Component {
         }
       });
       
+      //se retornar 200, quer dizer que foi o login foi conectado corretamente
       if (res.status === 200) {
         const cookies = new Cookies();
         cookies.set('loggedUser', res.data.user, { path: '/' }); // path: '/' makes de cookie available in all pages

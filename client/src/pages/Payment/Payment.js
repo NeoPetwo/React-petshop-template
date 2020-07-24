@@ -11,6 +11,8 @@ import clipart from '../../images/clipart2940212.png';
 import './Payment.scss';
 
 export default class Payment extends React.Component {
+    
+    //Valida o pagamento
     confirmPayment = async () => {
         const cookies = new Cookies();
         const user = cookies.get('loggedUser');

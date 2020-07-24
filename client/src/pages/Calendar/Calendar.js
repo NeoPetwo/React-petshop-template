@@ -28,10 +28,12 @@ export default class Calendar extends React.Component {
     this.fetchUserPets(); 
   }
 
+  //Ordena os serviços a serem mostrados
   componentDidUpdate() {
     this.state.services2show.sort(this.compare);
   }
 
+  //Comparação usada na ordenação
   compare = (a, b) => {
     // if (a is less than b by some ordering criterion) {
     if (a.startHour < b.startHour) {
@@ -45,12 +47,14 @@ export default class Calendar extends React.Component {
     return 0;
   }
 
+  //Pega a data do dia atual
   getTodayDate = () => {
     var curr = new Date();
     var date = curr.toISOString().substr(0, 10);
     return date;
   };
 
+  //Requisição para pegar toda a lista de serviços
   fetchServices = async () => {
     
     let res = await axios({
@@ -62,12 +66,11 @@ export default class Calendar extends React.Component {
       allServices: res.data,
       services2show: res.data,
       servicesOfTheDay: res.data
-	});
-	
-	this.filterByDate(this.getTodayDate());
+	  });
+	  this.filterByDate(this.getTodayDate());
   };
 
-
+  //Requisição para pegar os pets do usuário logado
   fetchUserPets = async () => {
     const cookies = new Cookies();  
     var user = cookies.get('loggedUser');
@@ -84,6 +87,7 @@ export default class Calendar extends React.Component {
     
   }
 
+  //Requisição para pegar os tipos distintos de todos os serviços
   fecthTypes = async () => {
     let res = await axios({
       method: "GET",
@@ -94,6 +98,7 @@ export default class Calendar extends React.Component {
     });
   };
 
+  //Filtrar Por tipo de serviço
   filterByType = (type) => {
     //Reseta Filtro
     let filteredList = this.state.servicesOfTheDay.filter((service) => {
@@ -104,6 +109,7 @@ export default class Calendar extends React.Component {
 	  });
     };
 
+  //Filtrar Por data
   filterByDate = (date) => {
 	  //Reseta Filtro
     let filteredList = this.state.allServices.filter((service) => {
@@ -119,7 +125,7 @@ export default class Calendar extends React.Component {
   };
    
 
-
+  //Reseta o filtro por tipo
   resetTypeFilter = () => {
     this.setState({
       services2show: this.state.servicesOfTheDay,
@@ -138,6 +144,8 @@ export default class Calendar extends React.Component {
   render() {
     let cards;
     if (this.state.services2show.length !== 0) {
+
+      //Mostra a mensagem "Loading" enquanto está pegando os serviços no servidor
       cards = this.state.services2show.map((service, index) => {
         if (service === 'empty') {
           return (<h1>Loading...</h1>)
@@ -179,17 +187,6 @@ export default class Calendar extends React.Component {
 
           <div class="banner bg-white" id="activities-list">
             <br/>
-            {/* {this.state.services2show.map((service, index) => {
-              return (
-                <div
-                  className={
-                    index.valueOf() % 2 == 0 ? "bg-darker" : "bg-lighter"
-                  }
-                >
-                  <ServiceCard service={service} key={index} pets={this.state.userPets} />
-                </div>
-              );
-            })} */}
             {cards}
           </div>
         </div>

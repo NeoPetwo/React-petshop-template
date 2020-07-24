@@ -5,6 +5,8 @@
 const mongoose = require('mongoose');
 const Cart = mongoose.model('Cart');
 
+
+//Pega todos os produtos que estão em carrinhos
 exports.get = async (data) => {
   //Essa função populate busca o id de customer e já coloca na response. E eu escolho qual campo vou retornar
   const res = await Cart
@@ -14,6 +16,7 @@ exports.get = async (data) => {
   return res;
 }
 
+//Pega os produtos que estão nos carrinhos de um usuário específico
 exports.getByCustomerId = async (customerid) => {
   const res = await Cart
     .findOne({customer: customerid, status: 'active'})
@@ -29,11 +32,13 @@ exports.getCartsWithProductId = async (productid) => {
   return res;
 }
 
+//Cria um novo carrinho
 exports.create = async (data) => {
   const cart = new Cart(data);
   await cart.save();
 }
 
+//Atualiza os dados de um carrinho de um usuário
 exports.update = async (id, data) => {
   await Cart.findByIdAndUpdate(id, {
     $set: {
@@ -44,6 +49,7 @@ exports.update = async (id, data) => {
   });
 }
 
+//Deleta um carrinho
 exports.delete = async (id) => {
   await Cart.findByIdAndDelete(id);
 }

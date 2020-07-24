@@ -13,8 +13,12 @@ export default class serviceCard extends React.Component {
     selectedPet: null
   }
 
+
+
+  //requisição para marcar o serviço como agendado para o usuário atualmente logado
   schedule = async () => {
     console.log(this.state.selectedPet);
+    //se o pet não foi selecionado não continua a requisição
     if (this.state.selectedPet === null) {
       alert("You didn't select a pet yet");
       return false;
@@ -49,6 +53,7 @@ export default class serviceCard extends React.Component {
     }
   }
 
+  //seleciona o pet que o serviço se refere
   handleSelect = (e) => {
     const index = e.target.value;
     

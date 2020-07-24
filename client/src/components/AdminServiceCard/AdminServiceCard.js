@@ -10,6 +10,7 @@ import axios from 'axios';
 
 export default class adminServiceCard extends React.Component {
   
+  // Delete service requisição
   handleDelete = async () => {
     console.log("teste");
     await axios({
@@ -28,6 +29,8 @@ export default class adminServiceCard extends React.Component {
 
   render() {
     let scheduledInfo;
+
+    //Muda o render se o serviço estiver agendado
     if(!this.props.service.scheduled) {
       scheduledInfo = <React.Fragment >
                       <div className = "scheduled-true">
