@@ -1,3 +1,6 @@
+// Daniel da Rocha Fróes 10255956
+// Gabriel Santos Nicolau 10684600
+// Kaio Tadeu Rodrigues 7561083
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './AdminServiceCard.scss';
@@ -24,10 +27,7 @@ export default class adminServiceCard extends React.Component {
 
 
   render() {
-
-
     let scheduledInfo;
-
     if(!this.props.service.scheduled) {
       scheduledInfo = <React.Fragment >
                       <div className = "scheduled-true">
