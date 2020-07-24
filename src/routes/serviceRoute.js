@@ -12,6 +12,7 @@ router.get('/', controller.get);
 router.get('/alltypes', controller.getTypes);
 router.get('/:slug', controller.getBySlug);
 router.get('/admin/:id', controller.getById);
+router.get('/petservices/:petid', controller.getByPetId);
 router.post('/', controller.post);
 router.put('/:id', controller.put);
 router.delete('/', controller.delete); 
