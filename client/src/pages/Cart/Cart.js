@@ -47,6 +47,7 @@ export default class Cart extends React.Component {
 		let items = [];
 
 		for (let i=0; i<this.state.cart.items.length; i++) {
+			if (this.state.cart.items[i].product === null) continue;
 			items.push({
 				quantity: this.state.cart.items[i].quantity,
 				product: this.state.cart.items[i].product._id
@@ -84,6 +85,7 @@ export default class Cart extends React.Component {
 		let sum = 0;
 		let items = this.state.cart.items;
 		for (let i=0; i<items?.length; i++) {
+			if (items[i].product === null) continue;
 			sum += items[i].quantity*items[i].product.price;
 		}
 		return sum.toFixed(2);
@@ -135,7 +137,7 @@ export default class Cart extends React.Component {
 			</div>
 
 			{this.state.cart !== null && this.state?.cart?.items?.map((item, index) => {
-				if (item.product === undefined) return; //Handling errors
+				if (item.product === undefined || item.product === null) return; //Handling errors
 				return (
 					<div class="product">
 						<div>

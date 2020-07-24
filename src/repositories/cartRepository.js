@@ -22,6 +22,13 @@ exports.getByCustomerId = async (customerid) => {
   return res;
 }
 
+exports.getCartsWithProductId = async (productid) => {
+  const res = await Cart.find({
+    "items.product._id": productid
+  });
+  return res;
+}
+
 exports.create = async (data) => {
   const cart = new Cart(data);
   await cart.save();

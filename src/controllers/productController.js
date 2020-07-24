@@ -5,6 +5,8 @@
 const multer = require('multer');
 
 const repository = require('../repositories/productRepository');
+const cartRepository = require('../repositories/cartRepository');
+
 
 // Arquivo que lida com a requisiçao
 // Este arquivo é importando em routes
@@ -122,9 +124,18 @@ exports.put = async (req, res, next) => {
 // Apaga produtos
 exports.delete = async (req, res, next) => {
   try {
+    //Apaga produto dos carrinhos de quem tiver
+      //Pegar carrinhos que tem esses produtos
+      // const carts = cartRepository.getCartsWithProductId(req.body.id);
+
+      //Pegar o array dos produtos e retirar esse elemento
+
+      //Editar a lista desse carrinho
+
+    //Apaga o produto do inventário
     await repository.delete(req.body.id);
     res.status(200).send({
-        message: 'Produto removido com louvor!!'
+        message: 'Produto removido com louvor!!',
       });
     } catch(err) {
       res.status(500).send({
