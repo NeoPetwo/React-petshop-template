@@ -20,10 +20,6 @@ export default class PetDetails extends React.Component {
         petServices: []
     }
 
-    // componentDidUpdate() {
-    //     this.state.petServices.sort(this.compare);
-    // }
-
     compare = (a, b) => {
         // if (a is less than b by some ordering criterion) {
         if (a.startHour < b.startHour) {

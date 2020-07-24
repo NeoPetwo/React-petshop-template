@@ -67,9 +67,18 @@ export default class AddPet extends React.Component {
         }
 
     handleSubmit = async () => {
+        console.log({
+            owner: this.state.owner,
+            race: this.state.race,
+            name: this.state.name,
+            description: this.state.description,
+            img: `/img/${this.state.selectedImg.name}`,
+        });
+        alert('1');
         let uploadOk = await this.uploadImg();
         if (uploadOk === false) return;
 
+        alert('2');
         let res = await axios({
             method: 'POST',
             url: `${SERVER_URL}/pets`,
@@ -81,6 +90,7 @@ export default class AddPet extends React.Component {
                 img: `/img/${this.state.selectedImg.name}`,
             }
         });
+        alert('3');
             
         if (res.status !== 201) {
             alert('Problem when submitting');  
@@ -121,7 +131,7 @@ export default class AddPet extends React.Component {
                     <div class="catalog_link">
                         <div id="uActSect-newpet">
                             {/* <h1>New pet</h1> */}
-                            <form class="form-container">
+                            <div class="form-container">
 
                                 <div>
                                     <label for="name">Name</label>
@@ -140,10 +150,10 @@ export default class AddPet extends React.Component {
                                     <input type="file" id="customer_pic" name="picture" onChange={this.onChangeImg}/>
                                 </div>
                                 <div>
-                                    <button type="button" onClick={this.handleSubmit} class="btn">Create</button>
+                                    <button type="button" onClick={this.handleSubmit} class="btn">Add Pet</button>
                                     <button type="button" onClick={this.cancelSubmission} class="btn cancel">Cancel</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 
