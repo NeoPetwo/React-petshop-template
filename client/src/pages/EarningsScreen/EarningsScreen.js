@@ -5,6 +5,7 @@ import './EarningsScreen.scss';
 import '../AdminInventoryConsult/bulma-modified.scss';
 
 import ProductCardEarnings from '../../components/ProductCardEarnings/ProductCardEarnings';
+import ServiceCardEarnings from '../../components/ServiceCardEarnings/ServiceCardEarnings';
 import { SERVER_URL } from '../../variables';
 
 export default class EarningsScreen extends React.Component {
@@ -50,9 +51,7 @@ export default class EarningsScreen extends React.Component {
       if (service.paid === true) return service;
     })
     .forEach((service, index) => {
-      console.log(index, service);
       let indexPosition = this.indexOfObjAttr(filteredServices, 'type', service.type);
-      console.log(indexPosition);
       if (indexPosition !== -1) {
         filteredServices[indexPosition].quantity += 1;
         filteredServices[indexPosition].totalProfit += service.price;
@@ -85,10 +84,9 @@ export default class EarningsScreen extends React.Component {
       method: 'GET',
       url: `${SERVER_URL}/services`
     });
-    console.log('all services', res.data);
 
     const filteredServices = await this.filterServices(res.data);
-    console.log('filtered', filteredServices);
+    console.log('filtered svcs', filteredServices);
     await this.setState({filteredServices: filteredServices});
   }
 
@@ -126,12 +124,12 @@ export default class EarningsScreen extends React.Component {
                     );
                 })}
             </div>
-            <h2>Total Services Sold: {this.state.filteredOrders.length}</h2>
+            <h2>Total Services Sold: {this.state.filteredServices.length}</h2>
             <div class="columns is-multiline">
-                {this.state.filteredOrders.map((order, index) => {
+                {this.state.filteredServices.map((service, index) => {
                     return (
                         <div class="column is-one-fifth">
-                            <ProductCardEarnings product={order} key={index} />
+                            <ServiceCardEarnings service={service} key={index} />
                         </div>
                     );
                 })}
