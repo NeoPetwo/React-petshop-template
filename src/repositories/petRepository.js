@@ -43,7 +43,8 @@ exports.update = async (id, data) => {
         name: data.name,
         description: data.description,
         img: data.img,
-        race: data.race
+        race: data.race,
+        age: data.age
       }
     });
 }
