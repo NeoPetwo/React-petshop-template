@@ -15,7 +15,8 @@ export default class PetDetails extends React.Component {
             race: 'Your pet race',
             description: "Your pet description",
             img: "img path",
-            id: 'id'
+            id: 'id',
+            age: 'Your pet age'
         },
         petServices: []
     }
@@ -86,6 +87,8 @@ export default class PetDetails extends React.Component {
                                     <h2>{this.state.selectedPet.name}</h2>
                                 </header>
                                 <p>Race: {this.state.selectedPet.race}</p>
+                                <br/>
+                                <p>Age: {this.state.selectedPet.age}</p>
                                 <br/>
                                 <p>{this.state.selectedPet.description}</p>
                                 <br/>

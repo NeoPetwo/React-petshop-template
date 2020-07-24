@@ -30,6 +30,10 @@ const schema = new Schema({
     type: String,
     required: [true, 'Image is required'],
     trim: true
+  },
+  age: {
+    type: Number,
+    required: false
   }
 });
 
