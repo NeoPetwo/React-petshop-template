@@ -13,7 +13,10 @@ export default class AdminRegisterServices extends React.Component {
       description: '',
       startHour: '',
       endingHour: '',
-      date: ''
+      date: '',
+      price: 0,
+      img: "", //Image path
+      selectedImg: null //Image file
     };
     
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,6 +30,9 @@ export default class AdminRegisterServices extends React.Component {
     this.setState({description: event.target.value});
   }
 
+  handleChangePrice = (event) => {
+    this.setState({price: event.target.value});
+  }
   handleChangeStartHour = (event) => {
     this.setState({startHour: event.target.value});
   }
@@ -39,13 +45,39 @@ export default class AdminRegisterServices extends React.Component {
     this.setState({date: event.target.value});
   }
 
+  onChangeImg = (event) =>{
+    console.log(event.target.files[0]);
+    this.setState({
+      selectedImg: event.target.files[0]
+    });
+  }
+
+
   GetSlug = ()=> {
 
     return this.state.type + this.state.startHour + this.state.date
   }
   
-  handleSubmit = async()=>{
+  handleSubmit = async(e)=>{
     try {
+      if (this.state.selectedImg === null) {
+        alert('Select an image');
+        e.persist();
+        // e.preventDefault();
+        return false;
+      }
+  
+      // Images upload
+      let data = new FormData(); 
+      data.append('file', this.state.selectedImg);
+      let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
+      if (res1.status !== 201) {
+        alert('Error uploading the image');
+        e.persist();
+        // e.preventDefault();
+        return false;
+      }
+
       const res = await axios({
         method: 'POST',
         url: `${SERVER_URL}/services`,
@@ -56,6 +88,8 @@ export default class AdminRegisterServices extends React.Component {
           startHour: this.state.startHour,
           endingHour: this.state.endingHour, 
           date: this.state.date,
+          img: this.state.img,
+          price: this.state.price
         }
       });
 
@@ -89,14 +123,15 @@ export default class AdminRegisterServices extends React.Component {
                 <label for="type">Tipo do serviço</label>
                 <input type="text" placeholder="Insira o tipo do serviço" name="nome" onChange={this.handleChangeType} required/>
 
-                {/* <label for="services_pic">Picture:</label>
-                <input type="file" id="services_pic" name="picture"/> */}
+                <label for="services_pic">Picture:</label>
+                <input type="file" id="services_pic" name="picture" onChange={this.onChangeImg}/>
 
                 <label for="description">Descrição</label>
                 <input type="text" placeholder="Descrição do serviço" name="description" onChange={this.handleChangeDescription} required/>
-{/* 
+
                 <label for="price">Price</label>
-                <input type="number" placeholder="$" name="price" required/> */}
+                <input type="number" placeholder="$" name="price" onChange={this.handleChangePrice} required />
+
                 <label for="startHour">Hora de começo</label>
                 <input type="text" placeholder="hh:mm" name="startHour" onChange={this.handleChangeStartHour} required/>
                 
