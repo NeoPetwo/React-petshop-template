@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import { SERVER_URL } from '../../variables';
 
@@ -37,7 +37,24 @@ export default class Navbar extends React.Component {
     }
   }
 
+  logout = () => {
+    const cookies = new Cookies();
+    cookies.remove('loggedUser', { path: '/' });
+
+    //Change page and reload
+    // this.props.history.push('/');
+    window.location.reload(false);
+  }
+
   render() {
+    let loginLogoutBtn;
+    if (this.state.user === undefined) {
+      loginLogoutBtn =  <li><NavLink to='/login'><i class="fas fa-lock"></i> Login</NavLink></li>
+    } else {
+      loginLogoutBtn = <li><Link to="/" onClick={this.logout}><i class="fas fa-lock"></i> Logout</Link></li>
+    }
+    
+
     return (
     <div class="navbar">
       <nav id="home-bar">
@@ -51,7 +68,8 @@ export default class Navbar extends React.Component {
                 <li><NavLink to='/admin/inventory/consult'><i class="fas fa-hammer"></i> Admin actions</NavLink></li>
               </React.Fragment>
             }
-            <li><NavLink to='/login'><i class="fas fa-lock"></i> Login</NavLink></li>
+            {/* <li><NavLink to='/login'><i class="fas fa-lock"></i> Login</NavLink></li> */}
+            {loginLogoutBtn}
             <li id="cart"><NavLink to='/cart'><i class="fas fa-shopping-cart"></i> {this.state.cartQtt}</NavLink></li>
         </ul>
       </nav>
