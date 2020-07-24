@@ -16,6 +16,7 @@ export default class EarningsScreen extends React.Component {
       filteredServices: [],
       totalProfit: 0
     };
+
     this.fetchOrders();
     this.fetchServices();
   }
@@ -86,8 +87,8 @@ export default class EarningsScreen extends React.Component {
     });
 
     const filteredServices = await this.filterServices(res.data);
-    console.log('filtered svcs', filteredServices);
     await this.setState({filteredServices: filteredServices});
+    this.calculateTotalProfit();
   }
 
   indexOfObjAttr = (array, attr, value) => {
@@ -104,6 +105,9 @@ export default class EarningsScreen extends React.Component {
     this.state.filteredOrders.forEach((item, index) => {
       sum += item.quantity * item.price
     });
+    this.state.filteredServices.forEach((item, index) => [
+      sum += item.totalProfit
+    ]);
     this.setState({
       totalProfit: sum
     });
