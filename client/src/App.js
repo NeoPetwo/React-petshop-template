@@ -37,7 +37,7 @@ export default class App extends React.Component {
         <Route path='/register' component={Register} /> 
         <Route path='/calendar' component={Calendar} /> 
         <Route path='/petdetails' component={PetDetails} /> 
-        <Route path='/payment' component={Payment} /> 
+        <Route path='/payment/:type' component={Payment} /> 
         <Route path='/addpet' component={AddPet} /> 
         <Route path='/changeaccountinfo' component={ChangeAccountInfo} /> 
         <Route path='/admin' component={AdminActions} /> 

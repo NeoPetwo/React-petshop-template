@@ -11,20 +11,37 @@ export default class Payment extends React.Component {
     confirmPayment = async () => {
         const cookies = new Cookies();
         const user = cookies.get('loggedUser');
-        try {
-            await axios({
-               method: 'POST',
-               url: `${SERVER_URL}/orders/buy`,
-               data: {
-                   customer: user.id
-               }
-            });
-            alert('Payment confirmed');
-            //Reload page to update cart number of navbar
-		    await window.location.reload(false);
-            this.props.history.push('/myaccount');
-        } catch(err) {
-            console.log('Error submiting payment', err);
+        console.log(this.props.match.params.type);
+        if (this.props.match.params.type === 'product') {
+            try {
+                await axios({
+                method: 'POST',
+                url: `${SERVER_URL}/orders/buy`,
+                data: {
+                    customer: user.id
+                }
+                });
+                alert('Payment confirmed');
+                //Reload page to update cart number of navbar
+                await window.location.reload(false);
+                this.props.history.push('/myaccount');
+            } catch(err) {
+                console.log('Error submiting payment', err);
+            }
+        } else if (this.props.match.params.type === 'services') {
+                console.log('foi?');
+                await axios({
+                    method: 'POST',
+                    url: `${SERVER_URL}/services/buy`,
+                    data: {
+                        customer: user.id
+                    }
+                });
+                alert('Services paid');
+                this.props.history.push('/petdetails');    
+        } else {
+            alert('An error ocurred');
+            this.props.history.push('/');
         }
     }
 

@@ -1,11 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
 
 import './EarningsScreen.scss';
 import '../AdminInventoryConsult/bulma-modified.scss';
 
-import ProductCardInventory from '../../components/ProductCardInventory/ProductCardInventory';
 import ProductCardEarnings from '../../components/ProductCardEarnings/ProductCardEarnings';
 import { SERVER_URL } from '../../variables';
 
@@ -14,6 +12,7 @@ export default class EarningsScreen extends React.Component {
     super();
     this.state = {
       filteredOrders: [],
+      filteredServices: [],
       totalProfit: 0
     };
     this.fetchOrders();
@@ -61,6 +60,14 @@ export default class EarningsScreen extends React.Component {
     return -1;
   }
 
+  fetchServices = async () => {
+
+  }
+
+  filterServices = () => {
+
+  }
+
   calculateTotalProfit = () => {
     let sum = 0;
     this.state.filteredOrders.forEach((item, index) => {
@@ -77,16 +84,26 @@ export default class EarningsScreen extends React.Component {
       <div class="banner " id="catalog">
         <div id="product-grid" class="column">
             <h2>Total Products Sold: {this.state.filteredOrders.length}</h2>
-            <h2>Total Profit: R$ {(this.state.totalProfit.toFixed(2))}</h2>
             <div class="columns is-multiline">
                 {this.state.filteredOrders.map((order, index) => {
                     return (
-                        <div class="column is-one-quarter">
+                        <div class="column is-one-fifth">
                             <ProductCardEarnings product={order} key={index} />
                         </div>
                     );
                 })}
             </div>
+            <h2>Total Services Sold: {this.state.filteredOrders.length}</h2>
+            <div class="columns is-multiline">
+                {this.state.filteredOrders.map((order, index) => {
+                    return (
+                        <div class="column is-one-fifth">
+                            <ProductCardEarnings product={order} key={index} />
+                        </div>
+                    );
+                })}
+            </div>
+            <h2>Total Profit: R$ {(this.state.totalProfit.toFixed(2))}</h2>
         </div>
       </div>
     </div>

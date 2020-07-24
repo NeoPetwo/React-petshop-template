@@ -25,6 +25,11 @@ exports.getById = async (id) => {
   return res;
 }
 
+exports.getByUserId = async (userid) => {
+  const res = await Service.find({customer: userid});
+  return res;
+}
+
 exports.getByPetId = async (petid) => {
   const res = await Service.find({pet: petid});
   return res;
@@ -70,6 +75,15 @@ exports.update = async (id, data) => {
         img: data.img,
         paid: data.paid,
         price: data.price,
+      }
+    });
+}
+
+exports.updateStatus = async (id, newStatus) => {
+  await Service
+    .findByIdAndUpdate(id, {
+      $set: {
+        paid: newStatus,
       }
     });
 }

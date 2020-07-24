@@ -59,6 +59,18 @@ exports.getById = async (req, res, next) => {
   }
 }
 
+exports.getByUserId = async (req, res, next) => {
+  try {
+    const data = await repository.getByUserId(req.params.userid);
+    res.status(200).send(data);
+  } catch(err) {
+    res.status(500).send({
+      message: 'Falha ao processar sua requisição.',
+      data: err
+    });
+  }
+}
+
 exports.getByPetId = async (req, res, next) => {
   try {
     const data = await repository.getByPetId(req.params.petid);
@@ -83,6 +95,23 @@ exports.post = async (req, res, next) => {
         data: err
       });
     }
+}
+
+exports.buy = async (req, res, next) => {
+  try {
+    const services = await repository.getByUserId(req.body.customer);
+    services.forEach((service, index) => {
+      repository.updateStatus(service._id, true);
+    });
+    res.status(201).send({
+      message: 'Serviços pagos!'
+    });
+    } catch(err) {
+      res.status(500).send({
+        message: 'Falha ao processar seu pagamento de serviços.',
+        data: err
+      });
+  }
 }
 
 exports.put = async (req, res, next) => {

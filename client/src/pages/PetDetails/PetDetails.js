@@ -3,7 +3,6 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { NavLink } from 'react-router-dom';
 
-import poogle from '../../images/poogle.png';
 import './PetDetails.scss';
 
 import { SERVER_URL } from '../../variables';
@@ -59,6 +58,9 @@ export default class PetDetails extends React.Component {
     }
 
     render() {
+        const yes = <span id="yesTable">Yes</span>;
+        const no = <span id="noTable">No</span>;
+
         return (
             <div className="pet-details">
                 <div id="wrapper">
@@ -103,7 +105,7 @@ export default class PetDetails extends React.Component {
                                     return (
                                         <React.Fragment>
                                             <tr>
-                                                <td>{service === true ? 'Yes' : 'No'}</td>
+                                                <td>{service.paid === true ? yes : no}</td>
                                                 <td>{service.type}</td>
                                                 <td>R$ {service.price}</td>
                                             </tr>
@@ -119,7 +121,7 @@ export default class PetDetails extends React.Component {
                                 </tfoot> */}
                             </table>
 
-                            <NavLink id="pay_here" class="button_payment" to='/payment' >Pay Here</NavLink>
+                            <NavLink id="pay_here" class="button_payment" to='/payment/services' >Pay Here</NavLink>
 
                         </div>
                     </div>

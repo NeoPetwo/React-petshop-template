@@ -115,7 +115,7 @@ export default class Cart extends React.Component {
 	}
 
 	checkout = () => {
-		this.props.history.push('/payment');
+		this.props.history.push('/payment/product');
 	}
 
   render() {
