@@ -5,25 +5,22 @@ import Cookies from 'universal-cookie';
 import { SERVER_URL} from '../../variables';
 import './ServiceCard.scss';
 
-
-
-
-
 export default class serviceCard extends React.Component {
   
 
   state = {
-    selectedPet: "Whatever"
+    selectedPet: null
   }
 
   schedule = async () => {
-    console.log('foi');
+    if (this.state.selectedPet === null) {
+      alert("You didn't select a pet yet");
+      return false;
+    }
+    
     const cookies = new Cookies();
     const user = cookies.get('loggedUser');
     try {
-      console.log('service', this.props.service);
-      console.log('selectedPet', this.state.selectedPet._id);
-      console.log('user id', user.id);
       await axios({
         method: 'PUT',
         url: `${SERVER_URL}/services/${this.props.service._id}`,
