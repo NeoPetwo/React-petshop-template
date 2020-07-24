@@ -51,6 +51,19 @@ const schema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer',
         required: false
+    },
+    img: {
+        type: String,
+        required: false
+    },
+    paid: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    price: {
+        type: Number,
+        required: [true, 'The price is required']
     }
 });
 

@@ -134,8 +134,7 @@ export default class Calendar extends React.Component {
           </div>
 
           <div class="banner bg-white" id="activities-list">
-            <h2>Available times</h2>
-            <br />
+            <br/>
             {this.state.services2show.map((service, index) => {
               return (
                 <div
