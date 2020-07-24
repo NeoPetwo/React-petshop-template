@@ -15,6 +15,7 @@ export default class Navbar extends React.Component {
     super();
     const cookies = new Cookies();
     let user = cookies.get('loggedUser');
+    console.log('Logged user', user);
     this.state = {
       user: user,
       cartQtt: 0

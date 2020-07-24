@@ -21,7 +21,7 @@ export default class Product extends React.Component {
             tags: "",
             qttSelected: 1,
             user: "",
-            cart: null,
+            cart: "",
         };
         this.fetchInfo();
     }
@@ -84,6 +84,7 @@ export default class Product extends React.Component {
         //If the user do not have a cart yet
         if (this.state.cart === "") {
             try {
+                console.log( this.state.user.id, this.state.qttSelected, this.state.productid);
                 await axios({
                     method: 'POST',
                     url: `${SERVER_URL}/cart`,

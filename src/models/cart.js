@@ -12,7 +12,7 @@ const schema = new Schema({
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Customer',
-    unique: true
+    unique: false
   },
   status: {
     type: String,

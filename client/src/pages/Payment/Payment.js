@@ -29,7 +29,6 @@ export default class Payment extends React.Component {
                 console.log('Error submiting payment', err);
             }
         } else if (this.props.match.params.type === 'services') {
-                console.log('foi?');
                 await axios({
                     method: 'POST',
                     url: `${SERVER_URL}/services/buy`,

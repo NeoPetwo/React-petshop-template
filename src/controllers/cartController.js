@@ -46,7 +46,8 @@ exports.post = async (req, res, next) => {
     })
   } catch (err) {
     res.status(500).send({
-      message: "Falha ao processar sua requisição"
+      message: "Falha ao processar sua requisição",
+      error: err
     })
   }
 }
