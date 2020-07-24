@@ -47,6 +47,7 @@ export default class serviceCard extends React.Component {
 
   handleSelect = (e) => {
     const index = e.target.value;
+    
     this.setState({
       selectedPet: this.props.pets[index]
     });

@@ -71,10 +71,11 @@ export default class AdminRegisterServices extends React.Component {
       let data = new FormData(); 
       data.append('file', this.state.selectedImg);
       let res1 = await axios.post(`${SERVER_URL}/products/uploadimg`, data);
-      if (res1.status !== 201) {
+      if (res1.status !== 201) 
+      {
         alert('Error uploading the image');
         e.persist();
-        // e.preventDefault();
+        e.preventDefault();
         return false;
       }
 
@@ -88,7 +89,7 @@ export default class AdminRegisterServices extends React.Component {
           startHour: this.state.startHour,
           endingHour: this.state.endingHour, 
           date: this.state.date,
-          img: this.state.img,
+          img: `/img/${this.state.selectedImg.name}`,
           price: this.state.price
         }
       });

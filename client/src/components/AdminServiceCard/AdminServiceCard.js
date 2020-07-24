@@ -50,7 +50,7 @@ export default class adminServiceCard extends React.Component {
                 <ul class="sidebar__nav">
                     <li><Link to={`/admin/register/services`} class="link"> <i class="fas fa-plus"></i> Add</Link></li>
                     <Link onClick={this.handleDelete} class="link"><li><i class="fas fa-trash-alt"></i> Remove</li></Link>
-                    <li><Link to={''} class="link"> <i class="fas fa-exchange-alt"></i> Edit</Link></li>
+                    <li><Link to={'/admin/services/update'} class="link"> <i class="fas fa-exchange-alt"></i> Edit</Link></li>
                 </ul>
             </div>
             

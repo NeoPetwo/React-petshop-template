@@ -4,7 +4,7 @@ import { SERVER_URL } from '../../variables';
 import axios from 'axios';
 
 
-export default class AdminRegisterServices extends React.Component {
+export default class AdminServiceUpdate extends React.Component {
   
   constructor() {
 		super();

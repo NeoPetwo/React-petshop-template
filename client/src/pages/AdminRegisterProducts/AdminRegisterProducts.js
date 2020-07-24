@@ -29,7 +29,6 @@ export default class AdminRegisterProducts extends React.Component {
                 <label for="qnt">Initial quantity in stock</label>
                 <input type="number" placeholder="" name="qnt" required/>
 
-
                 <button type="submit" class="btn">Submit</button>
                 <button type="button" class="btn cancel" onclick="closeForm(3)">Cancel</button>
             </form>
