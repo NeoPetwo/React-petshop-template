@@ -24,7 +24,7 @@ export default class AdminActions extends React.Component {
         </div>
         
         <Route path="/admin/register" component={NavbarAdminRegister} />
-        <Route path="/admin/services" component={AdminServices} />
+        <Route exact path="/admin/services" component={AdminServices} />
         <Route path="/admin/inventory" component={NavbarAdminInventory} />
         <Route path="/admin/services/update/:_id" component={AdminServiceUpdate}/>
         

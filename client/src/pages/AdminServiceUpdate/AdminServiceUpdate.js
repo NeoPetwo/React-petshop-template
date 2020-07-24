@@ -129,12 +129,12 @@ export default class AdminServiceUpdate extends React.Component {
         }
       });
 
-      this.props.history.push('/admin/inventory/consult');
+      this.props.history.push('/admin/services');
       e.persist(); // e.preventDefault();
       if(res.status === 500)
-        alert('Product updated!');
+        alert('Service updated!');
 
-    }
+      }
     catch(err){
       console.log(err);  
       alert('Problem when submitting');
@@ -151,7 +151,7 @@ export default class AdminServiceUpdate extends React.Component {
       
         {/* <!-- New services form --> */}
         <div class="form-popup" id="services">
-            <form action="#" class="form-container">
+            <div class="form-container">
                 <h1>Update service</h1>
 
                 <label for="type">Tipo do serviço</label>
@@ -175,9 +175,9 @@ export default class AdminServiceUpdate extends React.Component {
                 <label for="date">Data</label>
                 <input type="date" value={this.state.date} name="date" onChange={this.handleChangeDate} required/>
 
-                <button type="submit" class="btn" onClick={this.handleSubmit}>Submit</button>
+                <button type="button" class="btn" onClick={this.handleSubmit}>Submit</button>
                 <button type="button" class="btn cancel" onClick="closeForm(4)">Cancel</button>
-            </form>
+            </div>
         </div>
 
       </div>

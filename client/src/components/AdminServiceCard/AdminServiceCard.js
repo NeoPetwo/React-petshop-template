@@ -29,16 +29,6 @@ export default class adminServiceCard extends React.Component {
         <div class = "service row">        
           <div class="hour-section">Hour:<br/> <span class = "hour-text">{this.props.service.startHour} - {this.props.service.endingHour}</span></div>
           <form class="info row">
-            <div class = "column">
-                    <p class= "service-name">Type:<b> {this.props.service.type}</b></p>
-                    <select class = "select-pet">
-                        <option>Select your pet</option>
-                        <option>My_pet 1</option> 
-                        <option>My_pet 2</option> 
-                        <option>My_pet 3</option> 
-                        <option>My_pet 4</option> 
-                    </select>
-            </div>
             <p class="description">
                     <b>Description:</b><br/>
                     {this.props.service.description}
