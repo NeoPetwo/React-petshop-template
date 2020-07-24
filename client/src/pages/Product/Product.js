@@ -23,7 +23,18 @@ export default class Product extends React.Component {
             user: "",
             cart: "",
         };
+        // const cookies = new Cookies();
+        // const user = cookies.get('loggedUser');
+        // console.log('aqui', user);
+        // this.setState({user: user});
         this.fetchInfo();
+    }
+
+    componentDidMount() {
+        const cookies = new Cookies();
+        const user = cookies.get('loggedUser');
+        console.log('aqui', user);
+        this.setState({user: user});
     }
 
     fetchInfo = async () => {
@@ -76,9 +87,9 @@ export default class Product extends React.Component {
     }
 
     addToCart = async () => {
-        const cookies = new Cookies();
-        const user = cookies.get('loggedUser');
-        await this.setState({user: user});
+        // const cookies = new Cookies();
+        // const user = cookies.get('loggedUser');
+        // await this.setState({user: user});
         await this.fetchCart();
 
         //If the user do not have a cart yet
@@ -132,6 +143,22 @@ export default class Product extends React.Component {
     }
 
     render() {
+        let addCartBtn;
+        if (this.state.user !== "" && this.state.user !== undefined) {
+            addCartBtn = 
+                <React.Fragment>
+                    <section>
+                        <p id="qtt">QUANTITY</p>
+                        <div class="qttBox">
+                            <button onClick={this.removeItem} class="qttBtn fas fa-minus"></button>
+                                <p>{this.state.qttSelected}</p>
+                            <button onClick={this.addItem} class="qttBtn fas fa-plus"></button>
+                        </div>
+                    </section>
+                    <button onClick={this.addToCart} class="btn">Add to cart</button>
+                </React.Fragment>
+        }
+
         return (
             <div class="product">
                 <div class="photoArea">
@@ -150,7 +177,8 @@ export default class Product extends React.Component {
                         </div>
                     </section>
                     {/* If the user it's not logged */}
-                    {this.state.user !== "" &&
+                    {addCartBtn}
+                    {/* {(this.state.user !== "" || this.state.user !== undefined) &&
                     <section>
                         <p id="qtt">QUANTITY</p>
                         <div class="qttBox">
@@ -159,7 +187,7 @@ export default class Product extends React.Component {
                             <button onClick={this.addItem} class="qttBtn fas fa-plus"></button>
                         </div>
                     </section>}
-                    {this.state.user !== "" && <button onClick={this.addToCart} class="btn">Add to cart</button>}
+                    {(this.state.user !== "" || this.state.user !== undefined) && <button onClick={this.addToCart} class="btn">Add to cart</button>} */}
                 </div>
             </div>
         );
