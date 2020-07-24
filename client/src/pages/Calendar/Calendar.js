@@ -14,7 +14,8 @@ export default class Calendar extends React.Component {
     super();
     this.state = {
       allServices: [],
-      services2show: [],
+      servicesOfTheDay: [],
+      services2show: ['empty'],
       typesOfServices: [],
       userPets: [],
     };
@@ -57,6 +58,7 @@ export default class Calendar extends React.Component {
     this.setState({
       allServices: res.data,
       services2show: res.data,
+      servicesOfTheDay: res.data
 	});
 	
 	this.filterByDate(this.getTodayDate());
@@ -91,7 +93,7 @@ export default class Calendar extends React.Component {
 
   filterByType = (type) => {
     //Reseta Filtro
-    let filteredList = this.state.allServices.filter((service) => {
+    let filteredList = this.state.servicesOfTheDay.filter((service) => {
       if (service.type === type) return service;
     });
     this.setState({
@@ -108,6 +110,7 @@ export default class Calendar extends React.Component {
     });
 
     this.setState({
+      servicesOfTheDay: filteredList,
       services2show: filteredList,
     });
   };
@@ -116,7 +119,7 @@ export default class Calendar extends React.Component {
 
   resetTypeFilter = () => {
     this.setState({
-      services2show: this.state.allServices,
+      services2show: this.state.servicesOfTheDay,
     });
   };
   
@@ -130,6 +133,27 @@ export default class Calendar extends React.Component {
   };
 
   render() {
+    let cards;
+    if (this.state.services2show.length !== 0) {
+      cards = this.state.services2show.map((service, index) => {
+        if (service === 'empty') {
+          return (<h1>Loading...</h1>)
+        }
+        return (
+          <div
+            className={
+              index.valueOf() % 2 == 0 ? "bg-darker" : "bg-lighter"
+            }
+          >
+            <ServiceCard service={service} key={index} pets={this.state.userPets} />
+          </div>
+        );
+      });
+    } else {
+      cards = <h1>There's no service of this type in this day</h1>
+    }
+
+
     return (
       <div class="calendar">
         <div class="column">
@@ -152,7 +176,7 @@ export default class Calendar extends React.Component {
 
           <div class="banner bg-white" id="activities-list">
             <br/>
-            {this.state.services2show.map((service, index) => {
+            {/* {this.state.services2show.map((service, index) => {
               return (
                 <div
                   className={
@@ -162,7 +186,8 @@ export default class Calendar extends React.Component {
                   <ServiceCard service={service} key={index} pets={this.state.userPets} />
                 </div>
               );
-            })}
+            })} */}
+            {cards}
           </div>
         </div>
       </div>
