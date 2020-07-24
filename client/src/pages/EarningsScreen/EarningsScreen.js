@@ -16,6 +16,7 @@ export default class EarningsScreen extends React.Component {
       totalProfit: 0
     };
     this.fetchOrders();
+    this.fetchServices();
   }
 
   filterOrders = async (orders) => {
@@ -24,24 +25,52 @@ export default class EarningsScreen extends React.Component {
       order.items.forEach((item, index) => {
         let indexPosition = this.indexOfObjAttr(filteredOrders, 'productid', item.product._id);
         if (indexPosition !== -1) {
+          //If it's inside the array
           filteredOrders[indexPosition].quantity += item.quantity;
         } else {
-          let newFileteredOrder = {
+          //If it isn't in the array yet
+          let newFilteredOrder = {
             productid: item.product._id,
             quantity: item.quantity,
             title: item.product.title,
             price: item.product.price,
             img: item.product.img
           };
-          filteredOrders.push(newFileteredOrder);
+          filteredOrders.push(newFilteredOrder);
         }
       });
     });
     return filteredOrders;
   }
 
+  filterServices = (services) => {
+    let filteredServices = [];
+    services
+    .filter((service, index) => {
+      if (service.paid === true) return service;
+    })
+    .forEach((service, index) => {
+      console.log(index, service);
+      let indexPosition = this.indexOfObjAttr(filteredServices, 'type', service.type);
+      console.log(indexPosition);
+      if (indexPosition !== -1) {
+        filteredServices[indexPosition].quantity += 1;
+        filteredServices[indexPosition].totalProfit += service.price;
+      } else {
+        let newFilteredService = {
+          type: service.type,
+          img: service.img,
+          totalProfit: service.price,
+          quantity: 1,
+        };
+        filteredServices.push(newFilteredService);
+      }
+    });
+    return filteredServices;
+  }
+
   fetchOrders = async () => {
-    let res = await axios({
+    const res = await axios({
         method: 'GET',
         url: `${SERVER_URL}/orders`
     });
@@ -51,21 +80,25 @@ export default class EarningsScreen extends React.Component {
     this.calculateTotalProfit();
   }
 
+  fetchServices = async () => {
+    const res = await axios({
+      method: 'GET',
+      url: `${SERVER_URL}/services`
+    });
+    console.log('all services', res.data);
+
+    const filteredServices = await this.filterServices(res.data);
+    console.log('filtered', filteredServices);
+    await this.setState({filteredServices: filteredServices});
+  }
+
   indexOfObjAttr = (array, attr, value) => {
     for(let i = 0; i < array.length; i++) {
         if(array[i][attr] === value) {
             return i;
         }
     }
-    return -1;
-  }
-
-  fetchServices = async () => {
-
-  }
-
-  filterServices = () => {
-
+    return -1; //There is no such element
   }
 
   calculateTotalProfit = () => {
