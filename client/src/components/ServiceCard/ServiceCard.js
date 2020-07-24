@@ -56,29 +56,27 @@ export default class serviceCard extends React.Component {
 
     const cookies = new Cookies();  
     var user = cookies.get('loggedUser');
-
       let options;
+      let scheduleButton;
 
-      let scheduleButton
-      if(!this.props.service.scheduled){
+      if(!this.props.service.scheduled) {
         scheduleButton = <button onClick={this.schedule} class="schedule-button" type="submit">Schedule</button>
       }
-      else{
+      else {
         scheduleButton =  <React.Fragment >
                           <div class = "scheduled-true">
-                            <span class = "bold">Serviço Agendado</span>
+                            <span className="bold busyHour">Service scheduled</span>
                             <br/>
                             <br/>
-                            <span class = "bold"> Cliente: </span>{this.props.service.customer.name}
+                            <span class = "bold"> Customer: </span>{this.props.service.customer.name}
                             <br/>
                             <span class = "bold">Pet: </span>{this.props.service.pet.name}
                           </div>
                           </React.Fragment>;
       }
 
-      if(user !== undefined)
-      {
-
+      if(user !== undefined) {
+        if (!this.props.service.scheduled) {
           options = <React.Fragment>
                       <option value="0">- Select a Pet -</option>
                       {this.props.pets.map((pet, index) => {
@@ -87,17 +85,13 @@ export default class serviceCard extends React.Component {
                           );
                       })}
                     </React.Fragment>;
+        } else {
+          options = <option>Service already scheduled</option>
+        }
       }
-      else
-      {
+      else {
         options = <option>Login first to select a pet</option>
       }
-
-      
-
-     
-
-      
 
     return (
       <div class="service-card ">
