@@ -36,7 +36,6 @@ exports.getByPetId = async (petid) => {
 }
 
 exports.getTypes = async () => {
-  console.log("teste");
   const res = await Service.collection.distinct("type");
 
   return res;

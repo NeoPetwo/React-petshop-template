@@ -3,7 +3,7 @@ import "./AdminServices.scss";
 import axios from "axios";
 
 import ServiceCard from "../../components/AdminServiceCard/AdminServiceCard";
-import AdminServiceUpdate from '../AdminServiceUpdate/AdminServiceUpdate';
+
 import { SERVER_URL } from "../../variables";
 import { Route } from "react-router-dom";
 
@@ -88,6 +88,7 @@ export default class AdminServices extends React.Component {
 
   render() {
     return (
+      
       <div class="calendar">
         <div class="column">
           <div class="banner bg-green row" id="input-bar">
@@ -122,7 +123,6 @@ export default class AdminServices extends React.Component {
             })}
           </div>
         </div>
-        <Route path="/admin/services/update" component={AdminServiceUpdate}/>
       </div>
     );
   }
