@@ -149,6 +149,8 @@ export default class Product extends React.Component {
                             <p id="price">R$ {parseFloat(this.state.price).toFixed(2)}</p>
                         </div>
                     </section>
+                    {/* If the user it's not logged */}
+                    {this.state.user !== "" &&
                     <section>
                         <p id="qtt">QUANTITY</p>
                         <div class="qttBox">
@@ -156,8 +158,8 @@ export default class Product extends React.Component {
                                 <p>{this.state.qttSelected}</p>
                             <button onClick={this.addItem} class="qttBtn fas fa-plus"></button>
                         </div>
-                    </section>
-                    <button onClick={this.addToCart} class="btn">Add to cart</button>
+                    </section>}
+                    {this.state.user !== "" && <button onClick={this.addToCart} class="btn">Add to cart</button>}
                 </div>
             </div>
         );
