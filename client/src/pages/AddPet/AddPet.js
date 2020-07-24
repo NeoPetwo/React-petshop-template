@@ -74,11 +74,9 @@ export default class AddPet extends React.Component {
             description: this.state.description,
             img: `/img/${this.state.selectedImg.name}`,
         });
-        alert('1');
         let uploadOk = await this.uploadImg();
         if (uploadOk === false) return;
 
-        alert('2');
         let res = await axios({
             method: 'POST',
             url: `${SERVER_URL}/pets`,
@@ -90,7 +88,6 @@ export default class AddPet extends React.Component {
                 img: `/img/${this.state.selectedImg.name}`,
             }
         });
-        alert('3');
             
         if (res.status !== 201) {
             alert('Problem when submitting');  
