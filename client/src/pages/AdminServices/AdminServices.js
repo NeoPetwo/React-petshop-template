@@ -13,6 +13,7 @@ export default class AdminServices extends React.Component {
     this.state = {
       allServices: [],
       services2show: [],
+      services2show: ['empty'],
       typesOfServices: [],
     };
 
@@ -52,7 +53,7 @@ export default class AdminServices extends React.Component {
 
   filterByType = (type) => {
     //Reseta Filtro
-    let filteredList = this.state.allServices.filter((service) => {
+    let filteredList = this.state.servicesOfTheDay.filter((service) => {
       if (service.type === type) return service;
     });
     this.setState({
@@ -68,12 +69,13 @@ export default class AdminServices extends React.Component {
 
     this.setState({
       services2show: filteredList,
+      servicesOfTheDay: filteredList,
     });
   };
 
   resetTypeFilter = () => {
     this.setState({
-      services2show: this.state.allServices,
+      services2show: this.state.servicesOfTheDay,
     });
   };
 
@@ -87,6 +89,26 @@ export default class AdminServices extends React.Component {
   };
 
   render() {
+    let cards;
+    if (this.state.services2show.length !== 0) {
+      cards = this.state.services2show.map((service, index) => {
+        if (service === 'empty') {
+          return (<h1>Loading...</h1>)
+        }
+        return (
+          <div
+            className={
+              index.valueOf() % 2 == 0 ? "bg-darker" : "bg-lighter"
+            }
+          >
+            <ServiceCard service={service} key={index} pets={this.state.userPets} />
+          </div>
+        );
+      });
+    } else {
+      cards = <h1>There's no service of this type in this day</h1>
+    }
+
     return (
       
       <div class="calendar">
@@ -110,7 +132,7 @@ export default class AdminServices extends React.Component {
 
           <div class="banner bg-white" id="activities-list">
             <br/>
-            {this.state.services2show.map((service, index) => {
+            {/* {this.state.services2show.map((service, index) => {
               return (
                 <div
                   className={
@@ -120,7 +142,8 @@ export default class AdminServices extends React.Component {
                   <ServiceCard service={service} key={index} />
                 </div>
               );
-            })}
+            })} */}
+            {cards}
           </div>
         </div>
       </div>

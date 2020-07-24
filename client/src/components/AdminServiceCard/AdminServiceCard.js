@@ -55,6 +55,9 @@ export default class adminServiceCard extends React.Component {
         <div class = "service row">        
           <div class="hour-section">Hour:<br/> <span class = "hour-text">{this.props.service.startHour} - {this.props.service.endingHour}</span></div>
           <form class="info row">
+            <div class = "column">
+              <p class= "service-name">Type:<b> {this.props.service.type}</b></p>
+            </div>
             <p class="description">
               <b>Price:</b> R$ {(this.props.service.price).toFixed(2)}<br/>
               <b>Description:</b><br/>
