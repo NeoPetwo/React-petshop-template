@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
+import { SERVER_URL } from '../../variables';
+
 import { Link } from 'react-router-dom';
 
 import './MyAccount.scss';
@@ -13,11 +15,38 @@ import shoopingCart from '../../images/shopping_cart.png';
 import neopets1 from '../../images/neopets-pngs-1.png';
 
 export default class MyAccount extends React.Component {
-    render() {
+constructor() {
+    super();
+    this.state = {
+        user: ""
+    }
+    this.fetchUserInfo();
+}
+
+fetchUserInfo = async () => {
+    const cookies = new Cookies();
+    const user = cookies.get('loggedUser');
+    const res = await axios.get(`${SERVER_URL}/customers/${user.id}`);
+    console.log(res.data);
+    this.setState({
+        user: res.data
+    })
+}
+
+render() {
   return (
     <React.Fragment>
     <div id="user-info">
-        <h1>Bonjounr, Nico</h1>
+        <h1>Welcome, {this.state.user.name}</h1>
+        <br/>
+        <div className="details-row">
+            <img src={`${this.state.user.img}`} />
+            <div className="details-column">
+                <p>Name: {this.state.user.name}</p>
+                <p>Email: {this.state.user.email}</p>
+                <p>Phone: {this.state.user.phone}</p>
+            </div>
+        </div>
     </div>
     <div class="wrapper">
         {/* <!-- Schedule time banner --> */}

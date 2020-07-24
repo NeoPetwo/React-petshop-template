@@ -57,7 +57,9 @@ exports.login = async (req, res, next) => {
           username: user.username,
           name: user.name,
           email: user.email,
-          admin: user.admin
+          admin: user.admin,
+          img: user.img,
+          phone: user.phone
         }
       })
     } else  {

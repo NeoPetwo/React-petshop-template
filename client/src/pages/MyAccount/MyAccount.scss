@@ -8,7 +8,34 @@
 #user-info {
     padding: 2%;
     background-color: #6fb98f;
+    color: white;
 
+    .details-row {
+        display: flex;
+        flex-direction: row;
+        background-color: #2c7873;
+        border-radius: 20px;
+        padding: 1%;
+
+        img {
+            height: 250px;
+            width: 250px;
+            border-radius: 50%;
+        }
+
+        .details-column {
+            display: flex;
+            flex-direction: column;
+            margin-left: 5%;
+            margin-top: 20px;
+            
+            p {
+                font-size: 27px;
+            }
+        }
+    }
+
+    
 }
 
 .form-container{
