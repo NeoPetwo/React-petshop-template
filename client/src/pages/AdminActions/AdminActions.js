@@ -5,6 +5,7 @@ import { NavLink, Route } from 'react-router-dom';
 import NavbarAdminRegister from '../../components/NavbarAdminRegister/NavbarAdminRegister';
 import AdminServices from '../AdminServices/AdminServices';
 import NavbarAdminInventory from '../../components/NavbarAdminInventory/NavbarAdminInventory';
+import AdminServiceUpdate from '../AdminServiceUpdate/AdminServiceUpdate';
 
 export default class AdminActions extends React.Component {
   render() {
@@ -25,6 +26,8 @@ export default class AdminActions extends React.Component {
         <Route path="/admin/register" component={NavbarAdminRegister} />
         <Route path="/admin/services" component={AdminServices} />
         <Route path="/admin/inventory" component={NavbarAdminInventory} />
+        <Route path="/admin/services/update/:_id" component={AdminServiceUpdate}/>
+        
     </div>
     );
   }

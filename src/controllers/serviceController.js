@@ -116,6 +116,7 @@ exports.buy = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
+    console.log("teste");
     await repository.update(req.params.id, req.body);
     res.status(200).send({
         message: 'Serviço atualizado com louvor!!'
