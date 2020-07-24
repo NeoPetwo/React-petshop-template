@@ -45,19 +45,24 @@
     
   }
 
-  .info{ 
+  .info { 
     width: 85%;
     text-align: start;
     justify-content: space-between;
     padding:1em;
     flex-wrap: wrap;
     
+    img {
+      height: 70px;
+      width: auto;
+      float: left;
+      // background-color: red;
+    }
   }
 
 
   .info .column{
-    width: 30%;
-    
+    width: 25%;
   }
 
   .select-pet{
@@ -73,8 +78,8 @@
 
 
   .description{
-    width: 50%
-
+    width: 20%;
+    // background-color: green;
   }
 
   .schedule-button{

@@ -115,6 +115,9 @@ export default class serviceCard extends React.Component {
                 <br/>
                   {this.props.service.date}
             </p>
+
+            <img src={`${this.props.service.img}`} />
+            
             {scheduleButton}
           </div>
         </div>
