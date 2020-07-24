@@ -110,6 +110,7 @@ export default class serviceCard extends React.Component {
             </div>
             
             <p class="description">
+              <b>Price:</b> R$ {(this.props.service.price).toFixed(2)}<br/>
                 <b>Description:</b><br/>
                   {this.props.service.description}
                 <br/>

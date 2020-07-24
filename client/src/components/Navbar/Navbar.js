@@ -43,7 +43,9 @@ export default class Navbar extends React.Component {
 
     //Change page and reload
     // this.props.history.push('/');
-    window.location.reload(false);
+    // window.open("/");
+    window.location = '/';
+    // window.location.reload(false);
   }
 
   render() {
