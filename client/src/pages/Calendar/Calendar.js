@@ -57,7 +57,7 @@ export default class Calendar extends React.Component {
     this.setState({
       allServices: res.data,
       services2show: res.data,
-	});
+  });
 	
 	this.filterByDate(this.getTodayDate());
   };
