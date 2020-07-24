@@ -67,6 +67,9 @@ exports.update = async (id, data) => {
         data: data.data,
         pet: data.pet,
         customer: data.customer,
+        img: data.img,
+        paid: data.paid,
+        price: data.price,
       }
     });
 }
