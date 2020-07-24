@@ -5,25 +5,21 @@ import Cookies from 'universal-cookie';
 import { SERVER_URL} from '../../variables';
 import './ServiceCard.scss';
 
-
-
-
-
 export default class serviceCard extends React.Component {
-  
-
   state = {
-    selectedPet: "Whatever"
+    selectedPet: null
   }
 
   schedule = async () => {
-    console.log('foi');
+    console.log(this.state.selectedPet);
+    if (this.state.selectedPet === null) {
+      alert("You didn't select a pet yet");
+      return false;
+    }
+    
     const cookies = new Cookies();
     const user = cookies.get('loggedUser');
     try {
-      console.log('service', this.props.service);
-      console.log('selectedPet', this.state.selectedPet._id);
-      console.log('user id', user.id);
       await axios({
         method: 'PUT',
         url: `${SERVER_URL}/services/${this.props.service._id}`,
@@ -36,10 +32,15 @@ export default class serviceCard extends React.Component {
           slug: this.props.service.slug,
           pet: this.state.selectedPet._id,
           scheduled: true,
-          customer: user.id
+          customer: user.id,
+          price: this.props.service.price,
+          img: this.props.service.img,
+          paid: false,
         }
       });
-      alert('Service scheduled')
+      alert('Service scheduled');
+      //Refresh page
+      window.location.reload(false);
     } catch (err) {
       console.log('Error', err);
     }

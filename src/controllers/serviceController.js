@@ -59,6 +59,17 @@ exports.getById = async (req, res, next) => {
   }
 }
 
+exports.getByPetId = async (req, res, next) => {
+  try {
+    const data = await repository.getByPetId(req.params.petid);
+    res.status(200).send(data);
+  } catch(err) {
+    res.status(500).send({
+      message: 'Falha ao processar sua requisição.',
+      data: err
+    });
+  }
+}
 
 exports.post = async (req, res, next) => {
   try {

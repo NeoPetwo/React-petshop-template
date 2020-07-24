@@ -25,6 +25,11 @@ exports.getById = async (id) => {
   return res;
 }
 
+exports.getByPetId = async (petid) => {
+  const res = await Service.find({pet: petid});
+  return res;
+}
+
 exports.getTypes = async () => {
   console.log("teste");
   const res = await Service.collection.distinct("type");
@@ -62,6 +67,9 @@ exports.update = async (id, data) => {
         data: data.data,
         pet: data.pet,
         customer: data.customer,
+        img: data.img,
+        paid: data.paid,
+        price: data.price,
       }
     });
 }
