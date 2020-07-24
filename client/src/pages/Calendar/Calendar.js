@@ -24,6 +24,23 @@ export default class Calendar extends React.Component {
     this.fetchUserPets(); 
   }
 
+  componentDidUpdate() {
+    this.state.services2show.sort(this.compare);
+  }
+
+  compare = (a, b) => {
+    // if (a is less than b by some ordering criterion) {
+    if (a.startHour < b.startHour) {
+      return -1;
+    }
+    // if (a is greater than b by the ordering criterion) {
+    if (a.startHour > b.startHour) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+
   getTodayDate = () => {
     var curr = new Date();
     var date = curr.toISOString().substr(0, 10);
