@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { NavLink, Link } from 'react-router-dom';
 
-import '../MyAccount/MyAccount.css';
+import '../MyAccount/MyAccount.scss';
 
 import neopets4 from '../../images/neopets-pngs-4.png';
 import neopets6 from '../../images/neopets-pngs-6.png';

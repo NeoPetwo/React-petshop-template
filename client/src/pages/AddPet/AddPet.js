@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { SERVER_URL } from '../../variables';
 
-import '../MyAccount/MyAccount.css';
+import '../MyAccount/MyAccount.scss';
 
 import neopets4 from '../../images/neopets-pngs-4.png';
 import neopets6 from '../../images/neopets-pngs-6.png';

@@ -31,7 +31,6 @@ export default class Login extends React.Component {
       });
       
       if (res.status === 200) {
-        alert('You are logged in');  
         const cookies = new Cookies();
         cookies.set('loggedUser', res.data.user, { path: '/' }); // path: '/' makes de cookie available in all pages
         console.log(cookies.get('loggedUser'));

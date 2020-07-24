@@ -1,7 +1,10 @@
 import React from 'react';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
 import { Link } from 'react-router-dom';
 
-import './MyAccount.css';
+import './MyAccount.scss';
 
 import neopets4 from '../../images/neopets-pngs-4.png';
 import neopets6 from '../../images/neopets-pngs-6.png';
@@ -12,6 +15,10 @@ import neopets1 from '../../images/neopets-pngs-1.png';
 export default class MyAccount extends React.Component {
     render() {
   return (
+    <React.Fragment>
+    <div id="user-info">
+        <h1>Bonjounr, Nico</h1>
+    </div>
     <div class="wrapper">
         {/* <!-- Schedule time banner --> */}
         <Link class="catalog_link" to='/calendar'>
@@ -55,9 +62,8 @@ export default class MyAccount extends React.Component {
                 <p>Change your contact info</p>
             </div>
         </Link>
-
-
     </div>
+    </React.Fragment>  
   );
     }
 }
