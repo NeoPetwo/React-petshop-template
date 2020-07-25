@@ -11,10 +11,10 @@ import '../AdminInventoryAdd/AdminInventoryAdd.scss';
 export default class AdminInventoryAdd extends React.Component {
   state = {
     title: "",
-    price: "",
+    price: 0,
     description: "",
-    quantity: "",
-    quantitySold: "",
+    quantity: 0,
+    quantitySold: 0,
     img: "", //Image path
     slug: "",
     qttSelected: 1,
@@ -59,6 +59,7 @@ export default class AdminInventoryAdd extends React.Component {
   }
 
   parseTags = () => {
+    if (this.state.tags === "") return "";
     return this.state.tags.split(" ");
   }
   
@@ -100,7 +101,7 @@ export default class AdminInventoryAdd extends React.Component {
       }
     }).catch((err) => {
       alert('Slug already used by another product');
-      window.location.reload(false);
+      // window.location.reload(false);
     });
 
     if (res.status !== 201) {
