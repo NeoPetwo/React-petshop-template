@@ -148,7 +148,7 @@ export default class Calendar extends React.Component {
       //Mostra a mensagem "Loading" enquanto está pegando os serviços no servidor
       cards = this.state.services2show.map((service, index) => {
         if (service === 'empty') {
-          return (<h1>Loading...</h1>)
+          return (<h1>Loading <i class="fas fa-spinner fa-spin"></i></h1>)
         }
         return (
           <div

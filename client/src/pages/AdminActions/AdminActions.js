@@ -20,9 +20,9 @@ export default class AdminActions extends React.Component {
             <h1>Your account has admin privileges</h1>
             <hr/>
             <ul>
-                <li><NavLink to="/admin/register">Register</NavLink></li>
+                <li><NavLink to="/admin/register/admin">Register</NavLink></li>
                 <li><NavLink to="/admin/services">Services</NavLink></li>
-                <li><NavLink to="/admin/inventory">Inventory</NavLink></li>
+                <li><NavLink to="/admin/inventory/consult">Inventory</NavLink></li>
             </ul>
         </div>
         

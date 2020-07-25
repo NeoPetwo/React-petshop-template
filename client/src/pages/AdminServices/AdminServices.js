@@ -113,7 +113,7 @@ export default class AdminServices extends React.Component {
     if (this.state.services2show.length !== 0) {
       cards = this.state.services2show.map((service, index) => {
         if (service === 'empty') {
-          return (<h1>Loading...</h1>)
+          return (<h1>Loading <i class="fas fa-spinner fa-spin"></i></h1>)
         }
         return (
           <div
