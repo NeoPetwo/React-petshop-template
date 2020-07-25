@@ -22,6 +22,7 @@ import AdminActions from './pages/AdminActions/AdminActions';
 import Catalog from './pages/Catalog/Catalog';
 import Product from './pages/Product/Product';
 import EarningsScreen from './pages/EarningsScreen/EarningsScreen';
+import Error404 from './pages/Error404/Error404';
 
 // Importing Components
 import Footer from './components/Footer/Footer';
@@ -47,6 +48,7 @@ export default class App extends React.Component {
         <Route exact path='/catalog' component={Catalog} /> 
         <Route path='/catalog/product/:productslug' component={Product} /> 
         <Route path='/earnings' component={EarningsScreen} /> 
+        <Route path='/error404' component={Error404} /> 
       </Switch>
       <Footer />
     </div>

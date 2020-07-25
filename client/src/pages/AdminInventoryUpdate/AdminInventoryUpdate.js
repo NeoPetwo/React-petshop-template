@@ -35,7 +35,7 @@ export default class AdminInventoryUpdate extends React.Component {
 
       console.log(res.data);
       if (res.data[0] === undefined || res.data[0] === null) {
-        this.props.history.push('/');
+        this.props.history.push('/error404');
         return;
       }
 

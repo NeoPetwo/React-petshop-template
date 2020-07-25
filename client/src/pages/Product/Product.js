@@ -47,6 +47,11 @@ export default class Product extends React.Component {
             method: 'GET',
             url: `${SERVER_URL}/products/${productslug}`
         });
+        if (res.data[0] === undefined || res.data[0] === null) {
+            this.props.history.push('/error404')
+            return;
+        };
+        
         this.setState({
             productid: res.data[0]._id,
             title: res.data[0].title,
