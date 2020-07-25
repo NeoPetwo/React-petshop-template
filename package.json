@@ -11,7 +11,8 @@
     "client-install": "cd client && npm install",
     "client": "npm start --prefix client",
     "react": "npm start --prefix client",
-    "dev": "npm run test & npm run client"
+    "dev": "npm run test & npm run client",
+    "app-run": "npm run test & npm run client"
   },
   "keywords": [],
   "author": "",

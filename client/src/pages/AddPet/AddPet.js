@@ -133,13 +133,13 @@ export default class AddPet extends React.Component {
                     </Link>
                     <hr />
                     {/* <!-- Product catalog banner --> */}
-                    <a class="catalog_link" href="product_catalog.html">
+                    <Link class="catalog_link" to="/catalog">
                         <div id="section-catalog">
                             <img src={neopets2} alt="dog holding shopping cart"/>
                             <p>Check out our product catalog</p>
                             <img id="shopping_cart" src={shoopingCart} alt="dog holding shopping cart"/>
                         </div>
-                    </a>
+                    </Link>
                     <hr />
 
                     {/* <!-- List and register new pet--> */}
