@@ -33,6 +33,13 @@ export default class AdminInventoryUpdate extends React.Component {
           url: `${SERVER_URL}/products/${productslug}`
       });
 
+      console.log(res.data);
+      if (res.data[0] === undefined || res.data[0] === null) {
+        this.props.history.push('/');
+        return;
+      }
+
+
       let tags = res.data[0].tags;
       let tagsStr = "";
       for (let i=0; i<tags.length; i++) {

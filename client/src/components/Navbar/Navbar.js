@@ -81,7 +81,7 @@ export default class Navbar extends React.Component {
             }
             {/* <li><NavLink to='/login'><i class="fas fa-lock"></i> Login</NavLink></li> */}
             {loginLogoutBtn}
-            <li id="cart"><NavLink to='/cart'><i class="fas fa-shopping-cart"></i> {this.state.cartQtt}</NavLink></li>
+            {this.state.user !== undefined && <li id="cart"><NavLink to='/cart'><i class="fas fa-shopping-cart"></i> {this.state.cartQtt}</NavLink></li>}
         </ul>
       </nav>
     </div>

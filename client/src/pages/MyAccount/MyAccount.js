@@ -46,7 +46,7 @@ render() {
         <div className="details-row">
             <img src={`${this.state.user.img}`} />
             <div className="details-column">
-                <p>Name: {this.state.user.name}</p>
+                <p>Username: {this.state.user.username}</p>
                 <br/>
                 <p>Email: {this.state.user.email}</p>
                 <br/>
