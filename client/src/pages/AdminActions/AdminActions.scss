@@ -67,7 +67,18 @@
         background-color: #004445;
         color: #FFF;
         transition: background-color 200ms ease;
+        border-radius: 10px;
     }
+
+    .active {
+        background-color: #6FB98F;
+        color: #FFF;
+        transition: background-color 200ms ease;
+        border-radius: 10px;
+
+        // Só aqui da ruim  
+    }
+
     .form-popup .cancel:hover{
         background-color: firebrick;
     }
