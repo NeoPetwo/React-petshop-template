@@ -153,7 +153,7 @@ export default class Calendar extends React.Component {
         return (
           <div
             className={
-              index.valueOf() % 2 == 0 ? "bg-darker" : "bg-lighter"
+              index.valueOf() % 2 === 0 ? "bg-darker" : "bg-lighter"
             }
           >
             <ServiceCard service={service} key={index} pets={this.state.userPets} />
