@@ -29,6 +29,7 @@ export default class EarningsScreen extends React.Component {
     let filteredOrders = [];
     orders.forEach((order, index) => {
       order.items.forEach((item, index) => {
+        if (item === null || item === undefined || item.product === null || item.product === undefined) return;
         let indexPosition = this.indexOfObjAttr(filteredOrders, 'productid', item.product._id);
         if (indexPosition !== -1) {
           //If it's inside the array

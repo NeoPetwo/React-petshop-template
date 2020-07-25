@@ -138,16 +138,21 @@ export default class AdminInventoryUpdate extends React.Component {
         quantity: this.state.quantity,
         quantitySold: this.state.quantitySold
       }
+    }).then((res) => {
+      if (res.status !== 200) {
+        alert('Problem when submitting');
+        console.log(res);  
+      } else  {
+        alert('Product updated!');
+        this.props.history.push('/admin/inventory/consult');
+        e.persist(); // e.preventDefault();
+      }
+    })
+    .catch((err) => {
+      alert('Slug already used by another product');
+      return;
     });
-    e.persist(); // e.preventDefault();
-
-    if (res.status !== 200) {
-      alert('Problem when submitting');
-      console.log(res);  
-    } else  {
-      alert('Product updated!');
-      this.props.history.push('/admin/inventory/consult');
-    }
+    
   }
 
   cancelUpdate = () => {

@@ -97,14 +97,18 @@ export default class AdminInventoryAdd extends React.Component {
         quantity: this.state.quantity,
         quantitySold: this.state.quantitySold
       }
+    }).catch((err) => {
+      alert('Slug already used by another product');
+      window.location.reload(false);
     });
 
     if (res.status !== 201) {
       alert('Problem when submitting');  
     } else  {
-      alert('Product added!');
+      alert('Slug already used by another product!');
       this.props.history.push('/admin/inventory/consult');
     }
+
   }
 
   render() {
@@ -114,7 +118,7 @@ export default class AdminInventoryAdd extends React.Component {
         {/* <!-- New admin form --> */}
         <div class="adm_registration">
             <div class="form-popup" id="add_product">
-                <form class="form-container">
+                <div class="form-container">
                     <h1>Add product</h1>
 
                     <label for="picture">Picture:</label>
@@ -145,7 +149,7 @@ export default class AdminInventoryAdd extends React.Component {
 
                     <button type="button" onClick={this.handleSubmit} class="btn">Submit</button>
                     <button type="button" onClick={this.cancelSubmission} class="btn cancel">Cancel</button>
-                </form>
+                </div>
             </div>
         </div>
       </div>
