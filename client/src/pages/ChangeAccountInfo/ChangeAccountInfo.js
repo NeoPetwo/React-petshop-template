@@ -26,6 +26,7 @@ export default class ChangeAccountInfo extends React.Component {
             phone: "",
             email: "",
             admin: "",
+            address: "",
             img: "", //Image path
             selectdImg: null //Image file
         }
@@ -48,6 +49,7 @@ export default class ChangeAccountInfo extends React.Component {
             email: userInfo.data.email,
             admin: userInfo.data.admin,
             img: userInfo.data.img,
+            address: userInfo.data.address,
         });
     }
 
@@ -56,6 +58,9 @@ export default class ChangeAccountInfo extends React.Component {
     }
     handleChangeUsername = (e) => {
         this.setState({username: e.target.value});
+    }
+    handleChangeAddress = (e) => {
+        this.setState({address: e.target.value});
     }
     handleChangePhone = (e) => {
         this.setState({phone: e.target.value});
@@ -102,6 +107,7 @@ export default class ChangeAccountInfo extends React.Component {
             username: this.state.username,
             email: this.state.email,
             phone: this.state.phone,
+            address: this.state.address,
             img:  img,
             admin: this.state.admin
           }
@@ -172,6 +178,10 @@ export default class ChangeAccountInfo extends React.Component {
                     <div>
                         <label for="username">Username</label>
                         <input type="text" placeholder="Enter you username" name="name" value={this.state.username} onChange={this.handleChangeUsername}/>
+                    </div>
+                    <div>
+                        <label for="address">Address</label>
+                        <input type="text" placeholder="Enter your address" name="name" value={this.state.address} onChange={this.handleChangeAddress}/>
                     </div>
                     <div>
                         <label for="phone">Phone</label>

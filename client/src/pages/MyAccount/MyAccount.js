@@ -50,6 +50,8 @@ render() {
                 <br/>
                 <p>Email: {this.state.user.email}</p>
                 <br/>
+                <p>Address: {this.state.user.address}</p>
+                <br/>
                 <p>Phone: {this.state.user.phone}</p>
             </div>
         </div>

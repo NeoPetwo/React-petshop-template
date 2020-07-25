@@ -5,7 +5,7 @@ import React from 'react';
 import axios from 'axios';
 
 import './AdminInventoryConsult.scss';
-import './bulma-modified.scss';
+import './AdminInventoryConsult2.scss';
 
 import ProductCardInventory from '../../components/ProductCardInventory/ProductCardInventory';
 import { SERVER_URL } from '../../variables';

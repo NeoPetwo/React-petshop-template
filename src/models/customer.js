@@ -38,6 +38,10 @@ const schema = new Schema({
   admin: {
     type: Boolean,
     required: [true, 'O tipo de usuário é obrigatório. Admin true ou false']
+  },
+  address: {
+    type: String,
+    required: false
   }
 });
 

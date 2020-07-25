@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // CSS/SCSS
 import './Catalog.scss';
-import './bulma-modified.scss';
+import './Catalog2.scss';
 
 // Components
 import ProductCard from '../../components/ProductCard/ProductCard';

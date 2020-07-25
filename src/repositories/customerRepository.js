@@ -13,7 +13,7 @@ exports.getAll = async () => {
 
 //Pega um custumer especifico pela id
 exports.getById = async (id) => {
-  const res = await Customer.findById(id, 'name username email phone img admin');
+  const res = await Customer.findById(id);
   return res;
 }
 
@@ -45,6 +45,7 @@ exports.update = async (id, data) => {
       phone: data.phone,
       img: data.img,
       admin: data.admin,
+      address: data.address,
     },
   });
 }

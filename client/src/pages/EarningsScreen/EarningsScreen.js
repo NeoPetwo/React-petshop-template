@@ -5,7 +5,7 @@ import React from 'react';
 import axios from 'axios';
 
 import './EarningsScreen.scss';
-import '../AdminInventoryConsult/bulma-modified.scss';
+import '../AdminInventoryConsult/AdminInventoryConsult2.scss';
 
 import ProductCardEarnings from '../../components/ProductCardEarnings/ProductCardEarnings';
 import ServiceCardEarnings from '../../components/ServiceCardEarnings/ServiceCardEarnings';

@@ -16,6 +16,7 @@ export default class Register extends React.Component {
     password: "",
     confPassword: "",
     phone: "",
+    address: "",
     img: "", //Image path
     selectedImg: null, // Image file
   };
@@ -37,6 +38,9 @@ export default class Register extends React.Component {
   };
   handleChangePhone = (event) => {
     this.setState({ phone: event.target.value });
+  };
+  handleChangeAddress = (event) => {
+    this.setState({ address: event.target.value });
   };
   onChangeImg = (event) => {
     console.log(event.target.files[0]);
@@ -80,6 +84,7 @@ export default class Register extends React.Component {
         password: this.state.password, //Not worrying about security
         img: `/img/${this.state.selectedImg.name}`,
         phone: this.state.phone,
+        address: this.state.address,
         admin: false, //This registration are not for admins
       },
     });
@@ -145,6 +150,16 @@ export default class Register extends React.Component {
               placeholder="Type here your phone number"
               name=""
               onChange={this.handleChangePhone}
+            />
+          </section>
+
+          <section>
+            <h3>Address</h3>
+            <input
+              type="text"
+              placeholder="Type here your address"
+              name=""
+              onChange={this.handleChangeAddress}
             />
           </section>
 

@@ -16,7 +16,8 @@ export default class AdminRegisterAdmin extends React.Component {
 		email: "",
 		password: "",
 		confPassword: "",
-		phone: "",
+    phone: "",
+    address: "",
 		img: "", //Image path
 		selectedImg: null // Image file
 	}
@@ -38,6 +39,9 @@ export default class AdminRegisterAdmin extends React.Component {
   }
   handleChangePhone = (event) => {
     this.setState({phone: event.target.value});
+  }
+  handleChangeAddress = (event) => {
+    this.setState({address: event.target.value});
 	}
 	onChangeImg = (event) =>{
     console.log(event.target.files[0]);
@@ -80,7 +84,8 @@ export default class AdminRegisterAdmin extends React.Component {
         email: this.state.email,
         password: this.state.password, //Not worrying about security
         img: `/img/${this.state.selectedImg.name}`,
-				phone: this.state.phone,
+        phone: this.state.phone,
+        address: this.state.address,
 				admin: true //This registration is for new admins
       }
 		});
@@ -121,6 +126,9 @@ export default class AdminRegisterAdmin extends React.Component {
 
                   <label>Phone</label>
                   <input type="tel" placeholder="Type here your phone number" name="" onChange={this.handleChangePhone}/>								
+
+                  <label>Address</label>
+                  <input type="text" placeholder="Type here your address" name="" onChange={this.handleChangeAddress}/>								
 
                   <label>Email</label>
                   <input type="email" placeholder="Type here your email" name="" onChange={this.handleChangeEmail}/>								
