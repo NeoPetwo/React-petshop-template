@@ -120,7 +120,7 @@ export default class AddPet extends React.Component {
                     <Link class="catalog_link" to='/calendar'>
                         <div id="section-time">
                             <img src={neopets4} alt="cute animal picture"/>
-                            <p>Schedule time</p>
+                            <p>Schedule a service</p>
                             <img src={neopets6} alt="cute animal picture"/>
                         </div>
                     </Link>

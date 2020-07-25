@@ -135,7 +135,7 @@ export default class AdminServices extends React.Component {
         <div class="column">
           <div class="banner bg-green row" id="input-bar">
             <select class="box" onChange={this.handleChangeSelect}>
-              <option>Todos Serviços</option>
+              <option>All services</option>
               {this.state.typesOfServices.map((type, index) => {
                 return <option>{type}</option>;
               })}

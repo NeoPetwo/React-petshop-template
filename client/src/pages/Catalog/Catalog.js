@@ -88,12 +88,12 @@ export default class Catalog extends React.Component {
                     <ul>
                         <li class="title">Prices</li>
                         <li class="category"><a onClick={() => this.resetFilter()}>All prices</a></li>
-                        <li class="category"><a onClick={() => this.filterByPrice(0, 9.99)}>De R$0,00 a R$9,99</a></li>
-                        <li class="category"><a onClick={() => this.filterByPrice(10, 49.99)}>De R$10,00 a R$49,99</a></li>
-                        <li class="category"><a onClick={() => this.filterByPrice(50, 99.99)}>De R$50,00 a R$99,99</a></li>
-                        <li class="category"><a onClick={() => this.filterByPrice(100, 599.99)}>De R$100,00 a R$599,99</a></li>
-                        <li class="category"><a onClick={() => this.filterByPrice(600, 999.99)}>De R$600,00 a R$999,99</a></li>
-                        <li class="category"><a onClick={() => this.filterByPrice(1000, Infinity)}>Mais de R$1000</a></li>
+                        <li class="category"><a onClick={() => this.filterByPrice(0, 9.99)}>R$0,00 to R$9,99</a></li>
+                        <li class="category"><a onClick={() => this.filterByPrice(10, 49.99)}>R$10,00 to R$49,99</a></li>
+                        <li class="category"><a onClick={() => this.filterByPrice(50, 99.99)}>R$50,00 to R$99,99</a></li>
+                        <li class="category"><a onClick={() => this.filterByPrice(100, 599.99)}>R$100,00 to R$599,99</a></li>
+                        <li class="category"><a onClick={() => this.filterByPrice(600, 999.99)}>R$600,00 to R$999,99</a></li>
+                        <li class="category"><a onClick={() => this.filterByPrice(1000, Infinity)}>More than R$1000</a></li>
 
                         <li class="title">Categories</li>
                         <li class="category"><a onClick={() => this.resetFilter()}>All categories</a></li>

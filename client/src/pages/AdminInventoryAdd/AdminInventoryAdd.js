@@ -32,14 +32,15 @@ export default class AdminInventoryAdd extends React.Component {
     this.setState({slug: event.target.value});
   }
   handleChangePrice = (event) => {
+    if (event.target.value < 0) return;
     this.setState({price: event.target.value});
   }
   handleChangeQuantity = (event) => {
-    if (event.target.value <= 0) return;
+    if (event.target.value < 0) return;
     this.setState({quantity: event.target.value});
   }
   handleChangeQuantitySold = (event) => {
-    if (event.target.value <= 0) return;
+    if (event.target.value < 0) return;
     this.setState({quantitySold: event.target.value});
   }
   onTagsChanged = (event) => {
@@ -142,7 +143,7 @@ export default class AdminInventoryAdd extends React.Component {
                     <label for="qnt">Quantity sold</label>
                     <input type="number" value={this.state.quantitySold} onChange={this.handleChangeQuantitySold} />
 
-                    <label for="tags">Tags</label>
+                    <label for="tags">Tags (separated by space)</label>
                     <input type="text" placeholder="" name="tags" onChange={this.onTagsChanged} />
 
                     {/* <TagInput tags={this.state.tags} onTagsChanged={this.onTagsChanged} /> */}

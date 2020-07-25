@@ -27,10 +27,10 @@ export default class AdminRegisterProducts extends React.Component {
                 <input type="text" placeholder="" name="description" required/>
 
                 <label for="price">Price</label>
-                <input type="number" placeholder="$" name="price" required/>
+                <input type="number" placeholder="R$" name="price" required/>
 
                 <label for="qnt">Initial quantity in stock</label>
-                <input type="number" placeholder="" name="qnt" required/>
+                <input type="number" placeholder="R$" name="qnt" required/>
 
                 <button type="submit" class="btn">Submit</button>
                 <button type="button" class="btn cancel" onclick="closeForm(3)">Cancel</button>
