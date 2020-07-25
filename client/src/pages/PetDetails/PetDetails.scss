@@ -15,7 +15,8 @@
     }
 
     #main {
-
+        padding-left: 15px;
+        padding-top: 10px;
         background-color: #DFF2FD;
         color: black;
         border-radius: 0.65em;
@@ -38,26 +39,6 @@
         margin: 1em 0;
         padding: 0;
         border-color: #ffd800;
-    }
-    .button_payment{
-        margin-top: 40px;
-        margin-left: 40px;
-        border: none;
-        font-weight: bold;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        background-color: #6FB98F;
-        color: #FFF;
-        width: 200px;
-        height: 200px;
-        line-height: 1.33;
-        border-radius: 50%;
-    }
-    .button_payment:hover {
-        background-color: #004445;
-        color: #FFF;
-        transition: background-color 200ms ease;
     }
 
     /* Wrapper do conteúdo entre nav e header*/
@@ -154,6 +135,28 @@
     }
     .content-bottom{
         display: flex;
+    }
+    .button_payment{
+        margin-top: 40px;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        padding-top: 80px;
+        border: none;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        font-size: 26px;
+        background-color: #6FB98F;
+        color: #FFF;
+        width: 200px;
+        height: 200px;
+        line-height: 1.33;
+        border-radius: 50%;
+    }
+    .button_payment:hover {
+        background-color: #004445;
+        color: #FFF;
+        transition: background-color 200ms ease;
     }
     header{
         color: #004445;
