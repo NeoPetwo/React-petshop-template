@@ -4,4 +4,4 @@
 
 Depois execute os servidores para desenvolvimento...
 
-### `npm run dev`
+### `npm run app-run`
