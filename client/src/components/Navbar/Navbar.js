@@ -71,11 +71,12 @@ export default class Navbar extends React.Component {
       <nav id="home-bar">
         <NavLink id="logo" to='/'><img src={logo}/></NavLink>
         <ul>
-            <li><NavLink exact to='/'>Home</NavLink></li>
-            {this.state.user !== undefined && <li><NavLink to='/myaccount'>My Account</NavLink></li>}
+            <li><NavLink exact to='/'><i class="fas fa-home"></i> Home</NavLink></li>
+            <li><NavLink exact to='/catalog'><i class="fas fa-shopping-bag"></i> Catalog</NavLink></li>
+            {this.state.user !== undefined && <li><NavLink to='/myaccount'><i class="fas fa-user"></i> My Account</NavLink></li>}
             {this.state.user !== undefined && this.state.user.admin === true &&
               <React.Fragment>
-                <li><NavLink to='/earnings'><i class="fa fa-money"></i> Earnings</NavLink></li>
+                <li><NavLink to='/earnings'><i class="fas fa-money-bill"></i> Earnings</NavLink></li>
                 <li><NavLink to='/admin/inventory/consult'><i class="fas fa-hammer"></i> Admin actions</NavLink></li>
               </React.Fragment>
             }
