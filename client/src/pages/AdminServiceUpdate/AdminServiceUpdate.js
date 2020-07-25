@@ -2,7 +2,7 @@
 // Gabriel Santos Nicolau 10684600
 // Kaio Tadeu Rodrigues 7561083
 import React from 'react';
-import '../AdminRegisterAdmin/AdminRegisterAdmin.scss';
+import './AdminServiceUpdate.scss';
 import { SERVER_URL } from '../../variables';
 import axios from 'axios';
 
@@ -143,13 +143,17 @@ export default class AdminServiceUpdate extends React.Component {
       alert('Problem when submitting');
     }
   }
+
+  handleCancel = () => {
+    this.props.history.push('/');
+  }
   
   
   
   render() {
 
   return (
-    <div class="admin-register-services">
+    <div class="admin-update-services">
       <div class="adm_registration">
       
         {/* <!-- New services form --> */}
@@ -157,29 +161,29 @@ export default class AdminServiceUpdate extends React.Component {
             <div class="form-container">
                 <h1>Update service</h1>
 
-                <label for="type">Tipo do serviço</label>
+                <label for="type">Type of service</label>
                 <input type="text" value={this.state.type} name="nome" onChange={this.handleChangeType} required/>
 
-                <label for="services_pic">Picture:</label>
+                <label for="services_pic">Picture</label>
                 <input type="file" id="services_pic" name="picture" onChange={this.onChangeImg}/>
 
-                <label for="description">Descrição</label>
+                <label for="description">Description</label>
                 <input type="text" value={this.state.description} name="description" onChange={this.handleChangeDescription} required/>
 
                 <label for="price">Price</label>
                 <input type="number" value={this.state.price} name="price" onChange={this.handleChangePrice} required />
 
-                <label for="startHour">Hora de começo</label>
+                <label for="startHour">Start hour (hh:mm)</label>
                 <input type="text" value={this.state.startHour} name="startHour" onChange={this.handleChangeStartHour} required/>
                 
-                <label for="endingHour">Hora de fim</label>
+                <label for="endingHour">Ending hour (hh:mm)</label>
                 <input type="text" value={this.state.endingHour} name="endingHour" onChange={this.handleChangeEndingHour}required/>
 
-                <label for="date">Data</label>
+                <label for="date">Date (mm/dd/yyyy)</label>
                 <input type="date" value={this.state.date} name="date" onChange={this.handleChangeDate} required/>
 
                 <button type="button" class="btn" onClick={this.handleSubmit}>Submit</button>
-                <button type="button" class="btn cancel" onClick="closeForm(4)">Cancel</button>
+                <button type="button" class="btn cancel" onClick={this.handleCancel}>Cancel</button>
             </div>
         </div>
 

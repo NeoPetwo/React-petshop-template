@@ -4,7 +4,7 @@
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-
+.admin-update-services {
 	.adm_registration {
 			text-align: center;
 			padding: 1em 1em 1em 1em;
@@ -23,6 +23,7 @@
 			align-items: center;
 			text-align: left;
 			border: solid 1px;
+			padding: 1em 5em;
 	}
 
 	.form-popup form {
@@ -99,3 +100,4 @@
 			font-family: "Source Sans Pro", Helvetica, sans-serif;
 			margin-top: 20px;
 	}
+}

@@ -110,7 +110,9 @@ export default class AdminRegisterServices extends React.Component {
    
   }
   
-  
+  handleCancel = () => {
+    this.props.history.push('/');
+  }
   
   render() {
   console.log(this.GetSlug())
@@ -124,29 +126,29 @@ export default class AdminRegisterServices extends React.Component {
             <form action="#" class="form-container">
                 <h1>Add a new service</h1>
 
-                <label for="type">Tipo do serviço</label>
-                <input type="text" placeholder="Insira o tipo do serviço" name="nome" onChange={this.handleChangeType} required/>
+                <label for="type">Type of service</label>
+                <input type="text" placeholder="Enter the type of service" name="nome" onChange={this.handleChangeType} required/>
 
-                <label for="services_pic">Picture:</label>
+                <label for="services_pic">Picture</label>
                 <input type="file" id="services_pic" name="picture" onChange={this.onChangeImg}/>
 
-                <label for="description">Descrição</label>
-                <input type="text" placeholder="Descrição do serviço" name="description" onChange={this.handleChangeDescription} required/>
+                <label for="description">Description</label>
+                <input type="text" placeholder="Description" name="description" onChange={this.handleChangeDescription} required/>
 
                 <label for="price">Price</label>
                 <input type="number" placeholder="$" name="price" onChange={this.handleChangePrice} required />
 
-                <label for="startHour">Hora de começo</label>
+                <label for="startHour">Start hour (hh:mm)</label>
                 <input type="text" placeholder="hh:mm" name="startHour" onChange={this.handleChangeStartHour} required/>
                 
-                <label for="endingHour">Hora de fim</label>
+                <label for="endingHour">Ending hour (hh:mm)</label>
                 <input type="text" placeholder="hh:mm" name="endingHour" onChange={this.handleChangeEndingHour}required/>
 
-                <label for="date">Data</label>
+                <label for="date">Date (mm/dd/yyyy)</label>
                 <input type="date" placeholder="date" name="date" onChange={this.handleChangeDate} required/>
 
                 <button type="submit" class="btn" onClick={this.handleSubmit}>Submit</button>
-                <button type="button" class="btn cancel" onclick="closeForm(4)">Cancel</button>
+                <button type="button" class="btn cancel" onClick={this.handleCancel}>Cancel</button>
             </form>
         </div>
 
