@@ -55,10 +55,7 @@ export default class Home extends React.Component {
     <div class="banner" id="shop-info">
         <div class="info-description">
             <h2>Small Pets Supplies & Accessories</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.</p>
+            <p>Here you can buy all the kinds of supplies for you pet. We offer the best accessories of the market and the best quality.</p>
             <Link to="/catalog">
                 <button class="button green-hover">SHOP NOW</button>
             </Link>
@@ -97,7 +94,7 @@ export default class Home extends React.Component {
         <img class="info-img" src={bird2}/>
         <div class="info-description">
             <h2>Bird Snacks & Crackers</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>You can find here a variety of flavours for you bird. Also, we offer 30 days warranty. We value the satisfaction of our clients.</p>
             <Link to="/catalog">
                 <button class="button yellow-hover">SHOP NOW</button>
             </Link>
