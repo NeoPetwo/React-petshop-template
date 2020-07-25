@@ -20,7 +20,7 @@ export default class NavbarAdminRegister extends React.Component {
       <div class="adm_nav">
           <h1>Registration</h1>
           <ul>
-              <li><NavLink to="/admin/register/admin"><i class="fas fa-user-cog" /> Administrator</NavLink></li>
+              <li><NavLink to="/admin/register/admin"><i class="fas fa-user-cog" /> Admin</NavLink></li>
               <li><NavLink to="/admin/register/customer"><i class="fas fa-user-tag" /> Customer</NavLink></li>
               {/* <li><NavLink to="/admin/register/products"><i class="fas fa-tag"></i> Products</NavLink></li> */}
               <li><NavLink to="/admin/register/services"><i class="fas fa-concierge-bell"></i> Services</NavLink></li>
