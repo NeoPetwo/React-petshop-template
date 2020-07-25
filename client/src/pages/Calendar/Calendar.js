@@ -175,6 +175,7 @@ export default class Calendar extends React.Component {
                 return <option>{type}</option>;
               })}
             </select>
+            <h2>Schedule Service</h2>
             <input
               type="date"
               class="box date-box gradient"
@@ -182,7 +183,7 @@ export default class Calendar extends React.Component {
               defaultValue={this.getTodayDate()}
             />
 
-            <h2>Schedule Service</h2>
+            
           </div>
 
           <div class="banner bg-white" id="activities-list">
