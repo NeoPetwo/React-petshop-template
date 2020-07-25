@@ -76,7 +76,14 @@ export default class AddPet extends React.Component {
         }
     
     //requisição de criar um novo pet no servidor
-    handleSubmit = async () => {
+    handleSubmit = async (e) => {
+        if (this.state.selectedImg === null) {
+            alert("Select an image");
+            e.persist();
+            // e.preventDefault();
+            return false;
+          }
+
         console.log({
             owner: this.state.owner,
             race: this.state.race,
